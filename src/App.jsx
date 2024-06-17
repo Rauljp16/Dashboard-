@@ -7,14 +7,19 @@ import Contact from "./pages/Contact";
 import Room from "./pages/Room";
 import User from "./pages/User";
 import Login from "./pages/Login";
-import Header from "./components/Header";
-
+// import Header from "./components/Header";
 import "./App.css";
+// import { useState } from "react";
 
 function App() {
+  // const [display, setDisplay] = useState("none");
+  // const Open = () => {
+  //   setDisplay("block");
+  // };
+
   return (
     <>
-      <Header />
+      {/* <Header open={Open()} /> */}
       {/* <Home /> */}
       <Routes>
         <Route path="/" element={<Home />} />
