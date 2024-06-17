@@ -7,12 +7,15 @@ import Contact from "./pages/Contact";
 import Room from "./pages/Room";
 import User from "./pages/User";
 import Login from "./pages/Login";
+import Header from "./components/Header";
 
 import "./App.css";
 
 function App() {
   return (
     <>
+      <Header />
+      {/* <Home /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
