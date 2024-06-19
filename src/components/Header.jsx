@@ -1,8 +1,9 @@
-import { HiMenu } from "react-icons/hi";
 import { HiArrowLeft } from "react-icons/hi";
-import { useLocation } from "react-router-dom";
+import { HiArrowRight } from "react-icons/hi";
+import { useNavigate, useLocation } from "react-router-dom";
+import { TbLogout } from "react-icons/tb";
 
-function Header({ setOpen, open }) {
+function Header({ setOpen, open, setAuth }) {
   const headerStyle = {
     width: "100%",
     height: "50px",
@@ -16,10 +17,13 @@ function Header({ setOpen, open }) {
   };
 
   const title = useLocation().pathname;
+  const navigate = useNavigate();
 
   function getRouteName(title) {
     switch (title) {
       case "/":
+        return "Home";
+      case "/dashboard":
         return "Dashboard";
       case "/bookings":
         return "Booking";
@@ -33,15 +37,28 @@ function Header({ setOpen, open }) {
         return "Unknown";
     }
   }
+  const logOut = () => {
+    setAuth("");
+    navigate("/login");
+  };
 
   return (
     <div style={headerStyle}>
       {open ? (
         <HiArrowLeft onClick={handleClick} />
       ) : (
-        <HiMenu onClick={handleClick} />
+        <HiArrowRight onClick={handleClick} />
       )}
       <h3 style={{ marginLeft: "5px" }}>{getRouteName(title)}</h3>
+      <TbLogout
+        onClick={logOut}
+        style={{
+          position: "absolute",
+          right: "10px",
+          width: "28px",
+          height: "28px",
+        }}
+      />
     </div>
   );
 }

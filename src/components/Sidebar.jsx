@@ -7,7 +7,7 @@ import { HiOutlineUser } from "react-icons/hi";
 
 function Sidebar({ open }) {
   const sidebarStyle = {
-    width: open ? "150px" : "50px",
+    width: open ? "345px" : "50px",
     height: "100vh",
     backgroundColor: "#FFFFFF",
     display: "flex",
@@ -15,28 +15,74 @@ function Sidebar({ open }) {
     alignItems: "center",
     paddingTop: "50px",
   };
-  const margin = {
+  const linkStyle = {
     color: "#E23428",
-    margin: "20px",
+    margin: "24px",
+    width: "100%",
+    textAlign: "center",
+    textDecoration: "none",
+  };
+  const pStyle = {
+    display: "flex",
+    alignItems: "center",
+    marginLeft: "40px",
+    gap: "16px",
   };
 
   return (
     <>
       <div style={sidebarStyle}>
-        <Link to="/" style={margin}>
-          {open ? "Dashboard" : <RiDashboardLine />}
+        <Link to="/dashboard" style={linkStyle}>
+          {open ? (
+            <p style={pStyle}>
+              <RiDashboardLine style={{ width: "28px", height: "28px" }} />{" "}
+              Dashboard
+            </p>
+          ) : (
+            <RiDashboardLine style={{ width: "28px", height: "28px" }} />
+          )}
         </Link>
-        <Link to="/bookings" style={margin}>
-          {open ? "Bookings" : <FaRegCalendarAlt />}
+        <Link to="/bookings" style={linkStyle}>
+          {open ? (
+            <p style={pStyle}>
+              <FaRegCalendarAlt style={{ width: "28px", height: "28px" }} />
+              Bookings
+            </p>
+          ) : (
+            <FaRegCalendarAlt style={{ width: "28px", height: "28px" }} />
+          )}
         </Link>
-        <Link to="/rooms" style={margin}>
-          {open ? "Rooms" : <IoKeyOutline />}
+        <Link to="/rooms" style={linkStyle}>
+          {open ? (
+            <p style={pStyle}>
+              <IoKeyOutline style={{ width: "28px", height: "28px" }} />
+              Rooms
+            </p>
+          ) : (
+            <IoKeyOutline style={{ width: "28px", height: "28px" }} />
+          )}
         </Link>
-        <Link to="/contact" style={margin}>
-          {open ? "Contact" : <MdOutlineContactPhone />}
+        <Link to="/contact" style={linkStyle}>
+          {open ? (
+            <p style={pStyle}>
+              <MdOutlineContactPhone
+                style={{ width: "28px", height: "28px" }}
+              />
+              Contact
+            </p>
+          ) : (
+            <MdOutlineContactPhone style={{ width: "28px", height: "28px" }} />
+          )}
         </Link>
-        <Link to="/users" style={margin}>
-          {open ? "Users" : <HiOutlineUser />}
+        <Link to="/users" style={linkStyle}>
+          {open ? (
+            <p style={pStyle}>
+              <HiOutlineUser style={{ width: "28px", height: "28px" }} />
+              Users
+            </p>
+          ) : (
+            <HiOutlineUser style={{ width: "28px", height: "28px" }} />
+          )}
         </Link>
       </div>
     </>

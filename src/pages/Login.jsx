@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Login({ setAuth }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -22,11 +22,11 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email === "rauljp16@gmail.com" && password === "hotel miranda") {
-      alert("funciona");
+    if (email === "" && password === "") {
+      setAuth("rauljp16");
       navigate("/dashboard");
     } else {
-      alert("Email o password incorrecto.");
+      setAuth("");
     }
   };
 
