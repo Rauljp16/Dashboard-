@@ -48,15 +48,15 @@ function App() {
           <Route
             path="/"
             element={
-              <PrivateRoute>
-                <Home auth={auth} />
+              <PrivateRoute auth={auth}>
+                <Home />
               </PrivateRoute>
             }
           />
           <Route
             path="/dashboard"
             element={
-              <PrivateRoute>
+              <PrivateRoute auth={auth}>
                 <Dashboard />
               </PrivateRoute>
             }
@@ -64,7 +64,7 @@ function App() {
           <Route
             path="/bookings"
             element={
-              <PrivateRoute>
+              <PrivateRoute auth={auth}>
                 <Booking />
               </PrivateRoute>
             }
@@ -72,7 +72,7 @@ function App() {
           <Route
             path="/rooms"
             element={
-              <PrivateRoute>
+              <PrivateRoute auth={auth}>
                 <Rooms />
               </PrivateRoute>
             }
@@ -80,7 +80,7 @@ function App() {
           <Route
             path="/rooms/:id"
             element={
-              <PrivateRoute>
+              <PrivateRoute auth={auth}>
                 <Room />
               </PrivateRoute>
             }
@@ -88,7 +88,7 @@ function App() {
           <Route
             path="/users"
             element={
-              <PrivateRoute>
+              <PrivateRoute auth={auth}>
                 <Users />
               </PrivateRoute>
             }
@@ -96,7 +96,7 @@ function App() {
           <Route
             path="/users/:id"
             element={
-              <PrivateRoute>
+              <PrivateRoute auth={auth}>
                 <User />
               </PrivateRoute>
             }
@@ -104,7 +104,7 @@ function App() {
           <Route
             path="/contact"
             element={
-              <PrivateRoute>
+              <PrivateRoute auth={auth}>
                 <Contact />
               </PrivateRoute>
             }
