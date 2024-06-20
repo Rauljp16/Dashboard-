@@ -1,0 +1,202 @@
+[
+  {
+    "foto": "https://example.com/photos/employee1.jpg",
+    "name": "Juan Pérez",
+    "id": "001",
+    "email": "juan.perez@example.com",
+    "startDate": "2021-01-15",
+    "description": "Desarrollador de software",
+    "contact": "+34 600 123 456 789",
+    "status": "ACTIVE"
+  },
+  {
+    "foto": "https://example.com/photos/employee2.jpg",
+    "name": "María Gómez",
+    "id": "002",
+    "email": "maria.gomez@example.com",
+    "startDate": "2020-03-22",
+    "description": "Gerente de proyecto",
+    "contact": "+34 600 654 321 789",
+    "status": "INACTIVE"
+  },
+  {
+    "foto": "https://example.com/photos/employee3.jpg",
+    "name": "Carlos Ruiz",
+    "id": "003",
+    "email": "carlos.ruiz@example.com",
+    "startDate": "2019-07-01",
+    "description": "Analista de datos",
+    "contact": "+34 600 789 012 789",
+    "status": "ACTIVE"
+  },
+  {
+    "foto": "https://example.com/photos/employee4.jpg",
+    "name": "Ana Martínez",
+    "id": "004",
+    "email": "ana.martinez@example.com",
+    "startDate": "2021-02-18",
+    "description": "Especialista en marketing",
+    "contact": "+34 600 111 222 333",
+    "status": "ACTIVE"
+  },
+  {
+    "foto": "https://example.com/photos/employee5.jpg",
+    "name": "Pedro Sánchez",
+    "id": "005",
+    "email": "pedro.sanchez@example.com",
+    "startDate": "2020-11-25",
+    "description": "Diseñador gráfico",
+    "contact": "+34 600 444 555 666",
+    "status": "INACTIVE"
+  },
+  {
+    "foto": "https://example.com/photos/employee6.jpg",
+    "name": "Lucía Fernández",
+    "id": "006",
+    "email": "lucia.fernandez@example.com",
+    "startDate": "2021-06-10",
+    "description": "Recursos humanos",
+    "contact": "+34 600 777 888 999",
+    "status": "ACTIVE"
+  },
+  {
+    "foto": "https://example.com/photos/employee7.jpg",
+    "name": "Alberto García",
+    "id": "007",
+    "email": "alberto.garcia@example.com",
+    "startDate": "2019-09-05",
+    "description": "Contador",
+    "contact": "+34 600 999 888 777",
+    "status": "ACTIVE"
+  },
+  {
+    "foto": "https://example.com/photos/employee8.jpg",
+    "name": "Carmen López",
+    "id": "008",
+    "email": "carmen.lopez@example.com",
+    "startDate": "2020-12-12",
+    "description": "Consultora",
+    "contact": "+34 600 222 333 444",
+    "status": "INACTIVE"
+  },
+  {
+    "foto": "https://example.com/photos/employee9.jpg",
+    "name": "Jorge Herrera",
+    "id": "009",
+    "email": "jorge.herrera@example.com",
+    "startDate": "2021-04-01",
+    "description": "Ingeniero de sistemas",
+    "contact": "+34 600 555 666 777",
+    "status": "ACTIVE"
+  },
+  {
+    "foto": "https://example.com/photos/employee10.jpg",
+    "name": "Laura Díaz",
+    "id": "010",
+    "email": "laura.diaz@example.com",
+    "startDate": "2020-07-20",
+    "description": "Desarrolladora web",
+    "contact": "+34 600 333 444 555",
+    "status": "INACTIVE"
+  },
+  {
+    "foto": "https://example.com/photos/employee11.jpg",
+    "name": "Fernando Ramírez",
+    "id": "011",
+    "email": "fernando.ramirez@example.com",
+    "startDate": "2021-05-15",
+    "description": "Gerente de ventas",
+    "contact": "+34 600 666 777 888",
+    "status": "ACTIVE"
+  },
+  {
+    "foto": "https://example.com/photos/employee12.jpg",
+    "name": "Isabel Morales",
+    "id": "012",
+    "email": "isabel.morales@example.com",
+    "startDate": "2020-02-28",
+    "description": "Especialista en soporte",
+    "contact": "+34 600 888 999 000",
+    "status": "ACTIVE"
+  },
+  {
+    "foto": "https://example.com/photos/employee13.jpg",
+    "name": "Ricardo Rojas",
+    "id": "013",
+    "email": "ricardo.rojas@example.com",
+    "startDate": "2019-11-10",
+    "description": "Asistente administrativo",
+    "contact": "+34 600 000 111 222",
+    "status": "INACTIVE"
+  },
+  {
+    "foto": "https://example.com/photos/employee14.jpg",
+    "name": "Patricia Torres",
+    "id": "014",
+    "email": "patricia.torres@example.com",
+    "startDate": "2020-08-15",
+    "description": "Gerente de producto",
+    "contact": "+34 600 111 222 333",
+    "status": "ACTIVE"
+  },
+  {
+    "foto": "https://example.com/photos/employee15.jpg",
+    "name": "Francisco Vera",
+    "id": "015",
+    "email": "francisco.vera@example.com",
+    "startDate": "2021-03-22",
+    "description": "Desarrollador móvil",
+    "contact": "+34 600 222 333 444",
+    "status": "ACTIVE"
+  },
+  {
+    "foto": "https://example.com/photos/employee16.jpg",
+    "name": "Gloria Álvarez",
+    "id": "016",
+    "email": "gloria.alvarez@example.com",
+    "startDate": "2020-10-10",
+    "description": "Analista financiero",
+    "contact": "+34 600 333 444 555",
+    "status": "INACTIVE"
+  },
+  {
+    "foto": "https://example.com/photos/employee17.jpg",
+    "name": "Héctor Castillo",
+    "id": "017",
+    "email": "hector.castillo@example.com",
+    "startDate": "2019-06-06",
+    "description": "Director de tecnología",
+    "contact": "+34 600 444 555 666",
+    "status": "ACTIVE"
+  },
+  {
+    "foto": "https://example.com/photos/employee18.jpg",
+    "name": "Julia Serrano",
+    "id": "018",
+    "email": "julia.serrano@example.com",
+    "startDate": "2021-09-18",
+    "description": "Especialista en SEO",
+    "contact": "+34 600 555 666 777",
+    "status": "INACTIVE"
+  },
+  {
+    "foto": "https://example.com/photos/employee19.jpg",
+    "name": "Roberto Navarro",
+    "id": "019",
+    "email": "roberto.navarro@example.com",
+    "startDate": "2020-01-20",
+    "description": "Consultor de TI",
+    "contact": "+34 600 666 777 888",
+    "status": "ACTIVE"
+  },
+  {
+    "foto": "https://example.com/photos/employee20.jpg",
+    "name": "Sara Ortiz",
+    "id": "020",
+    "email": "sara.ortiz@example.com",
+    "startDate": "2019-03-25",
+    "description": "Especialista en contenidos",
+    "contact": "+34 600 777 888 999",
+    "status": "ACTIVE"
+  }
+]

@@ -1,0 +1,122 @@
+[
+  {
+    "foto": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
+    "Name": "John Doe",
+    "id": "R001",
+    "OrderDate": "2024-06-01",
+    "CheckIn": "2024-06-10",
+    "CheckOut": "2024-06-15",
+    "SpecialRequest": "Late check-out at 2 PM",
+    "RoomType": "Single Bed",
+    "RoomNumber": "101",
+    "Status": "Check In"
+  },
+  {
+    "foto": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
+    "Name": "Jane Smith",
+    "id": "R002",
+    "OrderDate": "2024-06-02",
+    "CheckIn": "2024-06-11",
+    "CheckOut": "2024-06-16",
+    "SpecialRequest": "Extra pillows",
+    "RoomType": "Double Bed",
+    "RoomNumber": "102",
+    "Status": "In Progress"
+  },
+  {
+    "foto": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
+    "Name": "Michael Johnson",
+    "id": "R003",
+    "OrderDate": "2024-06-03",
+    "CheckIn": "2024-06-12",
+    "CheckOut": "2024-06-17",
+    "SpecialRequest": "High floor room",
+    "RoomType": "Double Superior",
+    "RoomNumber": "103",
+    "Status": "Check Out"
+  },
+  {
+    "foto": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
+    "Name": "Emily Davis",
+    "id": "R004",
+    "OrderDate": "2024-06-04",
+    "CheckIn": "2024-06-13",
+    "CheckOut": "2024-06-18",
+    "SpecialRequest": "Vegetarian breakfast",
+    "RoomType": "Suite",
+    "RoomNumber": "104",
+    "Status": "Check In"
+  },
+  {
+    "foto": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
+    "Name": "Christopher Brown",
+    "id": "R005",
+    "OrderDate": "2024-06-05",
+    "CheckIn": "2024-06-14",
+    "CheckOut": "2024-06-19",
+    "SpecialRequest": "Early check-in at 10 AM",
+    "RoomType": "Single Bed",
+    "RoomNumber": "105",
+    "Status": "In Progress"
+  },
+  {
+    "foto": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
+    "Name": "Jessica Martinez",
+    "id": "R006",
+    "OrderDate": "2024-06-06",
+    "CheckIn": "2024-06-15",
+    "CheckOut": "2024-06-20",
+    "SpecialRequest": "Extra towels",
+    "RoomType": "Double Bed",
+    "RoomNumber": "106",
+    "Status": "Check Out"
+  },
+  {
+    "foto": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
+    "Name": "David Wilson",
+    "id": "R007",
+    "OrderDate": "2024-06-07",
+    "CheckIn": "2024-06-16",
+    "CheckOut": "2024-06-21",
+    "SpecialRequest": "Non-smoking room",
+    "RoomType": "Double Superior",
+    "RoomNumber": "107",
+    "Status": "Check In"
+  },
+  {
+    "foto": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
+    "Name": "Linda Anderson",
+    "id": "R008",
+    "OrderDate": "2024-06-08",
+    "CheckIn": "2024-06-17",
+    "CheckOut": "2024-06-22",
+    "SpecialRequest": "Late check-in at 11 PM",
+    "RoomType": "Suite",
+    "RoomNumber": "108",
+    "Status": "In Progress"
+  },
+  {
+    "foto": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
+    "Name": "James Taylor",
+    "id": "R009",
+    "OrderDate": "2024-06-09",
+    "CheckIn": "2024-06-18",
+    "CheckOut": "2024-06-23",
+    "SpecialRequest": "Sea view room",
+    "RoomType": "Single Bed",
+    "RoomNumber": "109",
+    "Status": "Check Out"
+  },
+  {
+    "foto": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
+    "Name": "Sarah Moore",
+    "id": "R010",
+    "OrderDate": "2024-06-10",
+    "CheckIn": "2024-06-19",
+    "CheckOut": "2024-06-24",
+    "SpecialRequest": "King-sized bed",
+    "RoomType": "Double Bed",
+    "RoomNumber": "110",
+    "Status": "Check In"
+  }
+]

@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Home from "./pages/Home";
 import Booking from "./pages/Bookings";
 import Rooms from "./pages/Rooms";
 import Users from "./pages/Users";
@@ -15,15 +14,13 @@ import "./App.css";
 import PrivateRoute from "./pages/PrivateRoute";
 
 function App() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const AUTH_KEY = "log";
   const [auth, setAuth] = useState(localStorage.getItem(AUTH_KEY) !== null);
 
   useEffect(() => {
     if (auth) {
       localStorage.setItem(AUTH_KEY, "1");
-      console.log(auth);
-      console.log(AUTH_KEY);
     } else {
       localStorage.removeItem(AUTH_KEY);
     }
@@ -32,6 +29,7 @@ function App() {
   const appStyle = {
     display: "flex",
     width: "100%",
+    height: "100vh",
     backgroundColor: "#EBEBEB",
   };
   const containerStyle = {
@@ -49,7 +47,7 @@ function App() {
             path="/"
             element={
               <PrivateRoute auth={auth}>
-                <Home />
+                <Dashboard />
               </PrivateRoute>
             }
           />
