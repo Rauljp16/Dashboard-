@@ -32,7 +32,7 @@ function Contact() {
           </p>
         </div>
       </div>
-      <table>
+      <table style={{ width: "100%" }}>
         <thead>
           <tr>
             <th>Date</th>

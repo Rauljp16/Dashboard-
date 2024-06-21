@@ -41,7 +41,7 @@ function Users() {
           <input type="text" />
         </div>
       </div>
-      <table>
+      <table style={{ width: "100%" }}>
         <thead>
           <tr>
             <th>Foto</th>

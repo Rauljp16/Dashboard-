@@ -3,7 +3,7 @@ function Rooms() {
   return (
     <div>
       <section>
-        <table>
+        <table style={{ width: "100%" }}>
           <thead>
             <tr>
               <th>Room Name</th>

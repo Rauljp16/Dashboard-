@@ -49,7 +49,7 @@ function Bookings() {
         </div>
       </div>
       <section>
-        <table>
+        <table style={{ width: "100%" }}>
           <thead>
             <tr>
               <th>Guest</th>

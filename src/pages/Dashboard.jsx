@@ -2,19 +2,21 @@ import { IoBedOutline } from "react-icons/io5";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { TbLogout } from "react-icons/tb";
 import { TbLogin } from "react-icons/tb";
-
+import Comments from "../components/Comments";
 function Dashboard() {
   const kpisStyle = {
     display: "flex",
-    justifyContent: "space-around",
-    width: "90%",
+    justifyContent: "space-between",
+    margin: "30px",
   };
   const kpisArticleStyle = {
     display: "flex",
     gap: "10px",
-    width: "340px",
+    minWidth: "20%",
     alignItems: "center",
-    padding: "20px",
+    padding: "16px 40px 16px 16px",
+    backgroundColor: "#ffffff",
+    borderRadius: "8px",
   };
   return (
     <div>
@@ -22,9 +24,9 @@ function Dashboard() {
         <article style={kpisArticleStyle}>
           <IoBedOutline
             style={{
-              width: "65px",
-              height: "65px",
-              padding: "18px",
+              width: "55px",
+              height: "55px",
+              padding: "12px",
               backgroundColor: "#f44040",
               borderRadius: "8px",
             }}
@@ -37,9 +39,9 @@ function Dashboard() {
         <article style={kpisArticleStyle}>
           <FaRegCalendarAlt
             style={{
-              width: "65px",
-              height: "65px",
-              padding: "18px",
+              width: "55px",
+              height: "55px",
+              padding: "12px",
               backgroundColor: "#f44040",
               borderRadius: "8px",
             }}
@@ -52,9 +54,9 @@ function Dashboard() {
         <article style={kpisArticleStyle}>
           <TbLogin
             style={{
-              width: "65px",
-              height: "65px",
-              padding: "18px",
+              width: "55px",
+              height: "55px",
+              padding: "12px",
               backgroundColor: "#fbbebe",
               borderRadius: "8px",
             }}
@@ -67,9 +69,9 @@ function Dashboard() {
         <article style={kpisArticleStyle}>
           <TbLogout
             style={{
-              width: "65px",
-              height: "65px",
-              padding: "18px",
+              width: "55px",
+              height: "55px",
+              padding: "12px",
               backgroundColor: "#fbbebe",
               borderRadius: "8px",
             }}
@@ -80,6 +82,7 @@ function Dashboard() {
           </div>
         </article>
       </section>
+      <Comments />
     </div>
   );
 }
