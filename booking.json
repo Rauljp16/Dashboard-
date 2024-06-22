@@ -1,8 +1,7 @@
 [
   {
-    "foto": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
     "Name": "John Doe",
-    "id": "R001",
+    "id": "#001",
     "OrderDate": "2024-06-01",
     "CheckIn": "2024-06-10",
     "CheckOut": "2024-06-15",
@@ -12,9 +11,8 @@
     "Status": "Check In"
   },
   {
-    "foto": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
     "Name": "Jane Smith",
-    "id": "R002",
+    "id": "#002",
     "OrderDate": "2024-06-02",
     "CheckIn": "2024-06-11",
     "CheckOut": "2024-06-16",
@@ -24,9 +22,8 @@
     "Status": "In Progress"
   },
   {
-    "foto": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
     "Name": "Michael Johnson",
-    "id": "R003",
+    "id": "#003",
     "OrderDate": "2024-06-03",
     "CheckIn": "2024-06-12",
     "CheckOut": "2024-06-17",
@@ -36,9 +33,8 @@
     "Status": "Check Out"
   },
   {
-    "foto": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
     "Name": "Emily Davis",
-    "id": "R004",
+    "id": "#004",
     "OrderDate": "2024-06-04",
     "CheckIn": "2024-06-13",
     "CheckOut": "2024-06-18",
@@ -48,9 +44,8 @@
     "Status": "Check In"
   },
   {
-    "foto": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
     "Name": "Christopher Brown",
-    "id": "R005",
+    "id": "#005",
     "OrderDate": "2024-06-05",
     "CheckIn": "2024-06-14",
     "CheckOut": "2024-06-19",
@@ -60,9 +55,8 @@
     "Status": "In Progress"
   },
   {
-    "foto": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
     "Name": "Jessica Martinez",
-    "id": "R006",
+    "id": "#006",
     "OrderDate": "2024-06-06",
     "CheckIn": "2024-06-15",
     "CheckOut": "2024-06-20",
@@ -72,9 +66,8 @@
     "Status": "Check Out"
   },
   {
-    "foto": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
     "Name": "David Wilson",
-    "id": "R007",
+    "id": "#007",
     "OrderDate": "2024-06-07",
     "CheckIn": "2024-06-16",
     "CheckOut": "2024-06-21",
@@ -84,9 +77,8 @@
     "Status": "Check In"
   },
   {
-    "foto": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
     "Name": "Linda Anderson",
-    "id": "R008",
+    "id": "#008",
     "OrderDate": "2024-06-08",
     "CheckIn": "2024-06-17",
     "CheckOut": "2024-06-22",
@@ -96,9 +88,8 @@
     "Status": "In Progress"
   },
   {
-    "foto": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
     "Name": "James Taylor",
-    "id": "R009",
+    "id": "#009",
     "OrderDate": "2024-06-09",
     "CheckIn": "2024-06-18",
     "CheckOut": "2024-06-23",
@@ -108,9 +99,8 @@
     "Status": "Check Out"
   },
   {
-    "foto": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
     "Name": "Sarah Moore",
-    "id": "R010",
+    "id": "#010",
     "OrderDate": "2024-06-10",
     "CheckIn": "2024-06-19",
     "CheckOut": "2024-06-24",
