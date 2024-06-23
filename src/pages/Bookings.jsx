@@ -6,7 +6,6 @@ function Bookings() {
 
   const data = bookingJson;
   const order = ["All Bookings", "Checking In", "Checking Out", "In Progress"];
-
   const headerColumns = [
     "Guest",
     "Order Date",

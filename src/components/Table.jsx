@@ -10,17 +10,17 @@ function Table({ headerColumns, columnsData, data, columnRenderers }) {
             ))}
           </tr>
         </thead>
-        <tbody>
-          {data.map((row) => (
-            <tr key={row.id}>
+        {data.map((row) => (
+          <tbody key={row.id}>
+            <tr >
               {columnsData.map((column, colIndex) => (
                 <td key={colIndex}>
                   {columnRenderers[column] ? columnRenderers[column](row) : row[column]}
                 </td>
               ))}
             </tr>
-          ))}
-        </tbody>
+          </tbody>
+        ))}
       </table>
     </div>
   );

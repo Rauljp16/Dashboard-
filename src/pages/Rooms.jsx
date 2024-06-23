@@ -1,11 +1,13 @@
-import roomJson from "../../room.json";
+import roomsJson from "../../dbRooms.json";
+import Table from "../components/Table";
+
 function Rooms() {
-  const data = roomJson;
+  const data = roomsJson;
   const headerColumns = [
     "Room Name",
     "Bed Type",
     "Room Floor",
-    "Facilities",
+    "Amenities",
     "Rate",
     "Status"
   ];
@@ -13,24 +15,24 @@ function Rooms() {
     "RoomName",
     "BedType",
     "RoomFloor",
-    "Facilities",
+    "Amenities",
     "Rate",
     "Status"
   ];
   const columnRenderers = {
-    "Room Name": (row) => <img src={row.Foto} alt="Room" style={{ width: 50, height: 50 }} />,
-    SpecialRequest: (row) => <button onClick={() => openNote(row.SpecialRequest)}>View Notes</button>,
-    RoomType: (row) => `${row.RoomType}-${row.RoomNumber}`,
-    Status: (row) =>
-      row.Status === "Check In"
-        ? <p style={{ color: "green" }}>{row.Status}</p>
-        : row.Status === "Check Out"
-          ? <p style={{ color: "red" }}>{row.Status}</p>
-          : <p style={{ color: "yellow" }}>{row.Status}</p>
+    RoomName: (row) => <div> <img src={row.Foto} alt="Room" style={{ width: "50%", height: "100%" }} /><p>#{row.id}</p><div><p>{row.number}</p>
+    </div></div>,
+    Amenities: (row) => <p>{row.Amenities.join(", ")}</p>,
+    Rate: (row) => <div><p>${row.Rate}</p><p>/night</p></div>,
+    Status: (row) => row.Status === "Available"
+      ? <button style={{ backgroundColor: "green" }}>{row.Status}</button>
+      : <button style={{ backgroundColor: "red" }}>{row.Status}</button>
   };
 
   return (
-    <div></div>
+    <div>
+      <Table headerColumns={headerColumns} columnsData={columnsData} data={data} columnRenderers={columnRenderers} />
+    </div>
     // <div>
     //   <section>
     //     <table style={{ width: "100%" }}>

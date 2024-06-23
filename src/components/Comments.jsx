@@ -2,18 +2,18 @@ import commentsJson from "../../comments.json";
 function Comments() {
   const commentsStyle = {
     display: "flex",
-    backgroundColor: "#ffff",
     margin: "30px",
     borderRadius: "8px",
+    gap: "30px",
   };
   const commentsCardStyle = {
     display: "flex",
     flexDirection: "column",
     boxShadow: "0px 2px 8px rgba(204, 204, 204, 0.5) ",
     borderRadius: "8px",
-    margin: "30px",
     box: "8px",
     padding: "30px",
+    backgroundColor: "#ffff",
   };
   return (
     <div style={commentsStyle}>

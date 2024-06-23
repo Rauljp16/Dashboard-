@@ -1,4 +1,4 @@
-import usersJson from "../../users.json";
+import usersJson from "../../dbUsers.json";
 function Users() {
   const tabsStyle = {
     display: "flex",
@@ -56,7 +56,7 @@ function Users() {
         </thead>
         <tbody>
           {usersJson.map((user) => (
-            <tr key={user["ID de empleado"]}>
+            <tr key={user.id}>
               <td>
                 <img
                   style={{ width: "100px" }}
@@ -76,8 +76,8 @@ function Users() {
                     user.status === "ACTIVE"
                       ? "#00cd00"
                       : user.status === "INACTIVE"
-                      ? "#d30000"
-                      : "#000000",
+                        ? "#d30000"
+                        : "#000000",
                 }}
               >
                 {user.status}
