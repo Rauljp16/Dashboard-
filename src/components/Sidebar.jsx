@@ -4,17 +4,9 @@ import { IoKeyOutline } from "react-icons/io5";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { MdOutlineContactPhone } from "react-icons/md";
 import { HiOutlineUser } from "react-icons/hi";
+import styled from "styled-components";
 
 function Sidebar({ open }) {
-  const sidebarStyle = {
-    width: open ? "345px" : "50px",
-    height: "100vh",
-    backgroundColor: "#FFFFFF",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    paddingTop: "50px",
-  };
   const linkStyle = {
     color: "#E23428",
     margin: "24px",
@@ -28,10 +20,19 @@ function Sidebar({ open }) {
     marginLeft: "40px",
     gap: "16px",
   };
+  const SidebarStyled = styled.div`
+  width: ${open ? "345px" : "50px"};
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  background-color: #ffffff;
+  `
 
   return (
     <>
-      <div style={sidebarStyle}>
+      <SidebarStyled>
         <Link to="/dashboard" style={linkStyle}>
           {open ? (
             <p style={pStyle}>
@@ -84,7 +85,7 @@ function Sidebar({ open }) {
             <HiOutlineUser style={{ width: "28px", height: "28px" }} />
           )}
         </Link>
-      </div>
+      </SidebarStyled>
     </>
   );
 }

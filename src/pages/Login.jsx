@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../components/Auth";
 import fondo from "../images/fondo.jpg";
 
-function Login({ setAuth }) {
+function Login() {
   const [email, setEmail] = useState("rauljp16@gmail.com");
   const [password, setPassword] = useState("hotel miranda");
   const navigate = useNavigate();
+  const { dispatch } = useContext(AuthContext);
 
   const fondoStyle = {
     backgroundImage: `url(${fondo})`,
@@ -26,20 +28,23 @@ function Login({ setAuth }) {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    boxShadow: "0px 0px 2px black",
+    boxShadow: "0px 0px 8px #085a34b0",
     borderRadius: "8px",
-    padding: "40px",
-    backgroundColor: "rgb(255 255 255 / 0.5)",
+    padding: "40px 70px",
+    backgroundColor: "#ffffffcf",
     scale: "1.3",
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email === "rauljp16@gmail.com" && password === "hotel miranda") {
-      setAuth("rauljp16");
+      dispatch({
+        type: "LOGIN",
+        payload: { email, password },
+      });
       navigate("/dashboard");
     } else {
-      setAuth("");
+      alert("Invalid date");
     }
   };
 

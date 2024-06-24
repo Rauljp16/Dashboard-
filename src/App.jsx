@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState, useContext } from "react";
 import Booking from "./pages/Bookings";
 import Rooms from "./pages/Rooms";
 import Users from "./pages/Users";
@@ -10,21 +10,13 @@ import Login from "./pages/Login";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
-import "./App.css";
 import PrivateRoute from "./pages/PrivateRoute";
+import "./App.css";
+import { AuthContext } from "./components/Auth";
 
 function App() {
   const [open, setOpen] = useState(false);
-  const AUTH_KEY = "log";
-  const [auth, setAuth] = useState(localStorage.getItem(AUTH_KEY) !== null);
-
-  useEffect(() => {
-    if (auth) {
-      localStorage.setItem(AUTH_KEY, "1");
-    } else {
-      localStorage.removeItem(AUTH_KEY);
-    }
-  }, [auth]);
+  const { state } = useContext(AuthContext);
 
   const appStyle = {
     display: "flex",
@@ -40,13 +32,13 @@ function App() {
     <div style={appStyle}>
       <Sidebar open={open} />
       <div style={containerStyle}>
-        <Header setOpen={setOpen} open={open} setAuth={setAuth} />
+        <Header setOpen={setOpen} open={open} />
         <Routes>
-          <Route path="/login" element={<Login setAuth={setAuth} />} />
+          <Route path="/login" element={<Login />} />
           <Route
             path="/"
             element={
-              <PrivateRoute auth={auth}>
+              <PrivateRoute auth={state.isAuthenticated}>
                 <Dashboard />
               </PrivateRoute>
             }
@@ -54,7 +46,7 @@ function App() {
           <Route
             path="/dashboard"
             element={
-              <PrivateRoute auth={auth}>
+              <PrivateRoute auth={state.isAuthenticated}>
                 <Dashboard />
               </PrivateRoute>
             }
@@ -62,7 +54,7 @@ function App() {
           <Route
             path="/bookings"
             element={
-              <PrivateRoute auth={auth}>
+              <PrivateRoute auth={state.isAuthenticated}>
                 <Booking />
               </PrivateRoute>
             }
@@ -70,7 +62,7 @@ function App() {
           <Route
             path="/rooms"
             element={
-              <PrivateRoute auth={auth}>
+              <PrivateRoute auth={state.isAuthenticated}>
                 <Rooms />
               </PrivateRoute>
             }
@@ -78,7 +70,7 @@ function App() {
           <Route
             path="/rooms/:id"
             element={
-              <PrivateRoute auth={auth}>
+              <PrivateRoute auth={state.isAuthenticated}>
                 <Room />
               </PrivateRoute>
             }
@@ -86,7 +78,7 @@ function App() {
           <Route
             path="/users"
             element={
-              <PrivateRoute auth={auth}>
+              <PrivateRoute auth={state.isAuthenticated}>
                 <Users />
               </PrivateRoute>
             }
@@ -94,7 +86,7 @@ function App() {
           <Route
             path="/users/:id"
             element={
-              <PrivateRoute auth={auth}>
+              <PrivateRoute auth={state.isAuthenticated}>
                 <User />
               </PrivateRoute>
             }
@@ -102,7 +94,7 @@ function App() {
           <Route
             path="/contact"
             element={
-              <PrivateRoute auth={auth}>
+              <PrivateRoute auth={state.isAuthenticated}>
                 <Contact />
               </PrivateRoute>
             }

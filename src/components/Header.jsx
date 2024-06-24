@@ -4,8 +4,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { TbLogout } from "react-icons/tb";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { CiMail } from "react-icons/ci";
+import { useContext } from "react";
+import { AuthContext } from "./Auth";
 
-function Header({ setOpen, open, setAuth }) {
+function Header({ setOpen, open }) {
   const headerStyle = {
     width: "100%",
     height: "50px",
@@ -20,6 +22,8 @@ function Header({ setOpen, open, setAuth }) {
 
   const title = useLocation().pathname;
   const navigate = useNavigate();
+
+  const { dispatch } = useContext(AuthContext);
 
   function getRouteName(title) {
     switch (title) {
@@ -39,8 +43,9 @@ function Header({ setOpen, open, setAuth }) {
         return "Unknown";
     }
   }
+
   const logOut = () => {
-    setAuth("");
+    dispatch({ type: "LOGOUT" });
     navigate("/login");
   };
 
@@ -62,7 +67,7 @@ function Header({ setOpen, open, setAuth }) {
       >
         <CiMail style={{ width: "20px", height: "20px" }} />
         <IoMdNotificationsOutline style={{ width: "20px", height: "20px" }} />
-        <TbLogout onClick={logOut} style={{ width: "20px", height: "20px" }} />
+        <TbLogout onClick={logOut} style={{ width: "20px", height: "20px", cursor: "pointer" }} />
       </div>
     </div>
   );
