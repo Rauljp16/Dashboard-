@@ -6,12 +6,14 @@ import fondo from "../images/fondo.jpg";
 function Login() {
   const [email, setEmail] = useState("rauljp16@gmail.com");
   const [password, setPassword] = useState("hotel miranda");
+  const userName = "Raúl";
   const navigate = useNavigate();
   const { dispatch } = useContext(AuthContext);
 
   const fondoStyle = {
     backgroundImage: `url(${fondo})`,
     backgroundSize: "cover",
+    backgroundPosition: "center bottom",
     position: "absolute",
     width: "100%",
     height: "100vh",
@@ -28,11 +30,12 @@ function Login() {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    boxShadow: "0px 0px 8px #085a34b0",
+    boxShadow: "0px 0px 8px #7a0804af",
     borderRadius: "8px",
     padding: "40px 70px",
-    backgroundColor: "#ffffffcf",
-    scale: "1.3",
+    backgroundColor: "#ffffffba",
+    color: "#7a0804f6",
+    scale: "1.2",
   };
 
   const handleSubmit = (e) => {
@@ -40,7 +43,11 @@ function Login() {
     if (email === "rauljp16@gmail.com" && password === "hotel miranda") {
       dispatch({
         type: "LOGIN",
-        payload: { email, password },
+        email: email,
+      });
+      dispatch({
+        type: "UPDATEUSER",
+        user: userName,
       });
       navigate("/dashboard");
     } else {

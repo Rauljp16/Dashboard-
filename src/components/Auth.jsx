@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 const initialState = {
     isAuthenticated: false,
     user: null,
+    email: null,
 };
 
 const savedAuthState = JSON.parse(localStorage.getItem("authState")) || initialState;
@@ -15,14 +16,21 @@ const authReducer = (state, action) => {
             return {
                 ...state,
                 isAuthenticated: true,
-                user: action.payload,
+                email: action.email,
             };
         case "LOGOUT":
             return {
                 ...state,
                 isAuthenticated: false,
                 user: null,
+                email: null,
             };
+        case "UPDATEUSER":
+            return {
+                ...state,
+                user: action.user,
+            };
+
         default:
             return state;
     }
