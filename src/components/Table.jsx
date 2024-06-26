@@ -1,21 +1,21 @@
-function Table({ headerColumns, columnsData, data, columnRenderers }) {
+function Table({ data, columns }) {
 
   return (
     <div>
       <table>
         <thead>
           <tr>
-            {headerColumns.map((column, index) => (
-              <th key={index}>{column}</th>
+            {columns.map((column, index) => (
+              <th key={index}>{column.headerColumn}</th>
             ))}
           </tr>
         </thead>
         {data.map((row) => (
           <tbody key={row.id}>
             <tr >
-              {columnsData.map((column, colIndex) => (
+              {columns.map((col, colIndex) => (
                 <td key={colIndex}>
-                  {columnRenderers[column] ? columnRenderers[column](row) : row[column]}
+                  {col.columnRenderer ? col.columnRenderer(row) : row[col.columnsData]}
                 </td>
               ))}
             </tr>

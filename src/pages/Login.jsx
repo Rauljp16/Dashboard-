@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../components/Auth";
 import fondo from "../images/fondo.jpg";
+import styled from "styled-components";
 
 function Login() {
   const [email, setEmail] = useState("rauljp16@gmail.com");
@@ -9,6 +10,10 @@ function Login() {
   const userName = "Raúl";
   const navigate = useNavigate();
   const { dispatch } = useContext(AuthContext);
+
+  const loginStyled = styled.div`
+  
+  `
 
   const fondoStyle = {
     backgroundImage: `url(${fondo})`,
@@ -30,11 +35,11 @@ function Login() {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    boxShadow: "0px 0px 8px #7a0804af",
+    boxShadow: "0px 0px 8px #135846",
     borderRadius: "8px",
     padding: "40px 70px",
     backgroundColor: "#ffffffba",
-    color: "#7a0804f6",
+    color: "#135846",
     scale: "1.2",
   };
 
