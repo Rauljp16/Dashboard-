@@ -39,7 +39,7 @@ function Login() {
     borderRadius: "8px",
     padding: "40px 70px",
     backgroundColor: "#ffffffba",
-    color: "#135846",
+    color: "#e23428d5",
     scale: "1.2",
   };
 

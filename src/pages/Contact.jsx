@@ -1,28 +1,48 @@
-import contactJson from "../../dbContact.json";
 import Comment from "../components/Comments"
 import Table from "../components/Table";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllThunk } from "../slices/contact/contactThunk";
+
+
 function Contact() {
-  const data = contactJson;
+  const contactStatus = useSelector((state) => state.contactSlice.status);
+  const dataContact = useSelector((state) => state.contactSlice.dataContact);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (contactStatus === "idle") {
+      dispatch(fetchAllThunk());
+    }
+  }, [contactStatus, dispatch]);
+
   const order = ["All Contacts", "Archived",];
+  const columns = [
+    {
+      headerColumn: "Date",
+      columnsData: "Date",
+      columnRenderer: (row) => <div><p>{row.date}</p><p>#{row.id}</p></div>,
 
-  const headerColumns = [
-    "Date",
-    "Customer",
-    "Asunto",
+    },
+    {
+      headerColumn: "Customer",
+      columnsData: "Customer",
+      columnRenderer: (row) => <div><p>{row.name}</p><p>{row.email}</p><p>{row.phone}</p></div>,
+
+    },
+    {
+      headerColumn: "Asunto",
+      columnsData: "Asunto",
+      columnRenderer: (row) => <div><p>{row.asunto}</p><p>{row.comment}</p></div>,
+
+    },
+    {
+      headerColumn: "Boton",
+      columnsData: "Boton",
+      columnRenderer: () => <button>Archive</button>
+    },
 
   ];
-  const columnsData = [
-    "Date",
-    "Customer",
-    "Asunto",
-    "Boton",
-  ];
-  const columnRenderers = {
-    Date: (row) => <div><p>{row.date}</p><p>#{row.id}</p></div>,
-    Customer: (row) => <div><p>{row.name}</p><p>{row.email}</p><p>{row.phone}</p></div>,
-    Asunto: (row) => <div><p>{row.asunto}</p><p>{row.comment}</p></div>,
-    Boton: () => <button>Archive</button>
-  };
 
   return (
     <div>
@@ -33,66 +53,9 @@ function Contact() {
         ))}
         <button>Archive</button>
       </ul>
-      <Table headerColumns={headerColumns} columnsData={columnsData} data={data} columnRenderers={columnRenderers} />
+      <Table data={dataContact} columns={columns} />
 
     </div>
-    // <div>
-    //   <div style={{ padding: "20px", backgroundColor: "#cccc" }}>
-    //     <div style={tabsStyle}>
-    //       <p
-    //         style={{
-    //           borderBottom: "2px solid green",
-    //           width: "100%",
-    //           textAlign: "center",
-    //           paddingBottom: "10px",
-    //           color: "green",
-    //         }}
-    //       >
-    //         All Contacts
-    //       </p>
-    //       <p
-    //         style={{
-    //           borderBottom: "2px solid #cccc",
-    //           width: "100%",
-    //           textAlign: "center",
-    //         }}
-    //       >
-    //         Archived
-    //       </p>
-    //     </div>
-    //   </div>
-    //   <table style={{ width: "100%" }}>
-    //     <thead>
-    //       <tr>
-    //         <th>Date</th>
-    //         <th>Customer</th>
-    //         <th>Asunto</th>
-    //         <th>Comment</th>
-    //         <th>Action</th>
-    //       </tr>
-    //     </thead>
-    //     <tbody>
-    //       {contactJson.map((message) => (
-    //         <tr key={message.id}>
-    //           <td>
-    //             <p>{message.date}</p>
-    //             <p>{message.id}</p>
-    //           </td>
-    //           <td>
-    //             <p>{message.name}</p>
-    //             <p>{message.email}</p>
-    //             <p>{message.phone}</p>
-    //           </td>
-    //           <td>{message.asunto}</td>
-    //           <td>{message.comment}</td>
-    //           <td>
-    //             <button>ARCHIVE</button>
-    //           </td>
-    //         </tr>
-    //       ))}
-    //     </tbody>
-    //   </table>
-    // </div>
   );
 }
 

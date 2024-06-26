@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import bookingJson from "../../../../booking.json";
-import { delay } from "../../../utils";
+import bookingJson from "../../../booking.json";
+import { delay } from "../../utils";
 
 export const fetchAllThunk = createAsyncThunk("bookings/fetchAll", async () => {
   return await delay(bookingJson);

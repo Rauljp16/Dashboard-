@@ -1,37 +1,71 @@
-import roomsJson from "../../dbRooms.json";
 import Table from "../components/Table";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllThunk } from "../slices/rooms/roomsThunk"
 
 function Rooms() {
-  const data = roomsJson;
-  const headerColumns = [
-    "Room Name",
-    "Bed Type",
-    "Room Floor",
-    "Amenities",
-    "Rate",
-    "Status"
+  const roomsStatus = useSelector((state) => state.roomSlice.status);
+  const dataRoom = useSelector((state) => state.roomSlice.dataRoom);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (roomsStatus === "idle") {
+      dispatch(fetchAllThunk());
+    }
+  }, [roomsStatus, dispatch]);
+
+  const columns = [
+    {
+      headerColumn: "Room Name",
+      columnsData: "RoomName",
+      columnRenderer: (row) => <div> <img src={row.Foto} alt="Room" style={{ width: "50%", height: "100%" }} /><p>#{row.id}</p><div><p>{row.number}</p>
+      </div></div>,
+
+    },
+    {
+      headerColumn: "Bed Type",
+      columnsData: "BedType",
+    },
+    {
+      headerColumn: "Room Floor",
+      columnsData: "RoomFloor",
+    },
+    {
+      headerColumn: "Amenities",
+      columnsData: "Amenities",
+      columnRenderer: (row) => <p>{row.Amenities.join(", ")}</p>,
+
+    },
+    {
+      headerColumn: "Special Request",
+      columnsData: "SpecialRequest",
+      columnRenderer: (row) => (
+        <button onClick={() => openNote(row.SpecialRequest)}>View Notes</button>
+      ),
+
+    },
+    {
+      headerColumn: "Rate",
+      columnsData: "Rate",
+      columnRenderer: (row) => <div><p>${row.Rate}</p><p>/night</p></div>,
+
+    },
+    {
+      headerColumn: "Status",
+      columnsData: "Status",
+      columnRenderer: (row) => row.Status === "Available"
+        ? <button style={{ backgroundColor: "green" }}>{row.Status}</button>
+        : <button style={{ backgroundColor: "red" }}>{row.Status}</button>
+
+    },
+
   ];
-  const columnsData = [
-    "RoomName",
-    "BedType",
-    "RoomFloor",
-    "Amenities",
-    "Rate",
-    "Status"
-  ];
-  const columnRenderers = {
-    RoomName: (row) => <div> <img src={row.Foto} alt="Room" style={{ width: "50%", height: "100%" }} /><p>#{row.id}</p><div><p>{row.number}</p>
-    </div></div>,
-    Amenities: (row) => <p>{row.Amenities.join(", ")}</p>,
-    Rate: (row) => <div><p>${row.Rate}</p><p>/night</p></div>,
-    Status: (row) => row.Status === "Available"
-      ? <button style={{ backgroundColor: "green" }}>{row.Status}</button>
-      : <button style={{ backgroundColor: "red" }}>{row.Status}</button>
-  };
+
+
 
   return (
     <div>
-      <Table headerColumns={headerColumns} columnsData={columnsData} data={data} columnRenderers={columnRenderers} />
+      <Table data={dataRoom} columns={columns} />
     </div>
     // <div>
     //   <section>

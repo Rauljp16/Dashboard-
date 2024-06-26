@@ -2,7 +2,7 @@ import Table from "../components/Table";
 import Select from "../components/Select";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllThunk } from "../components/slice/bookings/bookingsThunk";
+import { fetchAllThunk } from "../slices/bookings/bookingsThunk";
 
 function Bookings() {
   const bookingsStatus = useSelector((state) => state.bookingSlice.status);
