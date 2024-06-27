@@ -1,20 +1,36 @@
 import Comment from "../components/Comments"
 import Table from "../components/Table";
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllThunk } from "../slices/contact/contactThunk";
+import { deleteThunk, fetchAllThunk } from "../slices/contact/contactThunk";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 
 function Contact() {
-  const contactStatus = useSelector((state) => state.contactSlice.status);
   const dataContact = useSelector((state) => state.contactSlice.dataContact);
   const dispatch = useDispatch();
+  const [fetched, setFectched] = useState(false)
+
 
   useEffect(() => {
-    if (contactStatus === "idle") {
-      dispatch(fetchAllThunk());
+    const initialFetch = async () => {
+      await dispatch(fetchAllThunk()).unwrap()
+      setFectched(true)
     }
-  }, [contactStatus, dispatch]);
+    initialFetch()
+  }, [dispatch]);
+
+  const dataContactState = useMemo(() => {
+    if (!dataContact.length) return []
+    return dataContact
+  }, [dataContact]);
+
+  if (!fetched) return (<h1>Loading</h1>)
+
+  function deleteItem(id) {
+    dispatch(deleteThunk(id))
+  }
+
 
   const order = ["All Contacts", "Archived",];
   const columns = [
@@ -41,6 +57,11 @@ function Contact() {
       columnsData: "Boton",
       columnRenderer: () => <button>Archive</button>
     },
+    {
+      headerColumn: "",
+      columnsData: "delete",
+      columnRenderer: (row) => <RiDeleteBin5Line onClick={() => deleteItem(row.id)} />
+    },
 
   ];
 
@@ -53,7 +74,7 @@ function Contact() {
         ))}
         <button>Archive</button>
       </ul>
-      <Table data={dataContact} columns={columns} />
+      <Table data={dataContactState} columns={columns} />
 
     </div>
   );

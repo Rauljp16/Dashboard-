@@ -19,12 +19,19 @@ export const usersSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllThunk.fulfilled, (state, action) => {
-        state.status = "fulfilled";
-        state.dataUser = action.payload;
+        if (!state.dataUser.length) {
+          state.status = "fulfilled";
+          state.dataUser = action.payload;
+        }
       })
       .addCase(fetchSingleThunk.fulfilled, (state, action) => {
         state.status = "fulfilled";
         state.dataUser = action.payload;
+      })
+      .addCase(deleteThunk.fulfilled, (state, action) => {
+        state.dataUser = state.dataUser.filter(
+          (item) => item.id !== action.payload
+        );
       });
     //   .addCase(createThunk.fulfilled, (state, action) => {
     //     state.dataUser.push(action.payload);
@@ -35,10 +42,5 @@ export const usersSlice = createSlice({
     //     );
     //     state.dataUser[index] = action.payload;
     //   })
-    //   .addCase(deleteThunk.fulfilled, (state, action) => {
-    //     state.dataUser = state.data.filter(
-    //       (post) => post.id !== action.payload
-    //     );
-    //   });
   },
 });

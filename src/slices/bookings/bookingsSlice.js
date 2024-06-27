@@ -19,17 +19,19 @@ export const bookingsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllThunk.fulfilled, (state, action) => {
-        state.status = "fulfilled";
-        state.dataBooking = action.payload;
+        if (!state.dataBooking.length) {
+          state.status = "fulfilled";
+          state.dataBooking = action.payload;
+        }
       })
-      // .addCase(fetchSingleThunk.fulfilled, (state, action) => {
-      //   state.singleBooking = action.payload;
-      // })
       .addCase(deleteThunk.fulfilled, (state, action) => {
         state.dataBooking = state.dataBooking.filter(
           (item) => item.id !== action.payload
         );
       });
+    // .addCase(fetchSingleThunk.fulfilled, (state, action) => {
+    //   state.singleBooking = action.payload;
+    // })
     //   .addCase(createThunk.fulfilled, (state, action) => {
     //     state.dataBooking.push(action.payload);
     //   })
@@ -41,4 +43,3 @@ export const bookingsSlice = createSlice({
     //   })
   },
 });
-export default bookingsSlice.reducer;

@@ -1,24 +1,45 @@
 import Table from "../components/Table";
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllThunk } from "../slices/rooms/roomsThunk"
+import { deleteThunk, fetchAllThunk } from "../slices/rooms/roomsThunk"
+import { RiDeleteBin5Line } from "react-icons/ri";
+
 
 function Rooms() {
-  const roomsStatus = useSelector((state) => state.roomSlice.status);
   const dataRoom = useSelector((state) => state.roomSlice.dataRoom);
   const dispatch = useDispatch();
+  const [fetched, setFectched] = useState(false)
+
 
   useEffect(() => {
-    if (roomsStatus === "idle") {
-      dispatch(fetchAllThunk());
+    const initialFetch = async () => {
+      await dispatch(fetchAllThunk()).unwrap()
+      setFectched(true)
     }
-  }, [roomsStatus, dispatch]);
+    initialFetch()
+  }, [dispatch]);
+
+  function deleteItem(id) {
+    dispatch(deleteThunk(id))
+  }
+  function openNote(e) {
+    alert(e);
+  }
+
+
+  const dataRoomState = useMemo(() => {
+    if (!dataRoom.length) return []
+    return dataRoom
+  }, [dataRoom]);
+
+
+  if (!fetched) return (<h1>Loading</h1>)
 
   const columns = [
     {
       headerColumn: "Room Name",
       columnsData: "RoomName",
-      columnRenderer: (row) => <div> <img src={row.Foto} alt="Room" style={{ width: "50%", height: "100%" }} /><p>#{row.id}</p><div><p>{row.number}</p>
+      columnRenderer: (row) => <div> <img src={row.Foto} alt="Room" style={{ width: "90px" }} /><p>#{row.id}</p><div><p>{row.number}</p>
       </div></div>,
 
     },
@@ -58,56 +79,18 @@ function Rooms() {
         : <button style={{ backgroundColor: "red" }}>{row.Status}</button>
 
     },
+    {
+      headerColumn: "",
+      columnsData: "delete",
+      columnRenderer: (row) => <RiDeleteBin5Line onClick={() => deleteItem(row.id)} />
+    },
 
   ];
 
-
-
   return (
     <div>
-      <Table data={dataRoom} columns={columns} />
+      <Table data={dataRoomState} columns={columns} />
     </div>
-    // <div>
-    //   <section>
-    //     <table style={{ width: "100%" }}>
-    //       <thead>
-    //         <tr>
-    //           <th>Room Name</th>
-    //           <th>Bed Type</th>
-    //           <th>Room Floor</th>
-    //           <th>Facilities</th>
-    //           <th>Rate</th>
-    //           <th>Status</th>
-    //         </tr>
-    //       </thead>
-    //       <tbody>
-    //         {roomJson.map((room) => (
-    //           <tr key={room.id}>
-    //             <td style={{ display: "flex", margin: "10px 0" }}>
-    //               <img
-    //                 style={{ width: "100px" }}
-    //                 src={room.Foto}
-    //                 alt="Habitacion de hotel"
-    //               />
-    //               <div>
-    //                 <p>{`#${room.id}`}</p>
-    //                 <p> {room.number}</p>
-    //               </div>
-    //             </td>
-    //             <td>{room.BedType}</td>
-    //             <td>{room.RoomFloor}</td>
-    //             <td>{room.Facilities.join(", ")}</td>
-    //             <td>
-    //               {`$${room.Rate}`}
-    //               <p>/nigh</p>
-    //             </td>
-    //             <td>{room.Status}</td>
-    //           </tr>
-    //         ))}
-    //       </tbody>
-    //     </table>
-    //   </section>
-    // </div>
   );
 }
 

@@ -1,19 +1,34 @@
 import Table from "../components/Table";
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllThunk } from "../slices/users/usersThunk";
+import { deleteThunk, fetchAllThunk } from "../slices/users/usersThunk";
+import { RiDeleteBin5Line } from "react-icons/ri";
+
 
 function Users() {
-  const usersStatus = useSelector((state) => state.userSlice.status);
   const dataUser = useSelector((state) => state.userSlice.dataUser)
   const dispatch = useDispatch();
+  const [fetched, setFectched] = useState(false)
 
 
   useEffect(() => {
-    if (usersStatus === "idle") {
-      dispatch(fetchAllThunk());
+    const initialFetch = async () => {
+      await dispatch(fetchAllThunk()).unwrap()
+      setFectched(true)
     }
-  }, [usersStatus, dispatch]);
+    initialFetch()
+  }, [dispatch]);
+
+  const dataUserState = useMemo(() => {
+    if (!dataUser.length) return []
+    return dataUser
+  }, [dataUser]);
+
+  if (!fetched) return (<h1>Loading</h1>)
+
+  function deleteItem(id) {
+    dispatch(deleteThunk(id))
+  }
 
   const order = ["All user", "Active user", "Inactive user"];
   const columns = [
@@ -54,6 +69,12 @@ function Users() {
         ? <p style={{ color: "green" }}>{row.status}</p>
         : <p style={{ color: "red" }}>{row.status}</p>
     },
+    {
+      headerColumn: "",
+      columnsData: "delete",
+      columnRenderer: (row) => <RiDeleteBin5Line onClick={() => deleteItem(row.id)} />
+    },
+
   ];
 
   return (
@@ -66,7 +87,7 @@ function Users() {
       <div>
         <input type="text" />
       </div>
-      <Table columns={columns} data={dataUser} />
+      <Table columns={columns} data={dataUserState} />
     </div>
   );
 }

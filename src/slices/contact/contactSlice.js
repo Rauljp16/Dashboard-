@@ -19,12 +19,19 @@ export const contactSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllThunk.fulfilled, (state, action) => {
-        state.status = "fulfilled";
-        state.dataContact = action.payload;
+        if (!state.dataContact.length) {
+          state.status = "fulfilled";
+          state.dataContact = action.payload;
+        }
       })
       .addCase(fetchSingleThunk.fulfilled, (state, action) => {
         state.status = "fulfilled";
         state.dataContact = action.payload;
+      })
+      .addCase(deleteThunk.fulfilled, (state, action) => {
+        state.dataContact = state.dataContact.filter(
+          (item) => item.id !== action.payload
+        );
       });
     //   .addCase(createThunk.fulfilled, (state, action) => {
     //     state.dataContact.push(action.payload);
@@ -35,10 +42,5 @@ export const contactSlice = createSlice({
     //     );
     //     state.dataContact[index] = action.payload;
     //   })
-    //   .addCase(deleteThunk.fulfilled, (state, action) => {
-    //     state.dataContact = state.data.filter(
-    //       (post) => post.id !== action.payload
-    //     );
-    //   });
   },
 });

@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteThunk, fetchAllThunk } from "../slices/bookings/bookingsThunk";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import bookingsSlice from "../slices/bookings/bookingsSlice";
 
 function Bookings() {
   const dataBooking = useSelector((state) => state.bookingSlice.dataBooking);
@@ -21,9 +20,10 @@ function Bookings() {
   }, [dispatch]);
 
   const dataBookingState = useMemo(() => {
-    if (!dataBooking.length) []
+    if (!dataBooking.length) return []
     return dataBooking
   }, [dataBooking]);
+
   if (!fetched) return (<h1>Loading</h1>)
 
 

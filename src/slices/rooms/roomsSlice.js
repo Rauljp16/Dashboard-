@@ -19,13 +19,20 @@ export const roomsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllThunk.fulfilled, (state, action) => {
-        state.status = "fulfilled";
-        state.dataRoom = action.payload;
+        if (!state.dataRoom.length) {
+          state.status = "fulfilled";
+          state.dataRoom = action.payload;
+        }
       })
-      // .addCase(fetchSingleThunk.fulfilled, (state, action) => {
-      //   state.status = "fulfilled";
-      //   state.dataRoom = action.payload;
-      // });
+      .addCase(deleteThunk.fulfilled, (state, action) => {
+        state.dataRoom = state.dataRoom.filter(
+          (item) => item.id !== action.payload
+        );
+      });
+    // .addCase(fetchSingleThunk.fulfilled, (state, action) => {
+    //   state.status = "fulfilled";
+    //   state.dataRoom = action.payload;
+    // });
     //   .addCase(createThunk.fulfilled, (state, action) => {
     //     state.dataRoom.push(action.payload);
     //   })
@@ -35,10 +42,5 @@ export const roomsSlice = createSlice({
     //     );
     //     state.dataRoom[index] = action.payload;
     //   })
-    //   .addCase(deleteThunk.fulfilled, (state, action) => {
-    //     state.dataRoom = state.data.filter(
-    //       (post) => post.id !== action.payload
-    //     );
-    //   });
   },
 });
