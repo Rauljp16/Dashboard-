@@ -22,9 +22,13 @@ export const bookingsSlice = createSlice({
         state.status = "fulfilled";
         state.dataBooking = action.payload;
       })
-      .addCase(fetchSingleThunk.fulfilled, (state, action) => {
-        state.status = "fulfilled";
-        state.singleBooking = action.payload;
+      // .addCase(fetchSingleThunk.fulfilled, (state, action) => {
+      //   state.singleBooking = action.payload;
+      // })
+      .addCase(deleteThunk.fulfilled, (state, action) => {
+        state.dataBooking = state.dataBooking.filter(
+          (item) => item.id !== action.payload
+        );
       });
     //   .addCase(createThunk.fulfilled, (state, action) => {
     //     state.dataBooking.push(action.payload);
@@ -35,10 +39,6 @@ export const bookingsSlice = createSlice({
     //     );
     //     state.dataBooking[index] = action.payload;
     //   })
-    //   .addCase(deleteThunk.fulfilled, (state, action) => {
-    //     state.dataBooking = state.data.filter(
-    //       (post) => post.id !== action.payload
-    //     );
-    //   });
   },
 });
+export default bookingsSlice.reducer;

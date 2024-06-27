@@ -31,16 +31,17 @@ function Login() {
 
   const loginStyle = {
     display: "flex",
-    gap: "20px",
+    gap: "18px",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    boxShadow: "0px 0px 8px #135846",
+    boxShadow: "0px 0px 2px #0c3b2f",
     borderRadius: "8px",
-    padding: "40px 70px",
-    backgroundColor: "#ffffffba",
-    color: "#e23428d5",
-    scale: "1.2",
+    padding: "40px 120px",
+    backgroundColor: "#ffffff21",
+    backdropFilter: "blur(9px)",
+    color: "#0b362b",
+    scale: "1.1",
   };
 
   const handleSubmit = (e) => {

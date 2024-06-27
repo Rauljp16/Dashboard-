@@ -1,21 +1,46 @@
 import Table from "../components/Table";
 import Select from "../components/Select";
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllThunk } from "../slices/bookings/bookingsThunk";
+import { deleteThunk, fetchAllThunk } from "../slices/bookings/bookingsThunk";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import bookingsSlice from "../slices/bookings/bookingsSlice";
 
 function Bookings() {
-  const bookingsStatus = useSelector((state) => state.bookingSlice.status);
   const dataBooking = useSelector((state) => state.bookingSlice.dataBooking);
   const dispatch = useDispatch();
+  const [fetched, setFectched] = useState(false)
+
 
   useEffect(() => {
-    if (bookingsStatus === "idle") {
-      dispatch(fetchAllThunk());
+    const initialFetch = async () => {
+      await dispatch(fetchAllThunk()).unwrap()
+      setFectched(true)
     }
-  }, [bookingsStatus, dispatch]);
+    initialFetch()
+  }, [dispatch]);
+
+  const dataBookingState = useMemo(() => {
+    if (!dataBooking.length) []
+    return dataBooking
+  }, [dataBooking]);
+  if (!fetched) return (<h1>Loading</h1>)
+
 
   const order = ["All Bookings", "Checking In", "Checking Out", "In Progress"];
+  const options = ["Guest", "Order Date", "Check In", "Check Out"];
+
+  function onChange(e) {
+    console.log(e);
+  }
+  function openNote(e) {
+    alert(e);
+  }
+  function deleteItem(id) {
+    dispatch(deleteThunk(id))
+  }
+
+
   const columns = [
     {
       headerColumn: "Guest",
@@ -67,18 +92,13 @@ function Bookings() {
         ),
 
     },
+    {
+      headerColumn: "",
+      columnsData: "delete",
+      columnRenderer: (row) => <RiDeleteBin5Line onClick={() => deleteItem(row.id)} />
+    },
 
   ];
-  function openNote(e) {
-    alert(e);
-  }
-
-  const options = ["Guest", "Order Date", "Check In", "Check Out"];
-
-  function onChange(e) {
-    console.log(e);
-  }
-
   return (
     <div>
       <ul>
@@ -89,7 +109,7 @@ function Bookings() {
       <Select options={options} onChange={onChange} />
       <Table
         columns={columns}
-        data={dataBooking}
+        data={dataBookingState}
       />
     </div>
   );

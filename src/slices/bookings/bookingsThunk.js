@@ -13,6 +13,8 @@ export const fetchSingleThunk = createAsyncThunk(
   }
 );
 
+export const deleteThunk = createAsyncThunk("bookings/delete", (id) => {
+  return id;
+});
 export const createThunk = createAsyncThunk();
 export const updateThunk = createAsyncThunk();
-export const deleteThunk = createAsyncThunk();
