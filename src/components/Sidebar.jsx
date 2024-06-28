@@ -5,6 +5,7 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import { MdOutlineContactPhone } from "react-icons/md";
 import { HiOutlineUser } from "react-icons/hi";
 import styled from "styled-components";
+import hotelSvg from "../svg/hotel.svg";
 
 function Sidebar({ open }) {
   const linkStyle = {
@@ -21,18 +22,24 @@ function Sidebar({ open }) {
     gap: "16px",
   };
   const SidebarStyled = styled.div`
-  width: ${open ? "345px" : "50px"};
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 50px;
-  background-color: #ffffff;
-  `
+    width: ${open ? "345px" : "50px"};
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+  `;
 
   return (
     <>
       <SidebarStyled>
+        <div style={{ display: "flex" }}>
+          <img style={{ width: "40px" }} src={hotelSvg} alt="logo hotel" />
+          <div>
+            {/* <p>travl</p>
+            <p>Hotel Admin Dashboard</p> */}
+          </div>
+        </div>
         <Link to="/dashboard" style={linkStyle}>
           {open ? (
             <p style={pStyle}>

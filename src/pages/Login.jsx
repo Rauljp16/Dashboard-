@@ -40,6 +40,7 @@ function Login() {
     padding: "40px 120px",
     backgroundColor: "#ffffff21",
     backdropFilter: "blur(9px)",
+    WebkitBackdropFilter: "blur(9px)",
     color: "#0b362b",
     scale: "1.1",
   };

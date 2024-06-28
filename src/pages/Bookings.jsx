@@ -8,38 +8,76 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 function Bookings() {
   const dataBooking = useSelector((state) => state.bookingSlice.dataBooking);
   const dispatch = useDispatch();
-  const [fetched, setFectched] = useState(false)
-
+  const [fetched, setFectched] = useState(false);
 
   useEffect(() => {
     const initialFetch = async () => {
-      await dispatch(fetchAllThunk()).unwrap()
-      setFectched(true)
-    }
-    initialFetch()
+      await dispatch(fetchAllThunk()).unwrap();
+      setFectched(true);
+    };
+    initialFetch();
   }, [dispatch]);
 
   const dataBookingState = useMemo(() => {
-    if (!dataBooking.length) return []
-    return dataBooking
+    if (!dataBooking.length) return [];
+    return dataBooking;
   }, [dataBooking]);
 
-  if (!fetched) return (<h1>Loading</h1>)
-
+  if (!fetched) return <h1>Loading</h1>;
 
   const order = ["All Bookings", "Checking In", "Checking Out", "In Progress"];
-  const options = ["Guest", "Order Date", "Check In", "Check Out"];
+  const options = ["Default", "Guest", "Order Date", "Check In", "Check Out"];
 
+  // const orderDefault = () => {
+  //   dataBookingState;
+  // };
+  // const orderGuest = () => {
+  //   [...dataBookingState].sort((a, b) => a.Name.localeCompare(b.Name));
+  // };
+  // const orderDate = () => {
+  //   [...dataBookingState].sort((a, b) => a.Name.localeCompare(b.Name));
+  // };
+  // const orderCheckIn = () => {
+  //   [...dataBookingState].sort((a, b) => a.Name.localeCompare(b.Name));
+  // };
+  // const orderCheckOut = () => {
+  //   [...dataBookingState].sort((a, b) => a.Name.localeCompare(b.Name));
+  // };
+
+  // function onChange(e) {
+  //   let orderFinal;
+  //   switch (e) {
+  //     case "Default":
+  //       orderFinal = orderDefault();
+  //       break;
+  //     case "Guest":
+  //       orderFinal = orderGuest();
+  //       break;
+  //     case "Order Date":
+  //       orderFinal = orderDate();
+  //       break;
+  //     case "Check In":
+  //       orderFinal = orderCheckIn();
+  //       break;
+  //     case "Check Out":
+  //       orderFinal = orderCheckOut();
+  //       break;
+  //     default:
+  //       orderFinal = dataBookingState;
+  //   }
+  //   console.log(orderFinal);
+  //   return orderFinal;
+  // }
   function onChange(e) {
     console.log(e);
   }
+
   function openNote(e) {
     alert(e);
   }
   function deleteItem(id) {
-    dispatch(deleteThunk(id))
+    dispatch(deleteThunk(id));
   }
-
 
   const columns = [
     {
@@ -51,7 +89,6 @@ function Bookings() {
           <p>{row.id}</p>
         </div>
       ),
-
     },
     {
       headerColumn: "Order Date",
@@ -71,33 +108,31 @@ function Bookings() {
       columnRenderer: (row) => (
         <button onClick={() => openNote(row.SpecialRequest)}>View Notes</button>
       ),
-
     },
     {
       headerColumn: "Room Type",
       columnsData: "RoomType",
       columnRenderer: (row) => `${row.RoomType}-${row.RoomNumber}`,
-
     },
     {
       headerColumn: "Status",
       columnsData: "Status",
       columnRenderer: (row) =>
-        row.Status === 'Check In' ? (
-          <p style={{ color: 'green' }}>{row.Status}</p>
-        ) : row.Status === 'Check Out' ? (
-          <p style={{ color: 'red' }}>{row.Status}</p>
+        row.Status === "Check In" ? (
+          <p style={{ color: "green" }}>{row.Status}</p>
+        ) : row.Status === "Check Out" ? (
+          <p style={{ color: "red" }}>{row.Status}</p>
         ) : (
-          <p style={{ color: 'yellow' }}>{row.Status}</p>
+          <p style={{ color: "yellow" }}>{row.Status}</p>
         ),
-
     },
     {
       headerColumn: "",
       columnsData: "delete",
-      columnRenderer: (row) => <RiDeleteBin5Line onClick={() => deleteItem(row.id)} />
+      columnRenderer: (row) => (
+        <RiDeleteBin5Line onClick={() => deleteItem(row.id)} />
+      ),
     },
-
   ];
   return (
     <div>
@@ -107,10 +142,7 @@ function Bookings() {
         ))}
       </ul>
       <Select options={options} onChange={onChange} />
-      <Table
-        columns={columns}
-        data={dataBookingState}
-      />
+      <Table columns={columns} data={dataBookingState} />
     </div>
   );
 }
