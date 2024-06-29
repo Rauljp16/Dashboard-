@@ -1,5 +1,4 @@
 import Table from "../components/Table";
-import Select from "../components/Select";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteThunk, fetchAllThunk } from "../slices/bookings/bookingsThunk";
@@ -8,73 +7,64 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 function Bookings() {
   const dataBooking = useSelector((state) => state.bookingSlice.dataBooking);
   const dispatch = useDispatch();
-  const [fetched, setFectched] = useState(false);
+  const [fetched, setFetched] = useState(false);
+  const [dataFinal, setDataFinal] = useState([]);
+  const [filter, setFilter] = useState("All Bookings");
 
   useEffect(() => {
     const initialFetch = async () => {
       await dispatch(fetchAllThunk()).unwrap();
-      setFectched(true);
+      setFetched(true);
     };
     initialFetch();
   }, [dispatch]);
 
   const dataBookingState = useMemo(() => {
     if (!dataBooking.length) return [];
+    setDataFinal(dataBooking);
     return dataBooking;
   }, [dataBooking]);
 
   if (!fetched) return <h1>Loading</h1>;
 
-  const order = ["All Bookings", "Checking In", "Checking Out", "In Progress"];
-  const options = ["Default", "Guest", "Order Date", "Check In", "Check Out"];
-
-  // const orderDefault = () => {
-  //   dataBookingState;
-  // };
-  // const orderGuest = () => {
-  //   [...dataBookingState].sort((a, b) => a.Name.localeCompare(b.Name));
-  // };
-  // const orderDate = () => {
-  //   [...dataBookingState].sort((a, b) => a.Name.localeCompare(b.Name));
-  // };
-  // const orderCheckIn = () => {
-  //   [...dataBookingState].sort((a, b) => a.Name.localeCompare(b.Name));
-  // };
-  // const orderCheckOut = () => {
-  //   [...dataBookingState].sort((a, b) => a.Name.localeCompare(b.Name));
-  // };
-
-  // function onChange(e) {
-  //   let orderFinal;
-  //   switch (e) {
-  //     case "Default":
-  //       orderFinal = orderDefault();
-  //       break;
-  //     case "Guest":
-  //       orderFinal = orderGuest();
-  //       break;
-  //     case "Order Date":
-  //       orderFinal = orderDate();
-  //       break;
-  //     case "Check In":
-  //       orderFinal = orderCheckIn();
-  //       break;
-  //     case "Check Out":
-  //       orderFinal = orderCheckOut();
-  //       break;
-  //     default:
-  //       orderFinal = dataBookingState;
-  //   }
-  //   console.log(orderFinal);
-  //   return orderFinal;
-  // }
-  function onChange(e) {
-    console.log(e);
-  }
+  const onChange = (e) => {
+    const value = e.target.value;
+    switch (value) {
+      case "Guest":
+        setDataFinal(
+          [...dataBookingState].sort((a, b) => a.Name.localeCompare(b.Name))
+        );
+        break;
+      case "Order Date":
+        setDataFinal(
+          [...dataBookingState].sort(
+            (a, b) => new Date(a.OrderDate) - new Date(b.OrderDate)
+          )
+        );
+        break;
+      case "Check In":
+        setDataFinal(
+          [...dataBookingState].sort(
+            (a, b) => new Date(a.CheckIn) - new Date(b.CheckIn)
+          )
+        );
+        break;
+      case "Check Out":
+        setDataFinal(
+          [...dataBookingState].sort(
+            (a, b) => new Date(a.CheckOut) - new Date(b.CheckOut)
+          )
+        );
+        break;
+      default:
+        setDataFinal(dataBookingState);
+    }
+  };
 
   function openNote(e) {
     alert(e);
   }
+
   function deleteItem(id) {
     dispatch(deleteThunk(id));
   }
@@ -134,15 +124,58 @@ function Bookings() {
       ),
     },
   ];
+  const order = ["All Bookings", "Checking In", "Checking Out", "In Progress"];
+  const handleFiltered = (e) => {
+    const value = e.target.innerText;
+    // let itemFiltered = dataBookingState.filter((item) => item.Status === value);
+    // console.log(value);
+    // console.log(itemFiltered);
+    switch (value) {
+      case "All Bookings":
+        console.log(dataBookingState);
+        setDataFinal(dataBookingState);
+        break;
+      case "Checking In":
+        console.log(
+          dataBookingState.filter((item) => item.Status === "Check In")
+        );
+        break;
+      case "Checking Out":
+        console.log(
+          dataBookingState.filter((item) => item.Status === "Check Out")
+        );
+        break;
+      case "In Progress":
+        console.log(
+          dataBookingState.filter((item) => item.Status === "In Progress")
+        );
+        break;
+      default:
+        setDataFinal(dataBookingState);
+    }
+  };
   return (
     <div>
       <ul>
         {order.map((ord, orderIndex) => (
-          <li key={orderIndex}>{ord}</li>
+          <li key={orderIndex} onClick={handleFiltered}>
+            {ord}
+          </li>
         ))}
       </ul>
-      <Select options={options} onChange={onChange} />
-      <Table columns={columns} data={dataBookingState} />
+      <select onChange={onChange} defaultValue="">
+        <option value="" disabled>
+          Order by
+        </option>
+        <option value="Guest">Guest</option>
+        <option value="Order Date">Order Date</option>
+        <option value="Check In">Check In</option>
+        <option value="Check Out">Check Out</option>
+      </select>
+      <Table
+        columns={columns}
+        data={dataFinal.length ? dataFinal : dataBookingState}
+      />
     </div>
   );
 }
