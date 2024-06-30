@@ -3,13 +3,17 @@ import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteThunk, fetchAllThunk } from "../slices/bookings/bookingsThunk";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import Popup from "../components/Popup";
+import { Link } from "react-router-dom";
 
 function Bookings() {
   const dataBooking = useSelector((state) => state.bookingSlice.dataBooking);
   const dispatch = useDispatch();
   const [fetched, setFetched] = useState(false);
   const [dataFinal, setDataFinal] = useState([]);
-  const [filter, setFilter] = useState("All Bookings");
+  const [infoPopup, setInfoPopup] = useState({});
+  const [openPopup, setOpenPopup] = useState(false);
+  const [bookingDetails, setBookingDetails] = useState({});
 
   useEffect(() => {
     const initialFetch = async () => {
@@ -61,21 +65,28 @@ function Bookings() {
     }
   };
 
-  function openNote(e) {
-    alert(e);
+  function viewNote(e) {
+    setOpenPopup(true);
+    setInfoPopup({
+      title: "special request",
+      info: e,
+    });
   }
 
   function deleteItem(id) {
     dispatch(deleteThunk(id));
   }
+  // function handleDetails(details) {
+  //   setBookingDetails(details);
+  // }
 
   const columns = [
     {
       headerColumn: "Guest",
       columnsData: "Guest",
       columnRenderer: (row) => (
-        <div onClick={() => openNote(row.Name)}>
-          <p>{row.Name}</p>
+        <div>
+          <Link to={row.id}>{row.Name}</Link>
           <p>{row.id}</p>
         </div>
       ),
@@ -96,7 +107,7 @@ function Bookings() {
       headerColumn: "Special Request",
       columnsData: "SpecialRequest",
       columnRenderer: (row) => (
-        <button onClick={() => openNote(row.SpecialRequest)}>View Notes</button>
+        <button onClick={() => viewNote(row.SpecialRequest)}>View Notes</button>
       ),
     },
     {
@@ -127,26 +138,22 @@ function Bookings() {
   const order = ["All Bookings", "Checking In", "Checking Out", "In Progress"];
   const handleFiltered = (e) => {
     const value = e.target.innerText;
-    // let itemFiltered = dataBookingState.filter((item) => item.Status === value);
-    // console.log(value);
-    // console.log(itemFiltered);
     switch (value) {
       case "All Bookings":
-        console.log(dataBookingState);
         setDataFinal(dataBookingState);
         break;
       case "Checking In":
-        console.log(
+        setDataFinal(
           dataBookingState.filter((item) => item.Status === "Check In")
         );
         break;
       case "Checking Out":
-        console.log(
+        setDataFinal(
           dataBookingState.filter((item) => item.Status === "Check Out")
         );
         break;
       case "In Progress":
-        console.log(
+        setDataFinal(
           dataBookingState.filter((item) => item.Status === "In Progress")
         );
         break;
@@ -176,6 +183,7 @@ function Bookings() {
         columns={columns}
         data={dataFinal.length ? dataFinal : dataBookingState}
       />
+      {openPopup && <Popup infoPopup={infoPopup} setOpenPopup={setOpenPopup} />}
     </div>
   );
 }

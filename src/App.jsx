@@ -13,6 +13,7 @@ import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./pages/PrivateRoute";
 import "./App.css";
 import { AuthContext } from "./components/Auth";
+import BookingDetails from "./pages/BookingDetails";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -56,6 +57,14 @@ function App() {
             element={
               <PrivateRoute auth={state.isAuthenticated}>
                 <Booking />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/bookings/:id"
+            element={
+              <PrivateRoute auth={state.isAuthenticated}>
+                <BookingDetails />
               </PrivateRoute>
             }
           />
