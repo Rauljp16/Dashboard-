@@ -5,15 +5,13 @@ import fondo from "../images/fondo.jpg";
 import styled from "styled-components";
 
 function Login() {
-  const [email, setEmail] = useState("rauljp16@gmail.com");
-  const [password, setPassword] = useState("hotel miranda");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const userName = "Raúl";
   const navigate = useNavigate();
   const { dispatch } = useContext(AuthContext);
 
-  const loginStyled = styled.div`
-  
-  `
+  const loginStyled = styled.div``;
 
   const fondoStyle = {
     backgroundImage: `url(${fondo})`,
