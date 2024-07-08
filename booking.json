@@ -1,7 +1,7 @@
 [
   {
     "Name": "John Doe",
-    "id": "#001",
+    "id": "001",
     "OrderDate": "2020-01-15",
     "CheckIn": "2020-02-20",
     "CheckOut": "2020-02-25",
@@ -12,7 +12,7 @@
   },
   {
     "Name": "Jane Smith",
-    "id": "#002",
+    "id": "002",
     "OrderDate": "2021-03-12",
     "CheckIn": "2021-04-05",
     "CheckOut": "2021-04-10",
@@ -23,7 +23,7 @@
   },
   {
     "Name": "Michael Johnson",
-    "id": "#003",
+    "id": "003",
     "OrderDate": "2022-05-08",
     "CheckIn": "2022-06-15",
     "CheckOut": "2022-06-20",
@@ -34,7 +34,7 @@
   },
   {
     "Name": "Emily Davis",
-    "id": "#004",
+    "id": "004",
     "OrderDate": "2023-07-03",
     "CheckIn": "2023-08-12",
     "CheckOut": "2023-08-17",
@@ -45,7 +45,7 @@
   },
   {
     "Name": "Christopher Brown",
-    "id": "#005",
+    "id": "005",
     "OrderDate": "2024-09-22",
     "CheckIn": "2024-10-01",
     "CheckOut": "2024-10-06",
@@ -56,7 +56,7 @@
   },
   {
     "Name": "Jessica Martinez",
-    "id": "#006",
+    "id": "006",
     "OrderDate": "2023-11-15",
     "CheckIn": "2023-12-02",
     "CheckOut": "2023-12-07",
@@ -67,7 +67,7 @@
   },
   {
     "Name": "David Wilson",
-    "id": "#007",
+    "id": "007",
     "OrderDate": "2020-02-18",
     "CheckIn": "2020-03-20",
     "CheckOut": "2020-03-25",
@@ -78,7 +78,7 @@
   },
   {
     "Name": "Linda Anderson",
-    "id": "#008",
+    "id": "008",
     "OrderDate": "2021-04-05",
     "CheckIn": "2021-05-15",
     "CheckOut": "2021-05-20",
@@ -89,7 +89,7 @@
   },
   {
     "Name": "James Taylor",
-    "id": "#009",
+    "id": "009",
     "OrderDate": "2022-06-11",
     "CheckIn": "2022-07-10",
     "CheckOut": "2022-07-15",
@@ -100,7 +100,7 @@
   },
   {
     "Name": "Sarah Moore",
-    "id": "#010",
+    "id": "010",
     "OrderDate": "2024-08-19",
     "CheckIn": "2024-09-21",
     "CheckOut": "2024-09-26",

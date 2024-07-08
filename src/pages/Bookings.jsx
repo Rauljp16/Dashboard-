@@ -76,17 +76,14 @@ function Bookings() {
   function deleteItem(id) {
     dispatch(deleteThunk(id));
   }
-  // function handleDetails(details) {
-  //   setBookingDetails(details);
-  // }
-
+  const test = (e) => console.log(e);
   const columns = [
     {
       headerColumn: "Guest",
       columnsData: "Guest",
       columnRenderer: (row) => (
         <div>
-          <Link to={row.id}>{row.Name}</Link>
+          <Link to={`booking/${row.id}`}>{row.Name}</Link>
           <p>{row.id}</p>
         </div>
       ),

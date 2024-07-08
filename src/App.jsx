@@ -61,7 +61,7 @@ function App() {
             }
           />
           <Route
-            path="/bookings/:id"
+            path="/bookings/booking/:id"
             element={
               <PrivateRoute auth={state.isAuthenticated}>
                 <BookingDetails />

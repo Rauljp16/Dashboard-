@@ -28,10 +28,10 @@ export const bookingsSlice = createSlice({
         state.dataBooking = state.dataBooking.filter(
           (item) => item.id !== action.payload
         );
+      })
+      .addCase(fetchSingleThunk.fulfilled, (state, action) => {
+        state.singleBooking = action.payload;
       });
-    // .addCase(fetchSingleThunk.fulfilled, (state, action) => {
-    //   state.singleBooking = action.payload;
-    // })
     //   .addCase(createThunk.fulfilled, (state, action) => {
     //     state.dataBooking.push(action.payload);
     //   })

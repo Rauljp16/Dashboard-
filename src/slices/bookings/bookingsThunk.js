@@ -8,8 +8,8 @@ export const fetchAllThunk = createAsyncThunk("bookings/fetchAll", async () => {
 
 export const fetchSingleThunk = createAsyncThunk(
   "bookings/fetchSingle",
-  async () => {
-    return await delay(bookingJson);
+  (id) => {
+    return bookingJson.find((item) => item.id === id);
   }
 );
 
