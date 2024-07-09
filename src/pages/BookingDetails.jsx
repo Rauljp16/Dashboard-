@@ -14,6 +14,8 @@ function BookingDetails() {
     dispatch(fetchSingleThunk(id));
   }, [dispatch, id]);
 
+  //terminar componente
+
   return (
     <div className="order-details">
       <h2>Order Details</h2>
