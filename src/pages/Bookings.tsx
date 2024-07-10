@@ -5,6 +5,12 @@ import { deleteThunk, fetchAllThunk } from "../slices/bookings/bookingsThunk";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Popup from "../components/Popup";
 import { Link } from "react-router-dom";
+import { Column, DataBookings } from "../types/global";
+
+export interface BookingColumn extends Column {
+  columnRenderer?: (row: DataBookings) => React.ReactNode;
+}
+
 
 function Bookings() {
   const dataBooking = useSelector((state) => state.bookingSlice.dataBooking);
@@ -77,7 +83,7 @@ function Bookings() {
     dispatch(deleteThunk(id));
   }
   const test = (e) => console.log(e);
-  const columns = [
+  const columns: BookingColumn[] = [
     {
       headerColumn: "Guest",
       columnsData: "Guest",

@@ -1,4 +1,15 @@
-function Table({ data, columns }) {
+import { Column, DataBookings, DataComments, DataContacts, DataRooms, DataUsers } from '../types/global';
+
+
+
+
+interface TableProps extends Column {
+  data: (DataBookings | DataRooms | DataUsers | DataContacts)[]
+  columns: Column[]
+}
+
+
+function Table({ data, columns }: TableProps) {
 
   return (
     <div>

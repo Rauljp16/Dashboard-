@@ -3,6 +3,12 @@ import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteThunk, fetchAllThunk } from "../slices/users/usersThunk";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { Column, DataUsers } from "../types/global";
+
+
+export interface UserColumn extends Column {
+  columnRenderer?: (row: DataUsers) => React.ReactNode;
+}
 
 
 function Users() {
@@ -31,7 +37,7 @@ function Users() {
   }
 
   const order = ["All user", "Active user", "Inactive user"];
-  const columns = [
+  const columns: UserColumn[] = [
     {
       headerColumn: "Name",
       columnsData: "name",

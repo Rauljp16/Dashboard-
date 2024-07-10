@@ -7,15 +7,19 @@ import { HiOutlineUser } from "react-icons/hi";
 import styled from "styled-components";
 import hotelSvg from "../svg/hotel.svg";
 
-function Sidebar({ open }) {
-  const linkStyle = {
+interface sidebarProps {
+  open: boolean
+}
+
+function Sidebar({ open }: sidebarProps) {
+  const linkStyle: React.CSSProperties = {
     color: "#E23428",
     margin: "24px",
     width: "100%",
     textAlign: "center",
     textDecoration: "none",
   };
-  const pStyle = {
+  const pStyle: React.CSSProperties = {
     display: "flex",
     alignItems: "center",
     marginLeft: "40px",

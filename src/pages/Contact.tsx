@@ -4,7 +4,11 @@ import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteThunk, fetchAllThunk } from "../slices/contact/contactThunk";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { Column, DataContacts } from '../types/global';
 
+export interface ContactColumn extends Column {
+  columnRenderer?: (row: DataContacts) => React.ReactNode;
+}
 
 function Contact() {
   const dataContact = useSelector((state) => state.contactSlice.dataContact);
@@ -27,13 +31,13 @@ function Contact() {
 
   if (!fetched) return (<h1>Loading</h1>)
 
-  function deleteItem(id) {
+  function deleteItem(id: string) {
     dispatch(deleteThunk(id))
   }
 
 
   const order = ["All Contacts", "Archived",];
-  const columns = [
+  const columns: ContactColumn[] = [
     {
       headerColumn: "Date",
       columnsData: "Date",

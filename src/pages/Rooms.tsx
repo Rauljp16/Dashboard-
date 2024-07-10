@@ -3,6 +3,12 @@ import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteThunk, fetchAllThunk } from "../slices/rooms/roomsThunk"
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { Column, DataRooms } from "../types/global";
+
+
+export interface RoomColumn extends Column {
+  columnRenderer?: (row: DataRooms) => React.ReactNode;
+}
 
 
 function Rooms() {
@@ -22,9 +28,9 @@ function Rooms() {
   function deleteItem(id) {
     dispatch(deleteThunk(id))
   }
-  function openNote(e) {
-    alert(e);
-  }
+  // function openNote(e) {
+  //   alert(e);
+  // }
 
 
   const dataRoomState = useMemo(() => {
@@ -35,7 +41,7 @@ function Rooms() {
 
   if (!fetched) return (<h1>Loading</h1>)
 
-  const columns = [
+  const columns: RoomColumn[] = [
     {
       headerColumn: "Room Name",
       columnsData: "RoomName",
@@ -57,14 +63,14 @@ function Rooms() {
       columnRenderer: (row) => <p>{row.Amenities.join(", ")}</p>,
 
     },
-    {
-      headerColumn: "Special Request",
-      columnsData: "SpecialRequest",
-      columnRenderer: (row) => (
-        <button onClick={() => openNote(row.SpecialRequest)}>View Notes</button>
-      ),
+    // {
+    //   headerColumn: "Special Request",
+    //   columnsData: "SpecialRequest",
+    //   columnRenderer: (row) => (
+    //     <button onClick={() => openNote(row.SpecialRequest)}>View Notes</button>
+    //   ),
 
-    },
+    // },
     {
       headerColumn: "Rate",
       columnsData: "Rate",
