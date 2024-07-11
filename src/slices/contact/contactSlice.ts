@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   createThunk,
   deleteThunk,
@@ -6,29 +6,39 @@ import {
   fetchSingleThunk,
   updateThunk,
 } from "./contactThunk";
+import { DataContacts } from '../../types/global';
+
+interface StateContact {
+  status: string;
+  dataContact: DataContacts[];
+  singleContact: DataContacts | null;
+  error: null | string;
+}
+
+const initialState: StateContact = {
+  status: "idle",
+  dataContact: [],
+  singleContact: null,
+  error: null,
+};
 
 export const contactSlice = createSlice({
   name: "contactSlice",
-  initialState: {
-    status: "idle",
-    dataContact: [],
-    singleUser: [],
-    error: null,
-  },
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAllThunk.fulfilled, (state, action) => {
+      .addCase(fetchAllThunk.fulfilled, (state, action: PayloadAction<DataContacts[]>) => {
         if (!state.dataContact.length) {
           state.status = "fulfilled";
           state.dataContact = action.payload;
         }
       })
-      .addCase(fetchSingleThunk.fulfilled, (state, action) => {
+      .addCase(fetchSingleThunk.fulfilled, (state, action: PayloadAction<DataContacts | undefined>) => {
         state.status = "fulfilled";
-        state.dataContact = action.payload;
+        state.singleContact = action.payload ?? null;
       })
-      .addCase(deleteThunk.fulfilled, (state, action) => {
+      .addCase(deleteThunk.fulfilled, (state, action: PayloadAction<string>) => {
         state.dataContact = state.dataContact.filter(
           (item) => item.id !== action.payload
         );

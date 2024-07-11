@@ -1,7 +1,7 @@
 
-import { DataBookings, DataComments, DataRooms, DataUsers } from './types/global';
+import { DataBookings, DataComments, DataContacts, DataRooms, DataUsers } from './types/global';
 
-type DataTypes = (DataBookings | DataUsers | DataComments | DataRooms)[];
+type DataTypes = (DataBookings | DataUsers | DataContacts | DataRooms)[];
 
 export function delay(data: DataTypes): Promise<DataTypes> {
   return new Promise((resolve) => {

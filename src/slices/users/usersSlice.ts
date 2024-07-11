@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   createThunk,
   deleteThunk,
@@ -7,28 +7,41 @@ import {
   updateThunk,
 } from "./usersThunk";
 
+import { DataUsers } from '../../types/global';
+
+interface StateUser {
+  status: string;
+  dataUser: DataUsers[];
+  singleUser: DataUsers | null;
+  error: null | string;
+}
+
+const initialState: StateUser = {
+  status: "idle",
+  dataUser: [],
+  singleUser: null,
+  error: null,
+};
+
+
 export const usersSlice = createSlice({
   name: "userSlice",
-  initialState: {
-    status: "idle",
-    dataUser: [],
-    singleUser: [],
-    error: null,
-  },
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAllThunk.fulfilled, (state, action) => {
+      .addCase(fetchAllThunk.fulfilled, (state, action: PayloadAction<DataUsers[]>) => {
         if (!state.dataUser.length) {
           state.status = "fulfilled";
           state.dataUser = action.payload;
         }
       })
-      .addCase(fetchSingleThunk.fulfilled, (state, action) => {
+      .addCase(fetchSingleThunk.fulfilled, (state, action: PayloadAction<DataUsers | undefined>) => {
         state.status = "fulfilled";
-        state.dataUser = action.payload;
+        state.singleUser = action.payload ?? null;
       })
-      .addCase(deleteThunk.fulfilled, (state, action) => {
+      .addCase(deleteThunk.fulfilled,
+         (state, action: PayloadAction<string>) => {
         state.dataUser = state.dataUser.filter(
           (item) => item.id !== action.payload
         );

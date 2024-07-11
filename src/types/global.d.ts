@@ -35,7 +35,7 @@ export interface DataBookings{
     Rate: number,
     OfferPrice: number,
     Status: string,
-    RoomRoomFloorNumber: string,
+    RoomFloor: string,
 
 }export interface DataUsers{
     foto: string,
