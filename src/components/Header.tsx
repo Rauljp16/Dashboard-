@@ -13,6 +13,7 @@ interface Props {
 }
 
 function Header({ setOpen, open }: Props) {
+
   const headerStyle = {
     width: "100%",
     height: "50px",
@@ -28,9 +29,10 @@ function Header({ setOpen, open }: Props) {
   const title = useLocation().pathname;
   const navigate = useNavigate();
 
-  const { dispatch }: React.Dispatch<AuthContext> = useContext(AuthContext);
+  const { dispatch }: any = useContext(AuthContext);
+  //cambiar el tipo any que ahora no lo he conseguido
 
-  function getRouteName(title: string) {
+  function getRouteName(title: string): string {
     switch (title) {
       case "/":
         return "Dashboard";
