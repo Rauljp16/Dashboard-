@@ -14,12 +14,13 @@ const ButtonStyled = styled.button`
   &:hover {
     scale: 1.2;
     background-color: ${({ color }) =>
-      color === "green" ? "#55c25536" : "#dc354636"};
+    color === "green" ? "#55c25536" : "#dc354636"};
     color: white;
   }
 `;
 
-function Button({ color }) {
+//cambiar el tipo any si este componente es necesario mas adelante
+function Button({ color }: any) {
   return <ButtonStyled color={color}>Click</ButtonStyled>;
 }
 
