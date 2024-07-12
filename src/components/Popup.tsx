@@ -1,4 +1,6 @@
-function Popup({ infoPopup, setOpenPopup }) {
+
+
+function Popup({ infoPopup, setOpenPopup }: PropsPopup) {
   const handleClose = () => {
     setOpenPopup(false);
   };

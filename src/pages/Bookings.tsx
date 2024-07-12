@@ -1,22 +1,19 @@
 import Table from "../components/Table";
-import { useEffect, useMemo, useState } from "react";
+import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteThunk, fetchAllThunk } from "../slices/bookings/bookingsThunk";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Popup from "../components/Popup";
 import { Link } from "react-router-dom";
-import { Column, DataBookings } from "../types/global";
-
-export interface BookingColumn extends Column {
-  columnRenderer?: (row: DataBookings) => React.ReactNode;
-}
+import { Column, DataBookings } from '../types/global';
+import { AppDispatch, RootState } from "../store";
 
 
 function Bookings() {
-  const dataBooking = useSelector((state) => state.bookingSlice.dataBooking);
-  const dispatch = useDispatch();
+  const dataBooking = useSelector((state: RootState) => state.bookingSlice.dataBooking);
+  const dispatch: AppDispatch = useDispatch();
   const [fetched, setFetched] = useState(false);
-  const [dataFinal, setDataFinal] = useState([]);
+  const [dataFinal, setDataFinal] = useState<DataBookings[]>([]);
   const [infoPopup, setInfoPopup] = useState({});
   const [openPopup, setOpenPopup] = useState(false);
   const [bookingDetails, setBookingDetails] = useState({});
@@ -37,7 +34,7 @@ function Bookings() {
 
   if (!fetched) return <h1>Loading</h1>;
 
-  const onChange = (e) => {
+  const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     switch (value) {
       case "Guest":
@@ -48,21 +45,21 @@ function Bookings() {
       case "Order Date":
         setDataFinal(
           [...dataBookingState].sort(
-            (a, b) => new Date(a.OrderDate) - new Date(b.OrderDate)
+            (a, b) => new Date(a.OrderDate).getTime() - new Date(b.OrderDate).getTime()
           )
         );
         break;
       case "Check In":
         setDataFinal(
           [...dataBookingState].sort(
-            (a, b) => new Date(a.CheckIn) - new Date(b.CheckIn)
+            (a, b) => new Date(a.CheckIn).getTime() - new Date(b.CheckIn).getTime()
           )
         );
         break;
       case "Check Out":
         setDataFinal(
           [...dataBookingState].sort(
-            (a, b) => new Date(a.CheckOut) - new Date(b.CheckOut)
+            (a, b) => new Date(a.CheckOut).getTime() - new Date(b.CheckOut).getTime()
           )
         );
         break;
@@ -71,7 +68,7 @@ function Bookings() {
     }
   };
 
-  function viewNote(e) {
+  function viewNote(e: string) {
     setOpenPopup(true);
     setInfoPopup({
       title: "special request",
@@ -79,11 +76,11 @@ function Bookings() {
     });
   }
 
-  function deleteItem(id) {
+  function deleteItem(id: string) {
     dispatch(deleteThunk(id));
   }
-  const test = (e) => console.log(e);
-  const columns: BookingColumn[] = [
+  const test = (e: ChangeEvent<HTMLInputElement>) => console.log(e);
+  const columns: Column[] = [
     {
       headerColumn: "Guest",
       columnsData: "Guest",
@@ -139,8 +136,8 @@ function Bookings() {
     },
   ];
   const order = ["All Bookings", "Checking In", "Checking Out", "In Progress"];
-  const handleFiltered = (e) => {
-    const value = e.target.innerText;
+  const handleFiltered = (e: React.MouseEvent<HTMLLIElement>) => {
+    const value = (e.currentTarget as HTMLLIElement).innerText
     switch (value) {
       case "All Bookings":
         setDataFinal(dataBookingState);
@@ -183,8 +180,7 @@ function Bookings() {
         <option value="Check Out">Check Out</option>
       </select>
       <Table
-        columns={columns}
-        data={dataFinal.length ? dataFinal : dataBookingState}
+        data={dataFinal.length ? dataFinal : dataBookingState} columns={columns}
       />
       {openPopup && <Popup infoPopup={infoPopup} setOpenPopup={setOpenPopup} />}
     </div>

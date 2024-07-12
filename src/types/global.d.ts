@@ -50,4 +50,5 @@ export interface DataBookings{
 export interface Column {
     headerColumn: string,
     columnsData: string,
+    columnRenderer?: (row: any) => React.ReactNode;
   }

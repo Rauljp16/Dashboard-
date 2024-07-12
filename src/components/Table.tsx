@@ -1,13 +1,9 @@
 import { Column, DataBookings, DataComments, DataContacts, DataRooms, DataUsers } from '../types/global';
 
-
-
-
-interface TableProps extends Column {
+interface TableProps {
   data: (DataBookings | DataRooms | DataUsers | DataContacts)[]
   columns: Column[]
 }
-
 
 function Table({ data, columns }: TableProps) {
 
@@ -21,17 +17,17 @@ function Table({ data, columns }: TableProps) {
             ))}
           </tr>
         </thead>
-        {data.map((row) => (
-          <tbody key={row.id}>
-            <tr >
+        <tbody>
+          {data.map((row) => (
+            <tr key={row.id}>
               {columns.map((col, colIndex) => (
                 <td key={colIndex}>
-                  {col.columnRenderer ? col.columnRenderer(row) : row[col.columnsData]}
+                  {col.columnRenderer ? col.columnRenderer(row) : (row as any)[col.columnsData]}
                 </td>
               ))}
             </tr>
-          </tbody>
-        ))}
+          ))}
+        </tbody>
       </table>
     </div>
   );

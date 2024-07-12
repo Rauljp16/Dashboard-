@@ -8,7 +8,7 @@ import {
 } from "./bookingsThunk";
 
 import { DataBookings } from "../../types/global";
-interface StateBooking {
+export interface StateBooking {
   status: string;
   dataBooking: DataBookings[];
   singleBooking: DataBookings | null;
