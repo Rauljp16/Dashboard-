@@ -1,9 +1,18 @@
 
+interface InfoPopup {
+  title: string;
+  info: string;
+}
+interface PropsPopup {
+  infoPopup: InfoPopup;
+  setOpenPopup: (open: boolean) => void;
+}
 
 function Popup({ infoPopup, setOpenPopup }: PropsPopup) {
   const handleClose = () => {
     setOpenPopup(false);
   };
+  console.log(infoPopup,)
   return (
     <div
       style={{
