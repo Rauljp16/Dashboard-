@@ -1,22 +1,20 @@
-import Table from "../components/Table";
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteThunk, fetchAllThunk } from "../slices/bookings/bookingsThunk";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import Popup from "../components/Popup";
+import Popup, { InfoPopup } from "../components/Popup";
 import { Link } from "react-router-dom";
 import { Column, DataBookings } from '../types/global';
 import { AppDispatch, RootState } from "../store";
-
+import Table from "../components/Table";
 
 function Bookings() {
   const dataBooking = useSelector((state: RootState) => state.bookingSlice.dataBooking);
   const dispatch: AppDispatch = useDispatch();
   const [fetched, setFetched] = useState(false);
   const [dataFinal, setDataFinal] = useState<DataBookings[]>([]);
-  const [infoPopup, setInfoPopup] = useState({});
+  const [infoPopup, setInfoPopup] = useState<InfoPopup>({ title: '', info: '' });
   const [openPopup, setOpenPopup] = useState(false);
-  const [bookingDetails, setBookingDetails] = useState({});
 
   useEffect(() => {
     const initialFetch = async () => {
@@ -71,7 +69,7 @@ function Bookings() {
   function viewNote(e: string) {
     setOpenPopup(true);
     setInfoPopup({
-      title: "special request",
+      title: "Special Request",
       info: e,
     });
   }
@@ -79,7 +77,7 @@ function Bookings() {
   function deleteItem(id: string) {
     dispatch(deleteThunk(id));
   }
-  const test = (e: ChangeEvent<HTMLInputElement>) => console.log(e);
+
   const columns: Column[] = [
     {
       headerColumn: "Guest",
@@ -135,9 +133,10 @@ function Bookings() {
       ),
     },
   ];
+
   const order = ["All Bookings", "Checking In", "Checking Out", "In Progress"];
   const handleFiltered = (e: React.MouseEvent<HTMLLIElement>) => {
-    const value = (e.currentTarget as HTMLLIElement).innerText
+    const value = (e.currentTarget as HTMLLIElement).innerText;
     switch (value) {
       case "All Bookings":
         setDataFinal(dataBookingState);
@@ -161,6 +160,7 @@ function Bookings() {
         setDataFinal(dataBookingState);
     }
   };
+
   return (
     <div>
       <ul>

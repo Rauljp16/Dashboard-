@@ -1,8 +1,9 @@
 
-interface InfoPopup {
+export interface InfoPopup {
   title: string;
   info: string;
 }
+
 interface PropsPopup {
   infoPopup: InfoPopup;
   setOpenPopup: (open: boolean) => void;
@@ -12,7 +13,7 @@ function Popup({ infoPopup, setOpenPopup }: PropsPopup) {
   const handleClose = () => {
     setOpenPopup(false);
   };
-  console.log(infoPopup,)
+
   return (
     <div
       style={{
@@ -23,11 +24,9 @@ function Popup({ infoPopup, setOpenPopup }: PropsPopup) {
         left: "25%",
         top: "25%",
         padding: "80px",
-        // width: "50%",
-        // height: "50%",
       }}
     >
-      <p onClick={handleClose}>CERRAR</p>
+      <p onClick={handleClose} style={{ cursor: "pointer" }}>CERRAR</p>
       <p>{infoPopup.title}</p>
       <p>{infoPopup.info}</p>
     </div>
