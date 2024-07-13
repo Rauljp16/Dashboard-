@@ -3,17 +3,15 @@ import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteThunk, fetchAllThunk } from "../slices/rooms/roomsThunk"
 import { RiDeleteBin5Line } from "react-icons/ri";
-import { Column, DataRooms } from "../types/global";
+import { Column } from "../types/global";
+import { AppDispatch, RootState } from "../store";
 
 
-export interface RoomColumn extends Column {
-  columnRenderer?: (row: DataRooms) => React.ReactNode;
-}
 
 
 function Rooms() {
-  const dataRoom = useSelector((state) => state.roomSlice.dataRoom);
-  const dispatch = useDispatch();
+  const dataRoom = useSelector((state: RootState) => state.roomSlice.dataRoom);
+  const dispatch: AppDispatch = useDispatch();
   const [fetched, setFectched] = useState(false)
 
 
@@ -25,7 +23,7 @@ function Rooms() {
     initialFetch()
   }, [dispatch]);
 
-  function deleteItem(id) {
+  function deleteItem(id: string) {
     dispatch(deleteThunk(id))
   }
   // function openNote(e) {
@@ -41,7 +39,7 @@ function Rooms() {
 
   if (!fetched) return (<h1>Loading</h1>)
 
-  const columns: RoomColumn[] = [
+  const columns: Column[] = [
     {
       headerColumn: "Room Name",
       columnsData: "RoomName",
