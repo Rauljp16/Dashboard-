@@ -1,49 +1,55 @@
-import { useContext, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../components/Auth";
 import fondo from "../images/fondo.jpg";
 import styled from "styled-components";
+
+const loginStyled = styled.div``;
+
+const fondoStyle: React.CSSProperties = {
+  backgroundImage: `url(${fondo})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center bottom",
+  position: "absolute",
+  width: "100%",
+  height: "100vh",
+  left: "0",
+  top: "0",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+};
+
+const loginStyle: React.CSSProperties = {
+  display: "flex",
+  gap: "18px",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  boxShadow: "0px 0px 2px #0c3b2f",
+  borderRadius: "8px",
+  padding: "40px 120px",
+  backgroundColor: "#ffffff21",
+  backdropFilter: "blur(9px)",
+  WebkitBackdropFilter: "blur(9px)",
+  color: "#0b362b",
+  scale: "1.1",
+};
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const userName = "Raúl";
   const navigate = useNavigate();
-  const { dispatch } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
 
-  const loginStyled = styled.div``;
+  if (!authContext) {
+    return null;
+  }
 
-  const fondoStyle = {
-    backgroundImage: `url(${fondo})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center bottom",
-    position: "absolute",
-    width: "100%",
-    height: "100vh",
-    left: "0",
-    top: "0",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  };
+  const { dispatch } = authContext;
 
-  const loginStyle = {
-    display: "flex",
-    gap: "18px",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    boxShadow: "0px 0px 2px #0c3b2f",
-    borderRadius: "8px",
-    padding: "40px 120px",
-    backgroundColor: "#ffffff21",
-    backdropFilter: "blur(9px)",
-    WebkitBackdropFilter: "blur(9px)",
-    color: "#0b362b",
-    scale: "1.1",
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (email === "rauljp16@gmail.com" && password === "hotel miranda") {
       dispatch({
@@ -56,7 +62,7 @@ function Login() {
       });
       navigate("/dashboard");
     } else {
-      alert("Invalid date");
+      alert("Invalid credentials");
     }
   };
 
