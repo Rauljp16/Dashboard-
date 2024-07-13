@@ -5,7 +5,7 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./components/Auth";
 import { Provider } from "react-redux";
-import { store } from './store.ts';
+import { store } from './store';
 
 const rootElement = document.getElementById("root");
 
