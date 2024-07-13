@@ -17,15 +17,23 @@ import BookingDetails from "./pages/BookingDetails";
 
 function App() {
   const [open, setOpen] = useState(false);
-  const { state } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
 
-  const appStyle = {
+  if (!authContext) {
+    console.error("AuthContext is undefined");
+    return null;
+  }
+
+  const { state } = authContext;
+
+  const appStyle: React.CSSProperties = {
     display: "flex",
     width: "100%",
     height: "100vh",
     backgroundColor: "#EBEBEB",
   };
-  const containerStyle = {
+
+  const containerStyle: React.CSSProperties = {
     width: "100%",
   };
 
@@ -39,7 +47,7 @@ function App() {
           <Route
             path="/"
             element={
-              <PrivateRoute auth={state.isAuthenticated}>
+              <PrivateRoute>
                 <Dashboard />
               </PrivateRoute>
             }
@@ -47,7 +55,7 @@ function App() {
           <Route
             path="/dashboard"
             element={
-              <PrivateRoute auth={state.isAuthenticated}>
+              <PrivateRoute>
                 <Dashboard />
               </PrivateRoute>
             }
@@ -55,7 +63,7 @@ function App() {
           <Route
             path="/bookings"
             element={
-              <PrivateRoute auth={state.isAuthenticated}>
+              <PrivateRoute>
                 <Booking />
               </PrivateRoute>
             }
@@ -63,7 +71,7 @@ function App() {
           <Route
             path="/bookings/booking/:id"
             element={
-              <PrivateRoute auth={state.isAuthenticated}>
+              <PrivateRoute>
                 <BookingDetails />
               </PrivateRoute>
             }
@@ -71,7 +79,7 @@ function App() {
           <Route
             path="/rooms"
             element={
-              <PrivateRoute auth={state.isAuthenticated}>
+              <PrivateRoute>
                 <Rooms />
               </PrivateRoute>
             }
@@ -79,7 +87,7 @@ function App() {
           <Route
             path="/rooms/:id"
             element={
-              <PrivateRoute auth={state.isAuthenticated}>
+              <PrivateRoute>
                 <Room />
               </PrivateRoute>
             }
@@ -87,7 +95,7 @@ function App() {
           <Route
             path="/users"
             element={
-              <PrivateRoute auth={state.isAuthenticated}>
+              <PrivateRoute>
                 <Users />
               </PrivateRoute>
             }
@@ -95,7 +103,7 @@ function App() {
           <Route
             path="/users/:id"
             element={
-              <PrivateRoute auth={state.isAuthenticated}>
+              <PrivateRoute>
                 <User />
               </PrivateRoute>
             }
@@ -103,7 +111,7 @@ function App() {
           <Route
             path="/contact"
             element={
-              <PrivateRoute auth={state.isAuthenticated}>
+              <PrivateRoute>
                 <Contact />
               </PrivateRoute>
             }
