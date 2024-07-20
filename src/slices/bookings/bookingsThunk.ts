@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import bookingJson from "../../../booking.json";
+import bookingJson from "../../../data/booking.json";
 import { delay } from "../../utils";
 import { DataBookings } from "../../types/global";
 

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import usersJson from "../../../dbUsers.json";
+import usersJson from "../../../data/dbUsers.json";
 import { delay } from "../../utils";
 import { DataUsers } from "../../types/global";
 
@@ -8,7 +8,7 @@ export const fetchAllThunk = createAsyncThunk<DataUsers[]>("users/fetchAll", asy
   return data as DataUsers[]
 });
 
-export const fetchSingleThunk = createAsyncThunk<DataUsers| undefined, string>(
+export const fetchSingleThunk = createAsyncThunk<DataUsers | undefined, string>(
   "users/fetchSingle",
   (id) => {
     return usersJson.find((item) => item.id === id);

@@ -1,4 +1,4 @@
-import commentsJson from "../../comments.json";
+import commentsJson from "../../data/comments.json";
 function Comments() {
   const commentsStyle = {
     display: "flex",

@@ -1,16 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import contactJson from "../../../dbContact.json";
+import contactJson from "../../../data/dbContact.json";
 import { delay } from "../../utils";
 import { DataContacts } from '../../types/global';
 
 export const fetchAllThunk = createAsyncThunk<DataContacts[]>(
   "contact/fetchAll",
   async () => {
-  const data = await delay(contactJson);
-  return data as DataContacts[];
-});
+    const data = await delay(contactJson);
+    return data as DataContacts[];
+  });
 
-export const fetchSingleThunk = createAsyncThunk<DataContacts|undefined,string>(
+export const fetchSingleThunk = createAsyncThunk<DataContacts | undefined, string>(
   "contact/fetchSingle",
   (id) => {
     return contactJson.find((item) => item.id === id);

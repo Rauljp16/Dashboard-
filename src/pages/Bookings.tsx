@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { Column, DataBookings } from '../types/global';
 import { AppDispatch, RootState } from "../store";
 import Table from "../components/Table";
+import react from '@vitejs/plugin-react';
 
 function Bookings() {
   const dataBooking = useSelector((state: RootState) => state.bookingSlice.dataBooking);
@@ -160,7 +161,19 @@ function Bookings() {
         setDataFinal(dataBookingState);
     }
   };
+  const handleFilter = (e: ChangeEvent<HTMLInputElement>) => {
+    const filterText = e.target.value.toLowerCase();
+    const filteredData = dataBookingState.filter(item =>
+      item.Name.toLowerCase().includes(filterText)
+    );
 
+    if (filteredData.length === 0) {
+      alert('No se encuentran coincidencias');
+    } else {
+      setDataFinal(filteredData);
+    }
+  };
+  // crear un state para setear el valor del input y llamarlo desde un click en un boton  que tambien hay que crear
   return (
     <div>
       <ul>
@@ -170,6 +183,7 @@ function Bookings() {
           </li>
         ))}
       </ul>
+      <input type="text" onChange={handleFilter} />
       <select onChange={onChange} defaultValue="">
         <option value="" disabled>
           Order by
