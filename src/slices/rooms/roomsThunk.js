@@ -1,9 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import roomsJson from "../../../dbRooms.json";
-import { delay } from "../../utils";
+import { backendApiCall, delay } from "../../utils";
 
 export const fetchAllThunk = createAsyncThunk("rooms/fetchAll", async () => {
-  return await delay(roomsJson);
+  try {
+    const data = await backendApiCall("rooms", "GET");
+    return data.rooms;
+  } catch (error) {
+    console.error("Error al obtener datos:", error.message);
+    return Promise.reject(error.message);
+  }
 });
 
 export const fetchSingleThunk = createAsyncThunk(

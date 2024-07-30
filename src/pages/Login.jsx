@@ -7,6 +7,7 @@ import styled from "styled-components";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [token, setToken] = useState("");
   const userName = "Raúl";
   const navigate = useNavigate();
   const { dispatch } = useContext(AuthContext);
@@ -43,12 +44,15 @@ function Login() {
     scale: "1.1",
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (email === "rauljp16@gmail.com" && password === "hotel miranda") {
+    const token = await loginUser();
+    console.log(token);
+    if (token) {
       dispatch({
         type: "LOGIN",
         email: email,
+        token: token,
       });
       dispatch({
         type: "UPDATEUSER",
@@ -57,6 +61,35 @@ function Login() {
       navigate("/dashboard");
     } else {
       alert("Invalid date");
+    }
+  };
+
+  const loginUser = async () => {
+    const apiUrl = import.meta.env.VITE_API_DOMAIN_LOGIN;
+
+    const data = {
+      username: email,
+      password: password,
+    };
+
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Error en la solicitud");
+      }
+
+      const result = await response.json();
+      setToken(result.token);
+      return result.token;
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 
