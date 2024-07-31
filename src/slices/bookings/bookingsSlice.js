@@ -26,7 +26,7 @@ export const bookingsSlice = createSlice({
       })
       .addCase(deleteThunk.fulfilled, (state, action) => {
         state.dataBooking = state.dataBooking.filter(
-          (item) => item.id !== action.payload
+          (item) => item._id !== action.payload
         );
       })
       .addCase(fetchSingleThunk.fulfilled, (state, action) => {

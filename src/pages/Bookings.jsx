@@ -73,8 +73,8 @@ function Bookings() {
     });
   }
 
-  function deleteItem(id) {
-    dispatch(deleteThunk(id));
+  function deleteItem(_id) {
+    dispatch(deleteThunk(_id));
   }
   const test = (e) => console.log(e);
   const columns = [
@@ -83,8 +83,8 @@ function Bookings() {
       columnsData: "Guest",
       columnRenderer: (row) => (
         <div>
-          <Link to={`booking/${row.id}`}>{row.Name}</Link>
-          <p>{row.id}</p>
+          <Link to={`booking/${row._id}`}>{row.Name}</Link>
+          <p>{row._id}</p>
         </div>
       ),
     },
@@ -128,7 +128,7 @@ function Bookings() {
       headerColumn: "",
       columnsData: "delete",
       columnRenderer: (row) => (
-        <RiDeleteBin5Line onClick={() => deleteItem(row.id)} />
+        <RiDeleteBin5Line onClick={() => deleteItem(row._id)} />
       ),
     },
   ];

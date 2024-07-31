@@ -47,7 +47,6 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = await loginUser();
-    console.log(token);
     if (token) {
       dispatch({
         type: "LOGIN",

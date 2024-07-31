@@ -1,5 +1,4 @@
 function Table({ data, columns }) {
-
   return (
     <div>
       <table>
@@ -11,11 +10,13 @@ function Table({ data, columns }) {
           </tr>
         </thead>
         {data.map((row) => (
-          <tbody key={row.id}>
-            <tr >
+          <tbody key={row._id}>
+            <tr>
               {columns.map((col, colIndex) => (
                 <td key={colIndex}>
-                  {col.columnRenderer ? col.columnRenderer(row) : row[col.columnsData]}
+                  {col.columnRenderer
+                    ? col.columnRenderer(row)
+                    : row[col.columnsData]}
                 </td>
               ))}
             </tr>

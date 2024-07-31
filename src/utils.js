@@ -26,22 +26,3 @@ export async function backendApiCall(path, method = "GET", data = null) {
   const json = await response.json();
   return json;
 }
-
-//John
-// export async function backendApiCall(path, method = "GET", data = null) {
-//   const url = ${import.meta.env.VITE_API_DOMAIN}/${path};
-//   const token = localStorage.getItem(authState);
-//   const response = await fetch(url, {
-//     method,
-//     headers: {
-//       Authorization: bearer ${token},
-//     },
-//     body: data ?? undefined,
-//   });
-//   if (!response) {
-//get error message
-//     toaster.error(message);
-//   }
-//   const json = await response.json();
-//   return json;
-// }

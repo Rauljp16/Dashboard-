@@ -1,9 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import contactJson from "../../../dbContact.json";
-import { delay } from "../../utils";
+import { backendApiCall, delay } from "../../utils";
 
 export const fetchAllThunk = createAsyncThunk("contact/fetchAll", async () => {
-  return await delay(contactJson);
+  try {
+    const data = await backendApiCall("contact", "GET");
+    return data.contact;
+  } catch (error) {
+    console.error("Error al obtener datos:", error.message);
+    return Promise.reject(error.message);
+  }
 });
 
 export const fetchSingleThunk = createAsyncThunk(
