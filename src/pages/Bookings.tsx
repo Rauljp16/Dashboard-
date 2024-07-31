@@ -75,13 +75,8 @@ function Bookings() {
     });
   }
 
-<<<<<<< HEAD:src/pages/Bookings.jsx
-  function deleteItem(_id) {
-    dispatch(deleteThunk(_id));
-=======
   function deleteItem(id: string) {
     dispatch(deleteThunk(id));
->>>>>>> TypeScript:src/pages/Bookings.tsx
   }
 
   const columns: Column[] = [
