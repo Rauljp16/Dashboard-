@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   createThunk,
   deleteThunk,
@@ -6,25 +6,35 @@ import {
   fetchSingleThunk,
   updateThunk,
 } from "./roomsThunk";
+import { DataRooms } from "../../types/global";
+
+interface StateRoom {
+  status: string;
+  dataRoom: DataRooms[];
+  singleRoom: DataRooms | null;
+  error: null | string;
+}
+
+const initialState: StateRoom = {
+  status: "idle",
+  dataRoom: [],
+  singleRoom: null,
+  error: null,
+};
 
 export const roomsSlice = createSlice({
   name: "roomSlice",
-  initialState: {
-    status: "idle",
-    dataRoom: [],
-    singleRoom: [],
-    error: null,
-  },
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAllThunk.fulfilled, (state, action) => {
+      .addCase(fetchAllThunk.fulfilled, (state, action: PayloadAction<DataRooms[]>) => {
         if (!state.dataRoom.length) {
           state.status = "fulfilled";
           state.dataRoom = action.payload;
         }
       })
-      .addCase(deleteThunk.fulfilled, (state, action) => {
+      .addCase(deleteThunk.fulfilled, (state, action:PayloadAction<string>) => {
         state.dataRoom = state.dataRoom.filter(
           (item) => item.id !== action.payload
         );

@@ -1,4 +1,4 @@
-import commentsJson from "../../comments.json";
+import commentsJson from "../../data/comments.json";
 function Comments() {
   const commentsStyle = {
     display: "flex",
@@ -6,12 +6,11 @@ function Comments() {
     borderRadius: "8px",
     gap: "30px",
   };
-  const commentsCardStyle = {
+  const commentsCardStyle: React.CSSProperties = {
     display: "flex",
     flexDirection: "column",
     boxShadow: "0px 2px 8px rgba(204, 204, 204, 0.5) ",
     borderRadius: "8px",
-    box: "8px",
     padding: "30px",
     backgroundColor: "#ffff",
   };

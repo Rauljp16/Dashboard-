@@ -1,18 +1,23 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleThunk } from "../slices/bookings/bookingsThunk";
 import { useParams } from "react-router-dom";
+import { RootState, AppDispatch } from "../store";
 
 function BookingDetails() {
-  const dispatch = useDispatch();
-  const { id } = useParams();
-  const singleBooking = useSelector(
-    (state) => state.bookingSlice.singleBooking
-  );
+  const dispatch: AppDispatch = useDispatch();
+  const { id } = useParams<{ id: string }>();
+  const singleBooking = useSelector((state: RootState) => state.bookingSlice.singleBooking);
 
   useEffect(() => {
-    dispatch(fetchSingleThunk(id));
+    if (id) {
+      dispatch(fetchSingleThunk(id));
+    }
   }, [dispatch, id]);
+
+  if (!singleBooking) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="order-details">

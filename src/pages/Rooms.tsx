@@ -3,11 +3,16 @@ import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteThunk, fetchAllThunk } from "../slices/rooms/roomsThunk";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { Column } from "../types/global";
+import { AppDispatch, RootState } from "../store";
+
+
 
 function Rooms() {
-  const dataRoom = useSelector((state) => state.roomSlice.dataRoom);
-  const dispatch = useDispatch();
-  const [fetched, setFectched] = useState(false);
+  const dataRoom = useSelector((state: RootState) => state.roomSlice.dataRoom);
+  const dispatch: AppDispatch = useDispatch();
+  const [fetched, setFectched] = useState(false)
+
 
   useEffect(() => {
     const initialFetch = async () => {
@@ -17,12 +22,12 @@ function Rooms() {
     initialFetch();
   }, [dispatch]);
 
-  function deleteItem(id) {
-    dispatch(deleteThunk(id));
+  function deleteItem(id: string) {
+    dispatch(deleteThunk(id))
   }
-  function openNote(e) {
-    alert(e);
-  }
+  // function openNote(e) {
+  //   alert(e);
+  // }
 
   const dataRoomState = useMemo(() => {
     if (!dataRoom.length) return [];
@@ -30,7 +35,7 @@ function Rooms() {
   }, [dataRoom]);
   if (!fetched) return <h1>Loading</h1>;
 
-  const columns = [
+  const columns: Column[] = [
     {
       headerColumn: "Room Name",
       columnsData: "RoomName",
@@ -58,13 +63,14 @@ function Rooms() {
       columnsData: "Amenities",
       columnRenderer: (row) => <p>{row.Amenities.join(", ")}</p>,
     },
-    {
-      headerColumn: "Special Request",
-      columnsData: "SpecialRequest",
-      columnRenderer: (row) => (
-        <button onClick={() => openNote(row.SpecialRequest)}>View Notes</button>
-      ),
-    },
+    // {
+    //   headerColumn: "Special Request",
+    //   columnsData: "SpecialRequest",
+    //   columnRenderer: (row) => (
+    //     <button onClick={() => openNote(row.SpecialRequest)}>View Notes</button>
+    //   ),
+
+    // },
     {
       headerColumn: "Rate",
       columnsData: "Rate",

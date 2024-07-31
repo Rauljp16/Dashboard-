@@ -3,6 +3,7 @@ import { bookingsSlice } from "./slices/bookings/bookingsSlice";
 import { roomsSlice } from "./slices/rooms/roomsSlice";
 import { contactSlice } from "./slices/contact/contactSlice";
 import { usersSlice } from "./slices/users/usersSlice";
+
 export const store = configureStore({
   reducer: {
     bookingSlice: bookingsSlice.reducer,
@@ -11,3 +12,6 @@ export const store = configureStore({
     userSlice: usersSlice.reducer,
   },
 });
+
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;

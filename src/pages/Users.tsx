@@ -3,11 +3,15 @@ import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteThunk, fetchAllThunk } from "../slices/users/usersThunk";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { Column } from "../types/global";
+import { AppDispatch, RootState } from "../store";
+
+
 
 
 function Users() {
-  const dataUser = useSelector((state) => state.userSlice.dataUser)
-  const dispatch = useDispatch();
+  const dataUser = useSelector((state: RootState) => state.userSlice.dataUser)
+  const dispatch: AppDispatch = useDispatch();
   const [fetched, setFectched] = useState(false)
 
 
@@ -26,12 +30,12 @@ function Users() {
 
   if (!fetched) return (<h1>Loading</h1>)
 
-  function deleteItem(id) {
+  function deleteItem(id: string) {
     dispatch(deleteThunk(id))
   }
 
   const order = ["All user", "Active user", "Inactive user"];
-  const columns = [
+  const columns: Column[] = [
     {
       headerColumn: "Name",
       columnsData: "name",
