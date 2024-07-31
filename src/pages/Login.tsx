@@ -51,7 +51,7 @@ function Login() {
   const { dispatch } = authContext;
 
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const token = await loginUser();
     if (token) {

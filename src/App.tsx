@@ -69,7 +69,7 @@ function App() {
             }
           />
           <Route
-            path="/bookings/booking/:id"
+            path="/bookings/:_id"
             element={
               <PrivateRoute>
                 <BookingDetails />
@@ -85,7 +85,7 @@ function App() {
             }
           />
           <Route
-            path="/rooms/:id"
+            path="/rooms/:_id"
             element={
               <PrivateRoute>
                 <Room />
@@ -101,7 +101,7 @@ function App() {
             }
           />
           <Route
-            path="/users/:id"
+            path="/users/:_id"
             element={
               <PrivateRoute>
                 <User />

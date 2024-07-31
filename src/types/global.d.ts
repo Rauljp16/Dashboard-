@@ -1,8 +1,8 @@
 
 
-export interface DataBookings{
+export interface DataBookings {
     Name: string,
-    id: string,
+    _id: string,
     OrderDate: string,
     CheckIn: string,
     CheckOut: string,
@@ -11,25 +11,25 @@ export interface DataBookings{
     RoomNumber: string,
     Status: string
 
-}export interface DataComments{
+}export interface DataComments {
     comment: string,
     photo: string,
     name: string,
     timeAgo: string,
 
-}export interface DataContacts{
+}export interface DataContacts {
     date: string,
-    id: string,
+    _id: string,
     name: string,
     email: string,
     phone: string,
     asunto: string,
     comment: string
 
-}export interface DataRooms{
+}export interface DataRooms {
     Foto: string,
     number: string,
-    id: string ,
+    _id: string,
     BedType: string,
     Amenities: string[],
     Rate: number,
@@ -37,10 +37,10 @@ export interface DataBookings{
     Status: string,
     RoomFloor: string,
 
-}export interface DataUsers{
+}export interface DataUsers {
     foto: string,
     name: string,
-    id: string,
+    _id: string,
     startDate: string,
     description: string,
     email: string,
@@ -51,4 +51,4 @@ export interface Column {
     headerColumn: string,
     columnsData: string,
     columnRenderer?: (row: any) => React.ReactNode;
-  }
+}

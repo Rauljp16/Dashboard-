@@ -1,28 +1,61 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import bookingJson from "../../../data/booking.json";
-import { delay } from "../../utils";
+import { backendApiCall } from "../../utils";
 import { DataBookings } from "../../types/global";
 
 export const fetchAllThunk = createAsyncThunk<DataBookings[]>(
   "bookings/fetchAll",
   async () => {
-    const data = await delay(bookingJson);
-    return data as DataBookings[];
-  }
-);
+    try {
+      const data = await backendApiCall("bookings", "GET");
+      return data.bookings;
+    } catch (error) {
+      if (error instanceof Error) {
+
+        console.error("Error al obtener datos:", error.message);
+        return Promise.reject(error.message);
+      }
+    }
+  });
 
 export const fetchSingleThunk = createAsyncThunk<DataBookings | undefined, string>(
   "bookings/fetchSingle",
-  (id) => {
-    return bookingJson.find((item) => item.id === id);
-  }
-);
+  async (_id) => {
+    try {
+      const data = await backendApiCall(`bookings/${_id}`, "GET");
+      return data.booking;
+    } catch (error) {
+      if (error instanceof Error) {
+
+        console.error("Error al obtener datos:", error.message);
+        return Promise.reject(error.message);
+      }
+    }
+  });
+
+
+
+//export const fetchSingleThunk = createAsyncThunk<DataBookings | undefined, string>(
+//"bookings/fetchSingle",
+//(_id) => {
+//console.log(_id);
+// try {
+//   const data = await backendApiCall("bookings", "GET");
+//   return data.booking;
+// } catch (error) {
+//   if (error instanceof Error) {
+
+//     console.error("Error al obtener datos:", error.message);
+//     return Promise.reject(error.message);
+//   }
+// }
+//}
+//);
 
 export const deleteThunk = createAsyncThunk<string, string>(
   "bookings/delete",
-  (id) => {
-    id.toString
-    return id;
+  (_id) => {
+    _id.toString
+    return _id;
   }
 );
 

@@ -46,7 +46,7 @@ export const bookingsSlice = createSlice({
         deleteThunk.fulfilled,
         (state, action: PayloadAction<string>) => {
           state.dataBooking = state.dataBooking.filter(
-            (item) => item.id !== action.payload
+            (item) => item._id !== action.payload
           );
         }
       );
@@ -55,7 +55,7 @@ export const bookingsSlice = createSlice({
     // })
     // .addCase(updateThunk.fulfilled, (state, action) => {
     //   const index = state.dataBooking.findIndex(
-    //     (booking) => booking.id === action.payload.id
+    //     (booking) => booking._id === action.payload._id
     //   );
     //   if (index !== -1) {
     //     state.dataBooking[index] = action.payload;

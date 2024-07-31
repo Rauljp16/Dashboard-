@@ -20,7 +20,7 @@ function Table({ data, columns }: TableProps) {
         </thead>
         <tbody>
           {data.map((row) => (
-            <tr key={row.id}>
+            <tr key={row._id}>
               {columns.map((col, colIndex) => (
                 <td key={colIndex}>
                   {col.columnRenderer ? col.columnRenderer(row) : (row as any)[col.columnsData]}

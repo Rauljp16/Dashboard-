@@ -25,6 +25,7 @@ interface AuthAction {
 interface LoginAction extends AuthAction {
     type: "LOGIN";
     email: string;
+    token: string;
 }
 
 interface LogoutAction extends AuthAction {

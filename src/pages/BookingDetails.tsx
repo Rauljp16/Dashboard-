@@ -6,14 +6,14 @@ import { RootState, AppDispatch } from "../store";
 
 function BookingDetails() {
   const dispatch: AppDispatch = useDispatch();
-  const { id } = useParams<{ id: string }>();
+  const { _id } = useParams<{ _id: string }>();
   const singleBooking = useSelector((state: RootState) => state.bookingSlice.singleBooking);
 
   useEffect(() => {
-    if (id) {
-      dispatch(fetchSingleThunk(id));
+    if (_id) {
+      dispatch(fetchSingleThunk(_id));
     }
-  }, [dispatch, id]);
+  }, [dispatch, _id]);
 
   if (!singleBooking) {
     return <div>Loading...</div>;
@@ -26,7 +26,7 @@ function BookingDetails() {
         <strong>Name:</strong> {singleBooking.Name}
       </p>
       <p>
-        <strong>ID:</strong> {singleBooking.id}
+        <strong>ID:</strong> {singleBooking._id}
       </p>
       <p>
         <strong>Order Date:</strong> {singleBooking.OrderDate}

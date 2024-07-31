@@ -34,9 +34,9 @@ export const roomsSlice = createSlice({
           state.dataRoom = action.payload;
         }
       })
-      .addCase(deleteThunk.fulfilled, (state, action:PayloadAction<string>) => {
+      .addCase(deleteThunk.fulfilled, (state, action: PayloadAction<string>) => {
         state.dataRoom = state.dataRoom.filter(
-          (item) => item.id !== action.payload
+          (item) => item._id !== action.payload
         );
       });
     // .addCase(fetchSingleThunk.fulfilled, (state, action) => {
