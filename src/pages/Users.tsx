@@ -30,8 +30,8 @@ function Users() {
 
   if (!fetched) return (<h1>Loading</h1>)
 
-  function deleteItem(id: string) {
-    dispatch(deleteThunk(id))
+  function deleteItem(_id: string) {
+    dispatch(deleteThunk(_id))
   }
 
   const order = ["All user", "Active user", "Inactive user"];
@@ -48,7 +48,7 @@ function Users() {
           />
           <div>
             <p>{row.name}</p>
-            <p>#{row.id}</p>
+            <p>#{row._id}</p>
             <p>{row.startDate}</p>
           </div>
         </div>
@@ -76,7 +76,7 @@ function Users() {
     {
       headerColumn: "",
       columnsData: "delete",
-      columnRenderer: (row) => <RiDeleteBin5Line onClick={() => deleteItem(row.id)} />
+      columnRenderer: (row) => <RiDeleteBin5Line onClick={() => deleteItem(row._id)} />
     },
 
   ];

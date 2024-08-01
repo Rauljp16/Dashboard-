@@ -29,8 +29,8 @@ function Contact() {
 
   if (!fetched) return (<h1>Loading</h1>)
 
-  function deleteItem(id: string) {
-    dispatch(deleteThunk(id))
+  function deleteItem(_id: string) {
+    dispatch(deleteThunk(_id))
   }
 
 
@@ -39,7 +39,7 @@ function Contact() {
     {
       headerColumn: "Date",
       columnsData: "Date",
-      columnRenderer: (row) => <div><p>{row.date}</p><p>#{row.id}</p></div>,
+      columnRenderer: (row) => <div><p>{row.date}</p><p>#{row._id}</p></div>,
 
     },
     {
@@ -62,7 +62,7 @@ function Contact() {
     {
       headerColumn: "",
       columnsData: "delete",
-      columnRenderer: (row) => <RiDeleteBin5Line onClick={() => deleteItem(row.id)} />
+      columnRenderer: (row) => <RiDeleteBin5Line onClick={() => deleteItem(row._id)} />
     },
 
   ];

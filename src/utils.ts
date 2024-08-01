@@ -10,7 +10,6 @@ export function delay(data: DataTypes): Promise<DataTypes> {
 
 export async function backendApiCall(path: string, method = "GET", data: any = null) {
   const url = `${import.meta.env.VITE_API_DOMAIN}/${path}`;
-  //console.log(url);
   const authState = localStorage.getItem("authState");
 
   if (authState === null) {

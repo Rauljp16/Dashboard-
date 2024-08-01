@@ -34,13 +34,13 @@ export const contactSlice = createSlice({
           state.dataContact = action.payload;
         }
       })
-      .addCase(fetchSingleThunk.fulfilled, (state, action: PayloadAction<DataContacts | undefined>) => {
-        state.status = "fulfilled";
-        state.singleContact = action.payload ?? null;
-      })
+      // .addCase(fetchSingleThunk.fulfilled, (state, action: PayloadAction<DataContacts | undefined>) => {
+      //   state.status = "fulfilled";
+      //   state.singleContact = action.payload ?? null;
+      // })
       .addCase(deleteThunk.fulfilled, (state, action: PayloadAction<string>) => {
         state.dataContact = state.dataContact.filter(
-          (item) => item.id !== action.payload
+          (item) => item._id !== action.payload
         );
       });
     //   .addCase(createThunk.fulfilled, (state, action) => {

@@ -41,11 +41,11 @@ export const usersSlice = createSlice({
         state.singleUser = action.payload ?? null;
       })
       .addCase(deleteThunk.fulfilled,
-         (state, action: PayloadAction<string>) => {
-        state.dataUser = state.dataUser.filter(
-          (item) => item.id !== action.payload
-        );
-      });
+        (state, action: PayloadAction<string>) => {
+          state.dataUser = state.dataUser.filter(
+            (item) => item._id !== action.payload
+          );
+        });
     //   .addCase(createThunk.fulfilled, (state, action) => {
     //     state.dataUser.push(action.payload);
     //   })
