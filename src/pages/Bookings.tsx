@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import { Column, DataBookings } from '../types/global';
 import { AppDispatch, RootState } from "../store";
 import Table from "../components/Table";
-import react from '@vitejs/plugin-react';
 
 function Bookings() {
   const dataBooking = useSelector((state: RootState) => state.bookingSlice.dataBooking);

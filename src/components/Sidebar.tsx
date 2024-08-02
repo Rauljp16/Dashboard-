@@ -11,6 +11,14 @@ interface sidebarProps {
   open: boolean
 }
 
+const SidebarStyled = styled.div`
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+  `;
+
 function Sidebar({ open }: sidebarProps) {
   const linkStyle: React.CSSProperties = {
     color: "#E23428",
@@ -25,14 +33,6 @@ function Sidebar({ open }: sidebarProps) {
     marginLeft: "40px",
     gap: "16px",
   };
-  const SidebarStyled = styled.div`
-    width: ${open ? "345px" : "50px"};
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #ffffff;
-  `;
 
   return (
     <>

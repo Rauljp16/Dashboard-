@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import Button from '../components/Button';
+import { faker } from '@faker-js/faker';
 
 
 interface FormData {
@@ -20,20 +21,20 @@ function Create() {
     const [password, setPassword] = useState<string>("")
     const [job, setJob] = useState<string>("")
     const [phone, setPhone] = useState<string>("")
+    const photo = "https://github.com/Rauljp16/Dashboard-/blob/main/src/images/users.webp"
 
 
-    const [formData, setFormData] = useState<FormData>({
-        file: null,
-        name: '',
-        job: '',
-        email: '',
-        phone: '',
-        startDate: '',
-        description: '',
-        state: '',
-        password: '',
-    });
-    const [preview, setPreview] = useState<string>('');
+    // const [formData, setFormData] = useState<FormData>({
+    //     file: null,
+    //     name: '',
+    //     job: '',
+    //     email: '',
+    //     phone: '',
+    //     startDate: '',
+    //     description: '',
+    //     state: '',
+    //     password: '',
+    // });
 
     const nameChange = (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value)
@@ -61,17 +62,6 @@ function Create() {
 
 
 
-    const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const selectedFile = event.target.files?.[0] || null;
-        if (selectedFile) {
-            setFormData({ ...formData, file: selectedFile });
-            const fileReader = new FileReader();
-            fileReader.onload = () => {
-                setPreview(fileReader.result as string);
-            };
-            fileReader.readAsDataURL(selectedFile);
-        }
-    };
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -81,9 +71,6 @@ function Create() {
         formDataToSend.append('name', formData.name);
         formDataToSend.append('email', formData.email);
         formDataToSend.append('password', formData.password);
-        if (formData.file) {
-            formDataToSend.append('file', formData.file);
-        }
         // Realiza la solicitud al servidor con formDataToSend
         console.log(formDataToSend);
     };
@@ -120,18 +107,9 @@ function Create() {
                 placeholder="Phone"
                 onChange={phoneChange}
             />
-            <div>
-                <label htmlFor="file">Subir foto:</label>
-                <input
-                    type="file"
-                    id="file"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                />
+            <div >
+                <img style={{ width: "60px", height: "60px" }} src={photo} alt="imagen de usuario" />
             </div>
-            {preview && (
-                <img src={preview} alt="Vista previa" />
-            )}
             <Button color="green" type="submit" name="Crear" />
         </form>
     );
