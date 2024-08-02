@@ -117,9 +117,9 @@ function Bookings() {
       headerColumn: "Status",
       columnsData: "Status",
       columnRenderer: (row) =>
-        row.Status === "Check In" ? (
+        row.Status === "checkin" ? (
           <p style={{ color: "green" }}>{row.Status}</p>
-        ) : row.Status === "Check Out" ? (
+        ) : row.Status === "checkout" ? (
           <p style={{ color: "red" }}>{row.Status}</p>
         ) : (
           <p style={{ color: "yellow" }}>{row.Status}</p>
