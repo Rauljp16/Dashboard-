@@ -5,33 +5,46 @@ import { deleteThunk, fetchAllThunk } from "../slices/users/usersThunk";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { Column } from "../types/global";
 import { AppDispatch, RootState } from "../store";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
+const StyledButton = styled(Link)`
+  padding: 8px 15px;
+  margin: 10px;
+  background-color: #0b4625;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 
-
+  &:hover {
+    scale: 1.1;
+  }
+`;
 
 function Users() {
-  const dataUser = useSelector((state: RootState) => state.userSlice.dataUser)
+  const dataUser = useSelector((state: RootState) => state.userSlice.dataUser);
   const dispatch: AppDispatch = useDispatch();
-  const [fetched, setFectched] = useState(false)
-
+  const [fetched, setFectched] = useState(false);
 
   useEffect(() => {
     const initialFetch = async () => {
-      await dispatch(fetchAllThunk()).unwrap()
-      setFectched(true)
-    }
-    initialFetch()
+      await dispatch(fetchAllThunk()).unwrap();
+      setFectched(true);
+    };
+    initialFetch();
   }, [dispatch]);
 
   const dataUserState = useMemo(() => {
-    if (!dataUser.length) return []
-    return dataUser
+    if (!dataUser.length) return [];
+    return dataUser;
   }, [dataUser]);
 
-  if (!fetched) return (<h1>Loading</h1>)
+  if (!fetched) return <h1>Loading</h1>;
 
   function deleteItem(_id: string) {
-    dispatch(deleteThunk(_id))
+    dispatch(deleteThunk(_id));
   }
 
   const order = ["All user", "Active user", "Inactive user"];
@@ -41,11 +54,7 @@ function Users() {
       columnsData: "name",
       columnRenderer: (row) => (
         <div>
-          <img
-            src={row.foto}
-            alt="User"
-            style={{ width: "50px" }}
-          />
+          <img src={row.foto} alt="User" style={{ width: "50px" }} />
           <div>
             <p>{row.name}</p>
             <p>#{row._id}</p>
@@ -69,16 +78,20 @@ function Users() {
     {
       headerColumn: "Status",
       columnsData: "status",
-      columnRenderer: (row) => row.status === "ACTIVE"
-        ? <p style={{ color: "green" }}>{row.status}</p>
-        : <p style={{ color: "red" }}>{row.status}</p>
+      columnRenderer: (row) =>
+        row.status === "ACTIVE" ? (
+          <p style={{ color: "green" }}>{row.status}</p>
+        ) : (
+          <p style={{ color: "red" }}>{row.status}</p>
+        ),
     },
     {
       headerColumn: "",
       columnsData: "delete",
-      columnRenderer: (row) => <RiDeleteBin5Line onClick={() => deleteItem(row._id)} />
+      columnRenderer: (row) => (
+        <RiDeleteBin5Line onClick={() => deleteItem(row._id)} />
+      ),
     },
-
   ];
 
   return (
@@ -90,6 +103,7 @@ function Users() {
       </ul>
       <div>
         <input type="text" />
+        <StyledButton to="/users/create">Create User</StyledButton>
       </div>
       <Table columns={columns} data={dataUserState} />
     </div>

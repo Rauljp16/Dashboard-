@@ -173,7 +173,7 @@ function Bookings() {
       setDataFinal(filteredData);
     }
   };
-  // crear un state para setear el valor del input y llamarlo desde un click en un boton  que tambien hay que crear
+
   return (
     <div>
       <ul>

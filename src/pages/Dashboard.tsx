@@ -85,8 +85,8 @@ function Dashboard() {
         </article>
       </section>
       <Comments />
-      <Button />
-      <Button color="green" />
+      <Button name="red" />
+      <Button color="green" name="green" />
     </div>
   );
 }
