@@ -1,12 +1,5 @@
 import { DataBookings, DataComments, DataContacts, DataRooms, DataUsers } from './types/global';
 
-type DataTypes = (DataBookings | DataUsers | DataContacts | DataRooms)[];
-
-export function delay(data: DataTypes): Promise<DataTypes> {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(data), 200);
-  });
-}
 
 export async function backendApiCall(path: string, method = "GET", data: any = null) {
   const url = `${import.meta.env.VITE_API_DOMAIN}/${path}`;

@@ -1,152 +1,140 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
-import Button from '../components/Button';
-import photo from "../images/users.webp"
+import React, { useState, ChangeEvent, FormEvent } from "react";
+import Button from "../components/Button";
+import photo from "../images/users.webp";
+import { AppDispatch } from "../store";
+import { useDispatch } from "react-redux";
+import { createThunk } from "../slices/users/usersThunk";
 
-
-interface FormData {
-    file: File | null;
+interface UserData {
+    foto: string;
     name: string;
     job: string;
     email: string;
-    phone: string;
+    contact: string;
     startDate: string;
     description: string;
-    state: string;
+    status: string;
     password: string;
+    _id?: string;
+}
+const initialDataUser = {
+    foto: photo,
+    name: "",
+    job: "",
+    email: "",
+    contact: "",
+    startDate: "",
+    description: "",
+    status: "",
+    password: "",
 }
 
 function Create() {
-    const [name, setName] = useState<string>("")
-    const [job, setJob] = useState<string>("")
-    const [email, setEmail] = useState<string>("")
-    const [phone, setPhone] = useState<string>("")
-    const [startDate, setStartDate] = useState<string>("")
-    const [description, setDescription] = useState<string>("")
-    const [state, setState] = useState<string>("")
-    const [password, setPassword] = useState<string>("")
+    const dispatch: AppDispatch = useDispatch()
 
+    const [dataUser, setDataUser] = useState<UserData>({
+        foto: photo,
+        name: "",
+        job: "",
+        email: "",
+        contact: "",
+        startDate: "",
+        description: "",
+        status: "",
+        password: "",
+    });
 
-    // const [formData, setFormData] = useState<FormData>({
-    //     photo: '',
-    //     name: '',
-    //     job: '',
-    //     email: '',
-    //     phone: '',
-    //     startDate: '',
-    //     description: '',
-    //     state: '',
-    //     password: '',
-    // });
-
-    const nameChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setName(e.target.value)
-        //setFormData({ ...formData, name: name });
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setDataUser({ ...dataUser, [name]: value, });
     };
-    const jobChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        setJob(e.target.value)
-    };
-    const emailChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value)
-    };
-    const phoneChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setPhone(e.target.value);
-    };
-    const startDateChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setStartDate(e.target.value);
-    };
-    const descriptionChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setDescription(e.target.value);
-    };
-    const stateChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        setState(e.target.value);
-    };
-    const passwordChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value)
-    };
-
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        // Aquí puedes manejar el envío del formulario
-        // Por ejemplo, puedes usar FormData para enviar el archivo al servidor
-        // const formDataToSend = new FormData();
-        // formDataToSend.append('name', formData.name);
-        // formDataToSend.append('email', formData.email);
-        // formDataToSend.append('password', formData.password);
-        // Realiza la solicitud al servidor con formDataToSend
-        //console.log(formDataToSend);
-        console.log("name: " + name);
-        console.log("job:" + job);
-        console.log("email:" + email);
-        console.log("phone:" + phone);
-        console.log("startDate:" + startDate);
-        console.log("description:" + description);
-        console.log("state:" + state);
-        console.log("password:" + password);
-
+        setDataUser(initialDataUser)
+        dispatch(createThunk(dataUser))
     };
 
     return (
-        <form autoComplete='off' style={{ display: 'flex', flexDirection: 'column', alignItems: "center", gap: "10px" }} onSubmit={handleSubmit}>
-            <div >
-                <img style={{ width: "60px", height: "60px" }} src={photo} alt="imagen de usuario" />
+        <form
+            style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "10px",
+            }}
+            onSubmit={handleSubmit}
+        >
+            <div>
+                <img
+                    style={{ width: "60px", height: "60px" }}
+                    src={photo}
+                    alt="imagen de usuario predeterminada"
+                />
             </div>
             <input
                 type="text"
                 name="name"
-                autoComplete="off"
+                value={dataUser.name}
+                autoComplete="disabled"
                 placeholder="Name"
-                onChange={nameChange}
+                onChange={handleChange}
             />
             <input
                 type="text"
-                name="phone"
-                autoComplete="off"
+                name="contact"
+                value={dataUser.contact}
+                autoComplete="disabled"
                 placeholder="Phone"
-                onChange={phoneChange}
+                onChange={handleChange}
             />
             <input
                 type="email"
                 name="email"
-                autoComplete="off"
+                value={dataUser.email}
+                autoComplete="disabled"
                 placeholder="Email"
-                onChange={emailChange}
+                onChange={handleChange}
             />
             <input
                 type="text"
                 name="description"
-                autoComplete="off"
+                value={dataUser.description}
+                autoComplete="disabled"
                 placeholder="Description"
-                onChange={descriptionChange}
+                onChange={handleChange}
             />
             <input
                 type="date"
                 name="startDate"
-                autoComplete="off"
+                value={dataUser.startDate}
+                autoComplete="disabled"
                 placeholder="Start Date"
-                onChange={startDateChange}
+                onChange={handleChange}
             />
             <input
                 type="password"
                 name="password"
-                autoComplete="off"
+                value={dataUser.password}
+                autoComplete="disabled"
                 placeholder="Password"
-                onChange={passwordChange}
+                onChange={handleChange}
             />
-            <select onChange={stateChange}>
-                <option value="" >Select state</option>
+            <select name="status" onChange={handleChange} value={dataUser.status}
+            >
+                <option value="">Select status</option>
                 <option value="Active">Active</option>
-                <option value="Inactive ">Inactive</option>
+                <option value="Inactive">Inactive</option>
             </select>
-            <select onChange={jobChange}>
-                <option value="" >Select job</option>
+            <select name="job" onChange={handleChange} value={dataUser.job}>
+                <option value="">Select job</option>
                 <option value="Manager">Manager</option>
-                <option value="Receptión ">Receptión</option>
-                <option value="Rooms service">Rooms service</option>
+                <option value="Reception">Reception</option>
+                <option value="Room service">Room service</option>
             </select>
             <Button color="green" type="submit" name="Crear" />
         </form>
     );
-};
+}
 
 export default Create;

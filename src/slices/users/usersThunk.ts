@@ -21,8 +21,8 @@ export const fetchSingleThunk = createAsyncThunk<DataUsers | undefined, string>(
   "users/fetchSingle",
   async (_id) => {
     try {
-      const data = await backendApiCall(`bookings/${_id}`, "GET");
-      return data.booking;
+      const data = await backendApiCall(`users/${_id}`, "GET");
+      return data.users;
     } catch (error) {
       if (error instanceof Error) {
 
@@ -35,10 +35,32 @@ export const fetchSingleThunk = createAsyncThunk<DataUsers | undefined, string>(
 
 export const deleteThunk = createAsyncThunk<string, string>(
   "users/delete",
-  (_id) => {
-    _id.toString
-    return _id;
-  }
-);
-// export const createThunk = createAsyncThunk();
+  async (_id) => {
+    try {
+      const data = await backendApiCall(`users/${_id}`, "DELETE");
+      return data.users;
+    } catch (error) {
+      if (error instanceof Error) {
+
+        console.error("Error al eliminar usuario:", error.message);
+        return Promise.reject(error.message);
+      }
+    }
+  });
+
+export const createThunk = createAsyncThunk<DataUsers, DataUsers>(
+  "users/create",
+  async (dataUser) => {
+    try {
+      const data = await backendApiCall("users", "POST", dataUser);
+      return data.users;
+    } catch (error) {
+      if (error instanceof Error) {
+
+        console.error("Error al crear usuario:", error.message);
+        return Promise.reject(error.message);
+      }
+    }
+  });
+
 // export const updateThunk = createAsyncThunk();

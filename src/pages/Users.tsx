@@ -54,7 +54,7 @@ function Users() {
       columnsData: "name",
       columnRenderer: (row) => (
         <div>
-          <img src={row.foto} alt="User" style={{ width: "50px" }} />
+          <img src={row.foto} alt="User" style={{ width: "70px", borderRadius: "100%" }} />
           <div>
             <p>{row.name}</p>
             <p>#{row._id}</p>

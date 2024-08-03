@@ -40,7 +40,7 @@ export interface DataBookings {
 }export interface DataUsers {
     foto: string,
     name: string,
-    _id: string,
+    _id?: string,
     startDate: string,
     description: string,
     email: string,
