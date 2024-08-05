@@ -17,7 +17,7 @@ const ButtonStyled = styled.button`
 `;
 
 //cambiar el tipo any si este componente es necesario mas adelante
-function Button({ color, name }: any) {
+function Button({ color, name, disabled }: any) {
   return <ButtonStyled color={color}>{name}</ButtonStyled>;
 }
 

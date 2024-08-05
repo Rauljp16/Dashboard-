@@ -38,14 +38,16 @@ export interface DataBookings {
     RoomFloor: string,
 
 }export interface DataUsers {
-    foto: string,
-    name: string,
-    _id?: string,
-    startDate: string,
-    description: string,
-    email: string,
-    contact: string,
-    status: string
+    foto: string;
+    name: string;
+    _id?: string;
+    startDate: string;
+    description: string;
+    email: string;
+    contact: string;
+    status: string;
+    job?: string;
+    password?: string;
 }
 export interface Column {
     headerColumn: string,

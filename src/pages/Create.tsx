@@ -1,22 +1,12 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent, useMemo } from "react";
 import Button from "../components/Button";
 import photo from "../images/users.webp";
 import { AppDispatch } from "../store";
 import { useDispatch } from "react-redux";
 import { createThunk } from "../slices/users/usersThunk";
+import { DataUsers } from "../types/global";
+import Popup from "../components/Popup";
 
-interface UserData {
-    foto: string;
-    name: string;
-    job: string;
-    email: string;
-    contact: string;
-    startDate: string;
-    description: string;
-    status: string;
-    password: string;
-    _id?: string;
-}
 const initialDataUser = {
     foto: photo,
     name: "",
@@ -27,12 +17,21 @@ const initialDataUser = {
     description: "",
     status: "",
     password: "",
+};
+export interface InfoPopup {
+    title: string;
+    info: string;
 }
 
-function Create() {
-    const dispatch: AppDispatch = useDispatch()
 
-    const [dataUser, setDataUser] = useState<UserData>({
+function Create() {
+    const dispatch: AppDispatch = useDispatch();
+    const [openPopup, setOpenPopup] = useState(false);
+    const [infoPopup, setInfoPopup] = useState<InfoPopup>({ title: '', info: '' });
+
+
+
+    const [dataUser, setDataUser] = useState<DataUsers>({
         foto: photo,
         name: "",
         job: "",
@@ -44,15 +43,45 @@ function Create() {
         password: "",
     });
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleChange = (
+        e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    ) => {
         const { name, value } = e.target;
-        setDataUser({ ...dataUser, [name]: value, });
+
+        if (name !== "contact") {
+            setDataUser({ ...dataUser, [name]: value });
+        } else {
+            const cleaned = value.replace(/\D/g, '');
+
+            const formatted = cleaned.replace(/(.{3})(?=.)/g, '$1-');
+
+            setDataUser({ ...dataUser, [name]: formatted });
+        }
     };
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        setDataUser(initialDataUser)
-        dispatch(createThunk(dataUser))
+        if (
+            !dataUser.foto ||
+            !dataUser.contact ||
+            !dataUser.description ||
+            !dataUser.email ||
+            !dataUser.job ||
+            !dataUser.name ||
+            !dataUser.password ||
+            !dataUser.startDate ||
+            !dataUser.status
+        ) {
+            setOpenPopup(true);
+            setInfoPopup({
+                title: "Formulario no valido",
+                info: "Rellena todos los campos correctamente"
+            })
+        } else {
+            setDataUser(initialDataUser);
+            dispatch(createThunk(dataUser));
+        }
+
     };
 
     return (
@@ -120,8 +149,7 @@ function Create() {
                 placeholder="Password"
                 onChange={handleChange}
             />
-            <select name="status" onChange={handleChange} value={dataUser.status}
-            >
+            <select name="status" onChange={handleChange} value={dataUser.status}>
                 <option value="">Select status</option>
                 <option value="Active">Active</option>
                 <option value="Inactive">Inactive</option>
@@ -133,6 +161,8 @@ function Create() {
                 <option value="Room service">Room service</option>
             </select>
             <Button color="green" type="submit" name="Crear" />
+            {openPopup && <Popup infoPopup={infoPopup} setOpenPopup={setOpenPopup} openPopup={openPopup} />}
+
         </form>
     );
 }

@@ -195,7 +195,7 @@ function Bookings() {
       <Table
         data={dataFinal.length ? dataFinal : dataBookingState} columns={columns}
       />
-      {openPopup && <Popup infoPopup={infoPopup} setOpenPopup={setOpenPopup} />}
+      {openPopup && <Popup infoPopup={infoPopup} setOpenPopup={setOpenPopup} openPopup={openPopup} />}
     </div>
   );
 }

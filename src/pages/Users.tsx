@@ -1,27 +1,14 @@
 import Table from "../components/Table";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteThunk, fetchAllThunk } from "../slices/users/usersThunk";
-import { RiDeleteBin5Line } from "react-icons/ri";
+import { deleteThunk, fetchAllThunk, updateThunk } from '../slices/users/usersThunk';
+import { RiDeleteBin5Line, RiEdit2Line } from "react-icons/ri";
 import { Column } from "../types/global";
 import { AppDispatch, RootState } from "../store";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Button from "../components/Button";
 
-const StyledButton = styled(Link)`
-  padding: 8px 15px;
-  margin: 10px;
-  background-color: #0b4625;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-
-  &:hover {
-    scale: 1.1;
-  }
-`;
 
 function Users() {
   const dataUser = useSelector((state: RootState) => state.userSlice.dataUser);
@@ -47,6 +34,11 @@ function Users() {
     dispatch(deleteThunk(_id));
   }
 
+
+  //hacer en pdtareUser
+  // function editItem(_id: string) {
+  //   console.log("editar: " + _id);
+  // }
   const order = ["All user", "Active user", "Inactive user"];
   const columns: Column[] = [
     {
@@ -89,7 +81,10 @@ function Users() {
       headerColumn: "",
       columnsData: "delete",
       columnRenderer: (row) => (
-        <RiDeleteBin5Line onClick={() => deleteItem(row._id)} />
+        <>
+          <Link to="/users/edit"><RiEdit2Line to="/users/edit" style={{ margin: "5px" }} /></Link>
+          <RiDeleteBin5Line style={{ margin: "5px" }} onClick={() => deleteItem(row._id)} />
+        </>
       ),
     },
   ];
@@ -103,7 +98,7 @@ function Users() {
       </ul>
       <div>
         <input type="text" />
-        <StyledButton to="/users/create">Create User</StyledButton>
+        <Link to="/users/create"><Button color="green" name="Create User" /></Link>
       </div>
       <Table columns={columns} data={dataUserState} />
     </div>
