@@ -24,7 +24,7 @@ export interface InfoPopup {
 }
 
 
-function Create() {
+function CreateUser() {
     const dispatch: AppDispatch = useDispatch();
     const [openPopup, setOpenPopup] = useState(false);
     const [infoPopup, setInfoPopup] = useState<InfoPopup>({ title: '', info: '' });
@@ -167,4 +167,4 @@ function Create() {
     );
 }
 
-export default Create;
+export default CreateUser;

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleThunk } from "../slices/bookings/bookingsThunk";
 import { useParams } from "react-router-dom";
@@ -20,7 +20,7 @@ function BookingDetails() {
   }
 
   return (
-    <div className="order-details">
+    <div >
       <h2>Order Details</h2>
       <p>
         <strong>Name:</strong> {singleBooking.Name}

@@ -22,7 +22,7 @@ export const fetchSingleThunk = createAsyncThunk<DataUsers | undefined, string>(
   async (_id) => {
     try {
       const data = await backendApiCall(`users/${_id}`, "GET");
-      return data.users;
+      return data.user;
     } catch (error) {
       if (error instanceof Error) {
 
@@ -63,11 +63,11 @@ export const createThunk = createAsyncThunk<DataUsers, DataUsers>(
     }
   });
 
-export const updateThunk = createAsyncThunk<string, string>(
+export const updateThunk = createAsyncThunk<DataUsers, DataUsers>(
   "users/update",
-  async (_id, dataUser) => {
+  async (dataUser) => {
     try {
-      const data = await backendApiCall(`users/${_id}`, "PATCH", dataUser);
+      const data = await backendApiCall(`users/${dataUser._id}`, "PATCH", dataUser);
       return data.users;
     } catch (error) {
       if (error instanceof Error) {

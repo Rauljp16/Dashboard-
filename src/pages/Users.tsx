@@ -82,7 +82,7 @@ function Users() {
       columnsData: "delete",
       columnRenderer: (row) => (
         <>
-          <Link to="/users/edit"><RiEdit2Line to="/users/edit" style={{ margin: "5px" }} /></Link>
+          <Link to={`/users/edit/${row._id}`}><RiEdit2Line to="/users/edit" style={{ margin: "5px" }} /></Link>
           <RiDeleteBin5Line style={{ margin: "5px" }} onClick={() => deleteItem(row._id)} />
         </>
       ),

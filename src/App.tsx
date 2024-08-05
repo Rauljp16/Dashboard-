@@ -14,8 +14,8 @@ import PrivateRoute from "./pages/PrivateRoute";
 import "./App.css";
 import { AuthContext } from "./components/Auth";
 import BookingDetails from "./pages/BookingDetails";
-import Create from "./pages/Create";
-import Edit from "./pages/Edit";
+import CreateUser from "./pages/CreateUser";
+import EditUser from "./pages/EditUser";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -114,15 +114,15 @@ function App() {
             path="/users/create"
             element={
               <PrivateRoute>
-                <Create />
+                <CreateUser />
               </PrivateRoute>
             }
           />
           <Route
-            path="/users/edit"
+            path="/users/edit/:_id"
             element={
               <PrivateRoute>
-                <Edit />
+                <EditUser />
               </PrivateRoute>
             }
           />
