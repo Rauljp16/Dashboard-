@@ -16,6 +16,8 @@ import { AuthContext } from "./components/Auth";
 import BookingDetails from "./pages/BookingDetails";
 import CreateUser from "./pages/CreateUser";
 import EditUser from "./pages/EditUser";
+import CreateBooking from "./pages/CreateBooking";
+import EditBooking from "./pages/EditBooking";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -78,6 +80,23 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route
+            path="/bookings/create"
+            element={
+              <PrivateRoute>
+                <CreateBooking />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/bookings/edit/:_id"
+            element={
+              <PrivateRoute>
+                <EditBooking />
+              </PrivateRoute>
+            }
+          />
+
           <Route
             path="/rooms"
             element={

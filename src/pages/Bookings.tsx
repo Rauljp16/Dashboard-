@@ -1,12 +1,13 @@
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteThunk, fetchAllThunk } from "../slices/bookings/bookingsThunk";
-import { RiDeleteBin5Line } from "react-icons/ri";
+import { RiDeleteBin5Line, RiEdit2Line } from "react-icons/ri";
 import Popup, { InfoPopup } from "../components/Popup";
 import { Link } from "react-router-dom";
 import { Column, DataBookings } from '../types/global';
 import { AppDispatch, RootState } from "../store";
 import Table from "../components/Table";
+import Button from "../components/Button";
 
 function Bookings() {
   const dataBooking = useSelector((state: RootState) => state.bookingSlice.dataBooking);
@@ -129,7 +130,10 @@ function Bookings() {
       headerColumn: "",
       columnsData: "delete",
       columnRenderer: (row) => (
-        <RiDeleteBin5Line onClick={() => deleteItem(row._id)} />
+        <>
+          <Link to={`/bookings/edit/${row._id}`}><RiEdit2Line to="/bookings/edit" style={{ margin: "5px" }} /></Link>
+          <RiDeleteBin5Line onClick={() => deleteItem(row._id)} />
+        </>
       ),
     },
   ];
@@ -182,16 +186,19 @@ function Bookings() {
           </li>
         ))}
       </ul>
-      <input type="text" onChange={handleFilter} />
-      <select onChange={onChange} defaultValue="">
-        <option value="" disabled>
-          Order by
-        </option>
-        <option value="Guest">Guest</option>
-        <option value="Order Date">Order Date</option>
-        <option value="Check In">Check In</option>
-        <option value="Check Out">Check Out</option>
-      </select>
+      <div>
+        <input type="text" onChange={handleFilter} />
+        <select onChange={onChange} defaultValue="">
+          <option value="" disabled>
+            Order by
+          </option>
+          <option value="Guest">Guest</option>
+          <option value="Order Date">Order Date</option>
+          <option value="Check In">Check In</option>
+          <option value="Check Out">Check Out</option>
+        </select>
+        <Link to="/bookings/create"><Button color="green" name="Create Booking" /></Link>
+      </div>
       <Table
         data={dataFinal.length ? dataFinal : dataBookingState} columns={columns}
       />

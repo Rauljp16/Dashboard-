@@ -2,7 +2,7 @@
 
 export interface DataBookings {
     Name: string,
-    _id: string,
+    _id?: string,
     OrderDate: string,
     CheckIn: string,
     CheckOut: string,
