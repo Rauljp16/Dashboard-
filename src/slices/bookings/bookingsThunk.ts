@@ -62,4 +62,19 @@ export const createThunk = createAsyncThunk<DataBookings, DataBookings>(
       }
     }
   });
-// export const updateThunk = createAsyncThunk();
+
+export const updateThunk = createAsyncThunk<DataBookings, DataBookings>(
+  "bookings/update",
+  async (dataBooking) => {
+    try {
+      const data = await backendApiCall(`bookings/${dataBooking._id}`, "PATCH", dataBooking);
+      return data.booking;
+    } catch (error) {
+      if (error instanceof Error) {
+
+        console.error("Error al actualizar booking:", error.message);
+        return Promise.reject(error.message);
+      }
+    }
+  });
+

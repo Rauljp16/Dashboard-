@@ -72,7 +72,7 @@ export const updateThunk = createAsyncThunk<DataUsers, DataUsers>(
     } catch (error) {
       if (error instanceof Error) {
 
-        console.error("Error al crear usuario:", error.message);
+        console.error("Error al actualizar usuario:", error.message);
         return Promise.reject(error.message);
       }
     }
