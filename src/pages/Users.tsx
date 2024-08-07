@@ -34,11 +34,6 @@ function Users() {
     dispatch(deleteThunk(_id));
   }
 
-
-  //hacer en pdtareUser
-  // function editItem(_id: string) {
-  //   console.log("editar: " + _id);
-  // }
   const order = ["All user", "Active user", "Inactive user"];
   const columns: Column[] = [
     {

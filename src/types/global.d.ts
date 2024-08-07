@@ -29,11 +29,11 @@ export interface DataBookings {
 }export interface DataRooms {
     Foto: string,
     number: string,
-    _id: string,
+    _id?: string,
     BedType: string,
-    Amenities: string[],
-    Rate: number,
-    OfferPrice: number,
+    Facilities: string[],
+    Rate: number | undefined,
+    OfferPrice: number | undefined,
     Status: string,
     RoomFloor: string,
 

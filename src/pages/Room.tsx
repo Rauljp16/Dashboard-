@@ -1,7 +1,7 @@
 function Room() {
   return (
     <div>
-      Room
+      Room para test
     </div>
   );
 }

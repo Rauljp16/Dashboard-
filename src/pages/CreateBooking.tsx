@@ -149,12 +149,10 @@ function CreateBooking() {
                 value={dataBooking.RoomType}
             >
                 <option value="">Select Room Type</option>
-                <option value="SingleRoom">Single Room</option>
-                <option value="DoubleRoom">Double Room</option>
-                <option value="TripleRoom">Triple Room</option>
-                <option value="FamilyRoom">Family Room</option>
-                <option value="JuniorSuite">Junior Suite</option>
-                <option value="SuperiorRoom">Superior Room</option>
+                <option value="SingleBed">Single Bed</option>
+                <option value="DoubleBed">Double Bed</option>
+                <option value="DoubleSuperior">Double Superior</option>
+                <option value="Suite">Suite</option>
             </select>
 
             <label>Status</label>

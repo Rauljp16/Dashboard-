@@ -2,9 +2,11 @@ import Table from "../components/Table";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteThunk, fetchAllThunk } from "../slices/rooms/roomsThunk";
-import { RiDeleteBin5Line } from "react-icons/ri";
+import { RiDeleteBin5Line, RiEdit2Line } from "react-icons/ri";
 import { Column } from "../types/global";
 import { AppDispatch, RootState } from "../store";
+import { Link } from "react-router-dom";
+import Button from "../components/Button";
 
 
 
@@ -22,12 +24,9 @@ function Rooms() {
     initialFetch();
   }, [dispatch]);
 
-  function deleteItem(id: string) {
-    dispatch(deleteThunk(id))
+  function deleteItem(_id: string) {
+    dispatch(deleteThunk(_id))
   }
-  // function openNote(e) {
-  //   alert(e);
-  // }
 
   const dataRoomState = useMemo(() => {
     if (!dataRoom.length) return [];
@@ -40,14 +39,15 @@ function Rooms() {
       headerColumn: "Room Name",
       columnsData: "RoomName",
       columnRenderer: (row) => (
-        <div>
-          {" "}
-          <img src={row.Foto} alt="Room" style={{ width: "90px" }} />
-          <p>#{row.id}</p>
+        <Link to={row._id}>
           <div>
-            <p>{row.number}</p>
+            <img src={row.Foto} alt="Room" style={{ width: "90px" }} />
+            <p>#{row._id}</p>
+            <div>
+              <p>{row.number}</p>
+            </div>
           </div>
-        </div>
+        </Link>
       ),
     },
     {
@@ -59,18 +59,10 @@ function Rooms() {
       columnsData: "RoomFloor",
     },
     {
-      headerColumn: "Amenities",
-      columnsData: "Amenities",
-      columnRenderer: (row) => <p>{row.Amenities.join(", ")}</p>,
+      headerColumn: "Facilities",
+      columnsData: "Facilities",
+      columnRenderer: (row) => <p>{row.Facilities.join(", ")}</p>,
     },
-    // {
-    //   headerColumn: "Special Request",
-    //   columnsData: "SpecialRequest",
-    //   columnRenderer: (row) => (
-    //     <button onClick={() => openNote(row.SpecialRequest)}>View Notes</button>
-    //   ),
-
-    // },
     {
       headerColumn: "Rate",
       columnsData: "Rate",
@@ -95,15 +87,22 @@ function Rooms() {
       headerColumn: "",
       columnsData: "delete",
       columnRenderer: (row) => (
-        <RiDeleteBin5Line onClick={() => deleteItem(row.id)} />
+        <>
+          <Link to={`/rooms/edit/${row._id}`}><RiEdit2Line to="/users/edit" style={{ margin: "5px" }} /></Link>
+          <RiDeleteBin5Line style={{ margin: "5px" }} onClick={() => deleteItem(row._id)} />
+        </>
       ),
     },
   ];
 
   return (
-    <div>
-      <Table data={dataRoomState} columns={columns} />
-    </div>
+    <>
+      <div>
+        <input type="text" />
+        <Link to="/rooms/create"><Button color="green" name="Create Room" /></Link>
+      </div>
+      <Table columns={columns} data={dataRoomState} />
+    </>
   );
 }
 

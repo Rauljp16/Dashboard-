@@ -18,6 +18,8 @@ import CreateUser from "./pages/CreateUser";
 import EditUser from "./pages/EditUser";
 import CreateBooking from "./pages/CreateBooking";
 import EditBooking from "./pages/EditBooking";
+import CreateRoom from "./pages/CreateRoom";
+import EditRoom from "./pages/EditRoom";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -96,7 +98,6 @@ function App() {
               </PrivateRoute>
             }
           />
-
           <Route
             path="/rooms"
             element={
@@ -110,6 +111,22 @@ function App() {
             element={
               <PrivateRoute>
                 <Room />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/rooms/create"
+            element={
+              <PrivateRoute>
+                <CreateRoom />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/rooms/edit/:_id"
+            element={
+              <PrivateRoute>
+                <EditRoom />
               </PrivateRoute>
             }
           />
