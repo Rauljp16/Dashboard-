@@ -7,7 +7,9 @@ import { RootState, AppDispatch } from "../store";
 function BookingDetails() {
   const dispatch: AppDispatch = useDispatch();
   const { _id } = useParams<{ _id: string }>();
-  const singleBooking = useSelector((state: RootState) => state.bookingSlice.singleBooking);
+  const singleBooking = useSelector(
+    (state: RootState) => state.bookingSlice.singleBooking
+  );
 
   useEffect(() => {
     if (_id) {
@@ -20,7 +22,7 @@ function BookingDetails() {
   }
 
   return (
-    <div >
+    <div>
       <h2>Order Details</h2>
       <p>
         <strong>Name:</strong> {singleBooking.Name}

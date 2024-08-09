@@ -9,6 +9,7 @@ import {
 
 import { DataBookings } from "../../types/global";
 export interface StateBooking {
+  singleRoom: any;
   status: string;
   dataBooking: DataBookings[];
   singleBooking: DataBookings | null;

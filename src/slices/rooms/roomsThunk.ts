@@ -2,7 +2,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { backendApiCall } from "../../utils";
 import { DataRooms } from "../../types/global";
 
-
 export const fetchAllThunk = createAsyncThunk("rooms/fetchAll", async () => {
   try {
     const data = await backendApiCall("rooms", "GET");
@@ -20,16 +19,15 @@ export const fetchSingleThunk = createAsyncThunk<DataRooms | undefined, string>(
   async (_id) => {
     try {
       const data = await backendApiCall(`rooms/${_id}`, "GET");
-      return data.rooms;
+      return data.room;
     } catch (error) {
       if (error instanceof Error) {
-
         console.error("Error al obtener datos:", error.message);
         return Promise.reject(error.message);
       }
     }
-  });
-
+  }
+);
 
 export const deleteThunk = createAsyncThunk<string, string>(
   "rooms/delete",
@@ -39,12 +37,12 @@ export const deleteThunk = createAsyncThunk<string, string>(
       return data.rooms;
     } catch (error) {
       if (error instanceof Error) {
-
         console.error("Error al eliminar room:", error.message);
         return Promise.reject(error.message);
       }
     }
-  });
+  }
+);
 
 export const createThunk = createAsyncThunk<DataRooms, DataRooms>(
   "rooms/create",
@@ -54,25 +52,28 @@ export const createThunk = createAsyncThunk<DataRooms, DataRooms>(
       return data.rooms;
     } catch (error) {
       if (error instanceof Error) {
-
         console.error("Error al crear room:", error.message);
         return Promise.reject(error.message);
       }
     }
-  });
+  }
+);
 
 export const updateThunk = createAsyncThunk<DataRooms, DataRooms>(
   "rooms/update",
   async (dataRoom) => {
     try {
-      const data = await backendApiCall(`rooms/${dataRoom._id}`, "PATCH", dataRoom);
+      const data = await backendApiCall(
+        `rooms/${dataRoom._id}`,
+        "PATCH",
+        dataRoom
+      );
       return data.rooms;
     } catch (error) {
       if (error instanceof Error) {
-
         console.error("Error al actualizar room:", error.message);
         return Promise.reject(error.message);
       }
     }
-  });
-
+  }
+);
