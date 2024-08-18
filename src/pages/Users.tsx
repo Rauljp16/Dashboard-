@@ -1,14 +1,17 @@
 import Table from "../components/Table";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteThunk, fetchAllThunk, updateThunk } from '../slices/users/usersThunk';
+import {
+  deleteThunk,
+  fetchAllThunk,
+  updateThunk,
+} from "../slices/users/usersThunk";
 import { RiDeleteBin5Line, RiEdit2Line } from "react-icons/ri";
 import { Column } from "../types/global";
 import { AppDispatch, RootState } from "../store";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
-
 
 function Users() {
   const dataUser = useSelector((state: RootState) => state.userSlice.dataUser);
@@ -40,14 +43,20 @@ function Users() {
       headerColumn: "Name",
       columnsData: "name",
       columnRenderer: (row) => (
-        <div>
-          <img src={row.foto} alt="User" style={{ width: "70px", borderRadius: "100%" }} />
+        <Link to={row._id}>
           <div>
-            <p>{row.name}</p>
-            <p>#{row._id}</p>
-            <p>{row.startDate}</p>
+            <img
+              src={row.foto}
+              alt="User"
+              style={{ width: "70px", borderRadius: "100%" }}
+            />
+            <div>
+              <p>{row.name}</p>
+              <p>#{row._id}</p>
+              <p>{row.startDate}</p>
+            </div>
           </div>
-        </div>
+        </Link>
       ),
     },
     {
@@ -77,8 +86,13 @@ function Users() {
       columnsData: "delete",
       columnRenderer: (row) => (
         <>
-          <Link to={`/users/edit/${row._id}`}><RiEdit2Line to="/users/edit" style={{ margin: "5px" }} /></Link>
-          <RiDeleteBin5Line style={{ margin: "5px" }} onClick={() => deleteItem(row._id)} />
+          <Link to={`/users/edit/${row._id}`}>
+            <RiEdit2Line to="/users/edit" style={{ margin: "5px" }} />
+          </Link>
+          <RiDeleteBin5Line
+            style={{ margin: "5px" }}
+            onClick={() => deleteItem(row._id)}
+          />
         </>
       ),
     },
@@ -93,7 +107,9 @@ function Users() {
       </ul>
       <div>
         <input type="text" />
-        <Link to="/users/create"><Button color="green" name="Create User" /></Link>
+        <Link to="/users/create">
+          <Button color="green" name="Create User" />
+        </Link>
       </div>
       <Table columns={columns} data={dataUserState} />
     </div>
