@@ -3,38 +3,60 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../components/Auth";
 import fondo from "../images/fondo.jpg";
 import styled from "styled-components";
+import Button from "../components/Button";
+import { InputStyled, InputStyledError } from "../components/Input";
 
-const loginStyled = styled.div``;
+const Fondo = styled.div`
+  background-image: url(${fondo});
+  background-size: cover;
+  background-position: center bottom;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-const fondoStyle: React.CSSProperties = {
-  backgroundImage: `url(${fondo})`,
-  backgroundSize: "cover",
-  backgroundPosition: "center bottom",
-  position: "absolute",
-  width: "100%",
-  height: "100vh",
-  left: "0",
-  top: "0",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-};
+`;
 
-const loginStyle: React.CSSProperties = {
-  display: "flex",
-  gap: "18px",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  boxShadow: "0px 0px 2px #0c3b2f",
-  borderRadius: "8px",
-  padding: "40px 120px",
-  backgroundColor: "#ffffff21",
-  backdropFilter: "blur(9px)",
-  WebkitBackdropFilter: "blur(9px)",
-  color: "#0b362b",
-  scale: "1.1",
-};
+const LoginForm = styled.form`
+  display: flex;
+    gap: 18px;
+    width: 100%;
+    max-width: 500px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 6px 0px #4f6a63;
+    border-radius: 4px;
+    margin: 0 40px;
+    padding: 20px;
+    background-color: #ffffff21;
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+    color: #0b362b;
+    transform: scale(1);
+
+
+  @media (min-width: 1000px) {
+    padding: 40px 60px;
+    max-width: 600px;
+  }
+`;
+
+const Title = styled.h1`
+font-family: sans-serif;
+font-size: 35px;
+font-weight: 700;
+letter-spacing: 3px;
+`;
+const Text = styled.p`
+  margin: 5px 0;
+  font-family: sans-serif;
+
+`;
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -43,6 +65,8 @@ function Login() {
   const userName = "Raúl";
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
+  const [isActiveEmail, setIsActiveEmail] = useState(true)
+  const [isActivePass, setIsActivePass] = useState(true)
 
   if (!authContext) {
     return null;
@@ -52,6 +76,25 @@ function Login() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    let valid = true;
+
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setIsActiveEmail(false);
+      valid = false;
+    } else {
+      setIsActiveEmail(true);
+    }
+
+    if (password.length < 2) {
+      setIsActivePass(false);
+      valid = false;
+    } else {
+      setIsActivePass(true);
+    }
+
+    if (!valid) return;
+
     const token = await loginUser();
     if (token) {
       dispatch({
@@ -99,27 +142,43 @@ function Login() {
   };
 
   return (
-    <div style={fondoStyle}>
-      <form style={loginStyle} onSubmit={handleSubmit}>
-        <h1>LOGIN</h1>
-        <input
-          type="email"
-          placeholder="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">LOGIN</button>
-        <p>To access...</p>
-        <p>EMAIL: rauljp16@gmail.com</p>
-        <p>PASSWORD: hotel miranda</p>
-      </form>
-    </div>
+    <Fondo>
+      <LoginForm onSubmit={handleSubmit}>
+        <Title>LOGIN</Title>
+        {isActiveEmail ? (
+          <InputStyled
+            type="email"
+            placeholder="email"
+            value={email}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+          />
+        ) : (
+          <InputStyledError
+            type="email"
+            placeholder="email"
+            value={email}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+          />)}
+        {isActivePass ? (
+          <InputStyled
+            type="password"
+            placeholder="password"
+            value={password}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+          />) : (
+          <InputStyledError
+            type="password"
+            placeholder="password"
+            value={password}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+          />)}
+
+        <Button color="green" name="LOGIN" ></Button>
+        <Text>To access...</Text>
+        <Text>EMAIL: rauljp16@gmail.com</Text>
+        <Text>PASSWORD: hotel miranda</Text>
+      </LoginForm>
+    </Fondo>
   );
 }
 

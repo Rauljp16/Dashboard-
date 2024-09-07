@@ -15,6 +15,7 @@ interface Props {
 function Header({ setOpen, open }: Props) {
 
   const headerStyle = {
+    position: "absolute",
     width: "100%",
     height: "50px",
     backgroundColor: "#FFFFFF",
@@ -58,15 +59,18 @@ function Header({ setOpen, open }: Props) {
 
   return (
     <div style={headerStyle}>
-      {open ? (
-        <HiArrowLeft onClick={handleClick} />
-      ) : (
-        <HiArrowRight onClick={handleClick} />
-      )}
-      <h3 style={{ marginLeft: "30px" }}>{getRouteName(title)}</h3>
+      <div>
+        {open ? (
+          <HiArrowLeft onClick={handleClick} />
+        ) : (
+          <HiArrowRight onClick={handleClick} />
+        )}
+        <h3 style={{ marginLeft: "30px" }}>{getRouteName(title)}</h3>
+      </div>
       <div
         style={{
-          position: "absolute",
+          backgroundColor: "red",
+          position: "relative",
           right: "30px",
           display: "flex",
           gap: "30px",

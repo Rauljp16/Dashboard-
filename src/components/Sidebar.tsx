@@ -12,11 +12,11 @@ interface sidebarProps {
 }
 
 const SidebarStyled = styled.div`
-    height: 100vh;
+    //height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #ffffff;
+    background-color: #00c3ff;
   `;
 
 function Sidebar({ open }: sidebarProps) {

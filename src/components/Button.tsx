@@ -2,22 +2,25 @@ import styled from "styled-components";
 
 const ButtonStyled = styled.button`
     background-color: ${({ color }) =>
-    color === "green" ? "#195219" : "#dc3546"};
+    color === "green" ? "#103f0d9c" : "#dc3546"};
     border: none;
     color: white;
   font-size:16px;
-  border-radius: 8px;
+  line-height: 1;
+  border-radius: 4px;
   padding: 5px 15px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
   &:hover {
     scale: 1.1;
-    box-shadow: 1px 1px 8px 3px #195219;
+    background-color: ${({ color }) =>
+    color === "green" ? "#0b410b" : "#dc3546"};
+    box-shadow: 1px 1px 8px 3px #4d6b4d;
   }
 `;
 
-//cambiar el tipo any si este componente es necesario mas adelante
-function Button({ color, name, disabled }: any) {
+
+function Button({ color, name }: any) {
   return <ButtonStyled color={color}>{name}</ButtonStyled>;
 }
 
