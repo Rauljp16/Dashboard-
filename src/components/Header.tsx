@@ -31,7 +31,6 @@ function Header({ setOpen, open }: Props) {
   const navigate = useNavigate();
 
   const { dispatch }: any = useContext(AuthContext);
-  //cambiar el tipo any que ahora no lo he conseguido
 
   function getRouteName(title: string): string {
     switch (title) {

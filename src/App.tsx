@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useState, useContext } from "react";
 import Booking from "./pages/Bookings";
 import Rooms from "./pages/Rooms";
@@ -21,14 +21,11 @@ import EditBooking from "./pages/EditBooking";
 import CreateRoom from "./pages/CreateRoom";
 import EditRoom from "./pages/EditRoom";
 import styled from "styled-components";
-import fondo from "./images/fondo.jpg";
-
-
+import fondo from "./images/fondo.webp";
 
 const AppStyled = styled.section`
 display: flex;
 height: 100vh;
-//justify-content: space-between;
 `;
 
 const ContainerStyled = styled.section`
@@ -37,7 +34,6 @@ width: 100%;
 background-image: url(${fondo});
 background-size: cover;
 background-position: center bottom;
-
 `;
 
 const PagesStyled = styled.section`
@@ -51,6 +47,11 @@ padding: 70px 20px 20px 20px;
 function App() {
   const [open, setOpen] = useState(false);
   const authContext = useContext(AuthContext);
+  const location = useLocation()
+
+  if (location.pathname === "/login") {
+    return <Login />;
+  }
 
   if (!authContext) {
     console.error("AuthContext is undefined");

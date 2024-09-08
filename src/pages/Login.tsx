@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../components/Auth";
-import fondo from "../images/fondo.jpg";
+import fondo from "../images/fondo.webp";
 import styled from "styled-components";
 import Button from "../components/Button";
 import { InputStyled, InputStyledError } from "../components/Input";
