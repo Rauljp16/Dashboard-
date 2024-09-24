@@ -19,7 +19,7 @@ const SidebarStyled = styled.div<SidebarProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: ${(props) => (props.open ? "160px" : "60px")};
+  width: ${(props) => (props.open ? "300px" : "70px")};
   transition: all 1s ease;
   overflow: hidden;
 `;
@@ -27,7 +27,7 @@ const SidebarStyled = styled.div<SidebarProps>`
 const LogoWrapper = styled.div<SidebarProps>`
   display: flex;
   align-items: center;
-  width: ${(props) => (props.open ? "70px" : "50px")};
+  width: ${(props) => (props.open ? "100px" : "50px")};
   transition: all 1s ease;
   padding: 6px 0;
   margin-bottom: 20px;

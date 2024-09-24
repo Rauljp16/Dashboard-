@@ -5,6 +5,7 @@ import { HiArrowRight } from "react-icons/hi";
 import { TbLogout } from "react-icons/tb";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { CiMail } from "react-icons/ci";
+import styled from "styled-components";
 import { AuthContext } from "./Auth";
 
 interface Props {
@@ -12,17 +13,37 @@ interface Props {
   open: boolean;
 }
 
-function Header({ setOpen, open }: Props) {
+const HeaderContainer = styled.div<Props>`
+  position: absolute;
+  width: 100%;
+  height: ${(props) => (props.open ? "90px" : "70px")};
+  /* height: 90px; */
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  transition: all 0.8s ease-in-out;
+`;
 
-  const headerStyle = {
-    position: "absolute",
-    width: "100%",
-    height: "50px",
-    backgroundColor: "#FFFFFF",
-    display: "flex",
-    alignItems: "center",
-    paddingLeft: "10px",
-  };
+const Title = styled.h3`
+  margin-left: 30px;
+`;
+
+const IconContainer = styled.div`
+  background-color: red;
+  position: relative;
+  right: 30px;
+  display: flex;
+  gap: 30px;
+`;
+
+const IconStyle = styled.div`
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+`;
+
+function Header({ setOpen, open }: Props) {
   const handleClick = () => {
     setOpen(!open);
   };
@@ -57,29 +78,23 @@ function Header({ setOpen, open }: Props) {
   };
 
   return (
-    <div style={headerStyle}>
+    <HeaderContainer open={open}>
       <div>
         {open ? (
           <HiArrowLeft onClick={handleClick} />
         ) : (
           <HiArrowRight onClick={handleClick} />
         )}
-        <h3 style={{ marginLeft: "30px" }}>{getRouteName(title)}</h3>
+        <Title>{getRouteName(title)}</Title>
       </div>
-      <div
-        style={{
-          backgroundColor: "red",
-          position: "relative",
-          right: "30px",
-          display: "flex",
-          gap: "30px",
-        }}
-      >
+      <IconContainer>
         <CiMail style={{ width: "20px", height: "20px" }} />
         <IoMdNotificationsOutline style={{ width: "20px", height: "20px" }} />
-        <TbLogout onClick={logOut} style={{ width: "20px", height: "20px", cursor: "pointer" }} />
-      </div>
-    </div>
+        <IconStyle>
+          <TbLogout onClick={logOut} />
+        </IconStyle>
+      </IconContainer>
+    </HeaderContainer>
   );
 }
 

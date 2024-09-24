@@ -1,0 +1,46 @@
+name: Deploy React App to S3 on Pull Request
+
+# Define cuándo ejecutar este action
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout del código del repositorio
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Instala Node.js y las dependencias del proyecto
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20" # Ajusta la versión de Node.js según tu proyecto
+
+      - name: Install dependencies
+        run: npm install
+
+      # Ejecuta las pruebas de Cypress
+      - name: Run Cypress tests
+        run: npx cypress run
+
+      # Compila la aplicación React
+      - name: Build React app
+        run: npm run build
+
+      # Configura AWS CLI con las credenciales de GitHub Secrets
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-3
+
+      # Sincroniza los archivos de la carpeta build con el bucket S3
+      - name: Sync build files to S3
+        run: |
+          aws s3 sync ./build s3://test-devops-miranda --delete
