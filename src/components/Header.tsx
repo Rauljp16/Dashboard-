@@ -78,7 +78,7 @@ function Header({ setOpen, open }: Props) {
   };
 
   return (
-    <HeaderContainer open={open}>
+    <HeaderContainer open={open} setOpen={setOpen}>
       <div>
         {open ? (
           <HiArrowLeft onClick={handleClick} />
