@@ -47,4 +47,4 @@ jobs:
       # Sincroniza los archivos de la carpeta build con el bucket S3
       - name: Sync build files to S3
         run: |
-          aws s3 sync ./dist s3://web-hotel-miranda --delete
+          aws s3 sync ./dist s3://dashboard-hotel --delete
