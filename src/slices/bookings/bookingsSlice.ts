@@ -21,6 +21,7 @@ const initialState: StateBooking = {
   dataBooking: [],
   singleBooking: null,
   error: null,
+  singleRoom: undefined
 };
 
 export const bookingsSlice = createSlice({

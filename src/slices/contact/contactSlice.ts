@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
-  createThunk,
+  //createThunk,
   deleteThunk,
   fetchAllThunk,
-  fetchSingleThunk,
-  updateThunk,
+  //fetchSingleThunk,
+  //updateThunk,
 } from "./contactThunk";
 import { DataContacts } from '../../types/global';
 
