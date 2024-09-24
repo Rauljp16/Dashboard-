@@ -29,7 +29,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
-          spec: cypress/e2e/spec1.cy.js
+          spec: cypress/e2e/spec.cy.js
 
       # Compila la aplicación React
       - name: Build React app
