@@ -24,6 +24,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # start vite
+      - name: Start Vite server
+       run: npm run dev &
+
+      # delay 
+       - name: Wait for server to start
+        run: sleep 10
+
       # Ejecuta las pruebas de Cypress
       - name: run Cypress
         uses: cypress-io/github-action@v6
