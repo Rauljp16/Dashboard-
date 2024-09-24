@@ -24,13 +24,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      #  Cypress
-      # - name: Start the web server
-      #    run: npm run dev
-      # - name: Wait for the server to be ready
-      #   run: npx wait-on http://localhost:5173
-      # - name: Run Cypress tests
-      #   run: npx cypress run
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
 
       # Compila la aplicación React
       - name: Build React app
