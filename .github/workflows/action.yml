@@ -27,8 +27,9 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v6
-         with:
-          spec: cypress/e2e/spec.cy.js
+        with:
+          browser: chrome
+          spec: cypress/e2e/spec1.cy.js
 
       # Compila la aplicación React
       - name: Build React app
