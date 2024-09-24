@@ -8,7 +8,9 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "jest",
+    "cypress:open": "cypress open",
+    "start-server-and-test": "start-server-and-test dev http://localhost:5173 cypress:open"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
