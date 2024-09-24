@@ -25,8 +25,8 @@ jobs:
         run: npm install
 
       # Ejecuta las pruebas de Cypress
-      - name: Run Cypress tests
-        run: npx cypress run
+      - name: Start server and run Cypress
+        run: npm run start-server-and-test
 
       # Compila la aplicación React
       - name: Build React app
