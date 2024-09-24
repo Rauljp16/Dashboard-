@@ -27,8 +27,6 @@ jobs:
       # Ejecuta las pruebas de Cypress
       - name: run Cypress
         uses: cypress-io/github-action@v6
-        with:
-          component: true
 
       # Compila la aplicación React
       - name: Build React app
