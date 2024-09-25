@@ -19,9 +19,12 @@ const SidebarStyled = styled.div<SidebarProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: ${(props) => (props.open ? "300px" : "70px")};
+  width: ${(props) => (props.open ? "300px" : "85px")};
   transition: all 1s ease;
   overflow: hidden;
+  z-index: 1;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 5px #0000002b;
 `;
 
 const LogoWrapper = styled.div<SidebarProps>`

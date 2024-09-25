@@ -14,27 +14,35 @@ interface Props {
 }
 
 const HeaderContainer = styled.div<Props>`
-  position: absolute;
+  position: relative;
   width: 100%;
-  height: ${(props) => (props.open ? "90px" : "70px")};
-  /* height: 90px; */
+  height: 85px;
   background-color: #ffffff;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding-left: 10px;
+  padding: 0 40px;
   transition: all 0.8s ease-in-out;
 `;
 
 const Title = styled.h3`
-  margin-left: 30px;
+  font-size: 26px;
+  letter-spacing: 1px;
 `;
 
 const IconContainer = styled.div`
-  background-color: red;
+  background-color: #f89494;
+  width: 50%;
   position: relative;
-  right: 30px;
   display: flex;
   gap: 30px;
+`;
+const ContainerTitle = styled.div`
+width: 25%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 26px;
 `;
 
 const IconStyle = styled.div`
@@ -79,14 +87,14 @@ function Header({ setOpen, open }: Props) {
 
   return (
     <HeaderContainer open={open} setOpen={setOpen}>
-      <div>
+      <ContainerTitle>
         {open ? (
           <HiArrowLeft onClick={handleClick} />
         ) : (
           <HiArrowRight onClick={handleClick} />
         )}
         <Title>{getRouteName(title)}</Title>
-      </div>
+      </ContainerTitle>
       <IconContainer>
         <CiMail style={{ width: "20px", height: "20px" }} />
         <IoMdNotificationsOutline style={{ width: "20px", height: "20px" }} />

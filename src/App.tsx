@@ -25,22 +25,22 @@ import fondo from "./images/fondo.webp";
 
 const AppStyled = styled.section`
 display: flex;
-height: 100vh;
+background-color: #F8F8F8;
 `;
 
 const ContainerStyled = styled.section`
 position: relative;
-width: 100%;
-background-image: url(${fondo});
-background-size: cover;
-background-position: center bottom;
+width: 100vw;
+height: 100vh;
+overflow: scroll;
 `;
 
 const PagesStyled = styled.section`
-background-color: #f303e79d;
-height: 100%;
-border: 2px solid black;
+min-height: 70vh;
+border: 2px solid green;
+border-radius: 10px;
 padding: 70px 20px 20px 20px;
+margin: 40px;
 `;
 
 
