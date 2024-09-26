@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const ButtonStyled = styled.button`
     background-color: ${({ color }) =>
-    color === "green" ? "#103f0d9c" : "#dc3546"};
+    color === "green" ? "#103f0dca" : "#dc3546"};
     border: none;
     color: white;
   font-size:16px;

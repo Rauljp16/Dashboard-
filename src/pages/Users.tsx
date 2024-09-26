@@ -12,6 +12,7 @@ import { AppDispatch, RootState } from "../store";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
+import Loading from "../components/Loading";
 
 function Users() {
   const dataUser = useSelector((state: RootState) => state.userSlice.dataUser);
@@ -31,7 +32,7 @@ function Users() {
     return dataUser;
   }, [dataUser]);
 
-  if (!fetched) return <h1>Loading</h1>;
+  if (!fetched) return <Loading />;
 
   function deleteItem(_id: string) {
     dispatch(deleteThunk(_id));

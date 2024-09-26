@@ -6,6 +6,7 @@ import { deleteThunk, fetchAllThunk } from "../slices/contact/contactThunk";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { AppDispatch, RootState } from "../store";
 import { Column } from "../types/global";
+import Loading from "../components/Loading";
 
 
 function Contact() {
@@ -27,7 +28,7 @@ function Contact() {
     return dataContact
   }, [dataContact]);
 
-  if (!fetched) return (<h1>Loading</h1>)
+  if (!fetched) return (<Loading />)
 
   function deleteItem(_id: string) {
     dispatch(deleteThunk(_id))

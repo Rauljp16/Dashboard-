@@ -34,9 +34,10 @@ const LoginForm = styled.form`
     margin: 0 40px;
     padding: 20px;
     background-color: #ffffff21;
-    backdrop-filter: blur(9px);
-    -webkit-backdrop-filter: blur(9px);
-    color: #0b362b;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: #01300b;
+    font-weight: 800;
     transform: scale(1);
 
 

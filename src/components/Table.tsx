@@ -1,36 +1,75 @@
+import React from 'react';
+import styled from 'styled-components';
+import { Column, DataBookings, DataContacts, DataRooms, DataUsers } from '../types/global';
 
-import { Column, DataBookings, DataComments, DataContacts, DataRooms, DataUsers } from '../types/global';
+// Estilos
+const TableContainer = styled.div`
+  width: 100%; 
+   overflow-x: auto; 
+background-color: #ffffff;
+border-radius: 10px;
+box-shadow: 0px 0px 2px 0px #0000001A;
+`;
+
+const StyledTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+
+`;
+
+const TableHead = styled.thead`
+  background-color: #ffffff; 
+`;
+
+const TableRow = styled.tr`
+  box-shadow: 0px 0px 2px 0px #0000001A;
+
+&:hover{
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10px -3px #000000;
+}
+`;
+
+const TableHeader = styled.th`
+  padding:  20px ;
+  text-align: left;
+  height: 55px;
+`;
+
+const TableData = styled.td`
+  padding:  20px;
+  height: 75px;
+`;
 
 interface TableProps {
-  data: (DataBookings | DataRooms | DataUsers | DataContacts)[]
-  columns: Column[]
+  data: (DataBookings | DataRooms | DataUsers | DataContacts)[];
+  columns: Column[];
 }
 
 function Table({ data, columns }: TableProps) {
-
   return (
-    <div>
-      <table>
-        <thead>
-          <tr>
+    <TableContainer>
+      <StyledTable>
+        <TableHead>
+          <TableRow>
             {columns.map((column, index) => (
-              <th key={index}>{column.headerColumn}</th>
+              <TableHeader key={index}>{column.headerColumn}</TableHeader>
             ))}
-          </tr>
-        </thead>
+          </TableRow>
+        </TableHead>
         <tbody>
           {data.map((row) => (
-            <tr key={row._id}>
+            <TableRow key={row._id}>
               {columns.map((col, colIndex) => (
-                <td key={colIndex}>
+                <TableData key={colIndex}>
                   {col.columnRenderer ? col.columnRenderer(row) : (row as any)[col.columnsData]}
-                </td>
+                </TableData>
               ))}
-            </tr>
+            </TableRow>
           ))}
         </tbody>
-      </table>
-    </div>
+      </StyledTable>
+    </TableContainer>
   );
 }
 

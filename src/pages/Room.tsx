@@ -3,6 +3,7 @@ import { AppDispatch, RootState } from "../store";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { fetchSingleThunk } from "../slices/rooms/roomsThunk";
+import Loading from "../components/Loading";
 
 function Room() {
   const dispatch: AppDispatch = useDispatch();
@@ -17,7 +18,7 @@ function Room() {
   }, [dispatch, _id]);
 
   if (!singleRoom) {
-    return <div>Loading...</div>;
+    return <Loading />
   }
 
   return (

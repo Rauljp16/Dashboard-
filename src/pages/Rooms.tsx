@@ -7,6 +7,7 @@ import { Column } from "../types/global";
 import { AppDispatch, RootState } from "../store";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
+import Loading from "../components/Loading";
 
 
 
@@ -32,7 +33,7 @@ function Rooms() {
     if (!dataRoom.length) return [];
     return dataRoom;
   }, [dataRoom]);
-  if (!fetched) return <h1>Loading</h1>;
+  if (!fetched) return <Loading />
 
   const columns: Column[] = [
     {

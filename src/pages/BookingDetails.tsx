@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleThunk } from "../slices/bookings/bookingsThunk";
 import { useParams } from "react-router-dom";
 import { RootState, AppDispatch } from "../store";
+import Loading from "../components/Loading";
 
 function BookingDetails() {
   const dispatch: AppDispatch = useDispatch();
@@ -18,7 +19,7 @@ function BookingDetails() {
   }, [dispatch, _id]);
 
   if (!singleBooking) {
-    return <div>Loading...</div>;
+    return <Loading />
   }
 
   return (

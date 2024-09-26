@@ -37,10 +37,8 @@ overflow: scroll;
 
 const PagesStyled = styled.section`
 min-height: 70vh;
-border: 2px solid green;
-border-radius: 10px;
-padding: 70px 20px 20px 20px;
-margin: 40px;
+padding: 40px;
+overflow: auto;
 `;
 
 

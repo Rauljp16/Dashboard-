@@ -3,6 +3,7 @@ import { AppDispatch, RootState } from "../store";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchSingleThunk } from "../slices/users/usersThunk";
+import Loading from "../components/Loading";
 
 function user() {
   const dispatch: AppDispatch = useDispatch();
@@ -17,7 +18,7 @@ function user() {
   }, [dispatch, _id]);
 
   if (!singleUser) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   return (
     <div>
