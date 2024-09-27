@@ -21,7 +21,7 @@ const ButtonStyled = styled.button`
 
 
 function Button({ color, name }: any) {
-  return <ButtonStyled color={color}>{name}</ButtonStyled>;
+  return <ButtonStyled className="btn-styled" color={color}>{name}</ButtonStyled>;
 }
 
 export default Button;

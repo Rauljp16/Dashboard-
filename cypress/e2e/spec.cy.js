@@ -12,13 +12,13 @@ describe("Login Page", () => {
     cy.visit("http://localhost:5173/login");
     cy.get('input[type="email"]').type("rauljp16@gmail.com");
     cy.get('input[type="password"]').type("hotel miranda");
-    cy.get("[data-cy=submit-button]").click();
+    cy.get("btn-styled").click();
   });
   it("correct date email & password", () => {
     cy.visit("http://localhost:5173/login");
     cy.get('input[type="email"]').type("rauljp16@gmail.com");
     cy.get('input[type="password"]').type("hotel miranda");
-    cy.get("[data-cy=submit-button]").click();
+    cy.get("btn-styled").click();
     cy.url().should("include", "/dashboard");
   });
 });

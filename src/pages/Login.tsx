@@ -174,7 +174,7 @@ function Login() {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
           />)}
 
-        <Button data-cy="submit-button" color="green" name="LOGIN" ></Button>
+        <Button color="green" name="LOGIN" ></Button>
         <Text>To access...</Text>
         <Text>EMAIL: rauljp16@gmail.com</Text>
         <Text>PASSWORD: hotel miranda</Text>
