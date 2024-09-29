@@ -109,7 +109,7 @@ function Users() {
       <div>
         <input type="text" />
         <Link to="/users/create">
-          <Button color="green" name="Create User" />
+          <Button color="green" name="New User" />
         </Link>
       </div>
       <Table columns={columns} data={dataUserState} />

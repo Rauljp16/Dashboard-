@@ -12,10 +12,15 @@ import Button from "../components/Button";
 import Loading from "../components/Loading";
 import styled from "styled-components";
 
+interface liStyledProps {
+  isActive: boolean;
+}
+
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
   margin: 0 0 20px 0;
 `;
 
@@ -25,14 +30,10 @@ const List = styled.ul`
   align-items: center;
 `;
 
-const ListItem = styled.li`
+const ListItem = styled.li <liStyledProps>`
   padding: 10px;
-  border-bottom: 2px solid #00000036;
+  border-bottom: ${(props) => (props.isActive ? "3px solid #007455" : "3px solid #00000036")};  /* border-bottom: 2px solid #00000036; */
   cursor: pointer;
-  &:hover {
-    color: #0a7e00;
-    border-bottom: 2px solid #0d9900;
-  }
 `;
 
 const FilterContainer = styled.div`
@@ -40,33 +41,80 @@ const FilterContainer = styled.div`
   display: flex;
   gap: 15px;
   align-items: center;
+  flex-wrap: wrap;
 `;
 
 const TextInput = styled.input`
   padding: 10px;
   border: none;
   border-radius: 4px;
-  box-shadow: 0px 0px 2px 0px #0d990090;
+  box-shadow: 0px 0px 2px 0px #007455;
   outline: none;
 `;
 
 const SearchIcon = styled(AiOutlineSearch)`
   position: absolute;
+  top: 8px;
   left: 155px;
   font-size: 22px;
 `;
 
 const SelectInput = styled.select`
   padding: 8px;
-  border: 1px solid #0d9900;
+  border: 1px solid #007455;
   border-radius: 4px;
   font-size: 1rem;
-  color:#0a7e00;
+  color: #007455;
 `;
 
 const StyledLink = styled(Link)`
   transform: scaleY(1.4);
 `;
+const DivGuest = styled.div`
+display: flex;
+flex-direction: column;
+gap: 10px;
+`;
+const LinkGuest = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+`;
+const IdGuest = styled.p`
+  color: #007455;
+  font-size: 12px;
+`;
+const ButtonViewNote = styled.button`
+background-color: transparent;
+cursor: pointer;
+color: #007455;
+border: 1px solid #007455;
+border-radius: 4px;
+padding: 6px 8px;
+`;
+const ButtonStatusOut = styled.button`
+    color: #E23428;
+    background-color: #e2342821;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 8px;
+    text-align: center;
+`; const ButtonStatusIn = styled.button`
+    color: #007455;
+    background-color: #00745521;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 8px;
+    text-align: center;
+`; const ButtonStatusProgress = styled.button`
+    color: rgb(255, 196, 35);
+    background-color: rgb(251 159 68 / 20%);
+    border: none;
+    border-radius: 4px;
+    padding: 6px 8px;
+    text-align: center;
+`;
+
 
 function Bookings() {
   const dataBooking = useSelector(
@@ -80,6 +128,7 @@ function Bookings() {
     info: "",
   });
   const [openPopup, setOpenPopup] = useState(false);
+  const [activeItem, setActiveItem] = useState("All Bookings");
 
   useEffect(() => {
     const initialFetch = async () => {
@@ -151,10 +200,10 @@ function Bookings() {
       headerColumn: "Guest",
       columnsData: "Guest",
       columnRenderer: (row) => (
-        <div>
-          <Link to={`${row._id}`}>{row.Name}</Link>
-          <p>{row._id}</p>
-        </div>
+        <DivGuest>
+          <LinkGuest to={`${row._id}`}>{row.Name}</LinkGuest>
+          <IdGuest>{row._id}</IdGuest>
+        </DivGuest>
       ),
     },
     {
@@ -173,7 +222,7 @@ function Bookings() {
       headerColumn: "Special Request",
       columnsData: "SpecialRequest",
       columnRenderer: (row) => (
-        <button onClick={() => viewNote(row.SpecialRequest)}>View Notes</button>
+        <ButtonViewNote onClick={() => viewNote(row.SpecialRequest)}>View Notes</ButtonViewNote>
       ),
     },
     {
@@ -186,23 +235,23 @@ function Bookings() {
       columnsData: "Status",
       columnRenderer: (row) =>
         row.Status === "Checking In" ? (
-          <p style={{ color: "green" }}>{row.Status}</p>
+          <ButtonStatusIn >{row.Status}</ButtonStatusIn>
         ) : row.Status === "Check Out" ? (
-          <p style={{ color: "red" }}>{row.Status}</p>
+          <ButtonStatusOut >{row.Status}</ButtonStatusOut>
         ) : (
-          <p style={{ color: "yellow" }}>{row.Status}</p>
+          <ButtonStatusProgress >{row.Status}</ButtonStatusProgress>
         ),
     },
     {
       headerColumn: "",
       columnsData: "delete",
       columnRenderer: (row) => (
-        <>
-          <Link to={`/bookings/edit/${row._id}`}>
-            <RiEdit2Line to="/bookings/edit" style={{ margin: "5px" }} />
+        <div style={{ display: "flex", gap: "10px", scale: "1.3" }}>
+          <Link to={`/bookings/edit/${row._id}`} style={{ color: "black" }}>
+            <RiEdit2Line to="/bookings/edit" />
           </Link>
           <RiDeleteBin5Line onClick={() => deleteItem(row._id)} />
-        </>
+        </div>
       ),
     },
   ];
@@ -210,6 +259,7 @@ function Bookings() {
   const order = ["All Bookings", "Checking In", "Check Out", "In Progress"];
   const handleFiltered = (e: React.MouseEvent<HTMLLIElement>) => {
     const value = (e.currentTarget as HTMLLIElement).innerText;
+    setActiveItem(value);
     switch (value) {
       case "All Bookings":
         setDataFinal(dataBookingState);
@@ -240,7 +290,7 @@ function Bookings() {
     );
 
     if (filteredData.length === 0) {
-      alert("No se encuentran coincidencias");
+
     } else {
       setDataFinal(filteredData);
     }
@@ -251,7 +301,7 @@ function Bookings() {
       <Container>
         <List>
           {order.map((ord, orderIndex) => (
-            <ListItem key={orderIndex} onClick={handleFiltered}>
+            <ListItem key={orderIndex} onClick={handleFiltered} isActive={activeItem === ord}>
               {ord}
             </ListItem>
           ))}
@@ -269,7 +319,7 @@ function Bookings() {
             <option value="Check Out">Check Out</option>
           </SelectInput>
           <StyledLink to="/bookings/create">
-            <Button color="green" name="Create Booking" />
+            <Button color="green" name="New Booking" />
           </StyledLink>
         </FilterContainer>
       </Container>

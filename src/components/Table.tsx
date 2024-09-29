@@ -31,13 +31,15 @@ const TableRow = styled.tr`
 `;
 
 const TableHeader = styled.th`
-  padding:  20px ;
+  padding:  20px 10px;
   text-align: left;
   height: 55px;
+  font-weight: 600;
+
 `;
 
 const TableData = styled.td`
-  padding:  20px;
+  padding:  20px 10px;
   height: 75px;
 `;
 
