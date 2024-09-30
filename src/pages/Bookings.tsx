@@ -99,14 +99,16 @@ const ButtonStatusOut = styled.button`
     border-radius: 4px;
     padding: 6px 8px;
     text-align: center;
-`; const ButtonStatusIn = styled.button`
+`;
+const ButtonStatusIn = styled.button`
     color: #007455;
     background-color: #00745521;
     border: none;
     border-radius: 4px;
     padding: 6px 8px;
     text-align: center;
-`; const ButtonStatusProgress = styled.button`
+`;
+const ButtonStatusProgress = styled.button`
     color: rgb(255, 196, 35);
     background-color: rgb(251 159 68 / 20%);
     border: none;
@@ -114,6 +116,14 @@ const ButtonStatusOut = styled.button`
     padding: 6px 8px;
     text-align: center;
 `;
+const DivIcon = styled.div`
+  display: flex;
+  gap: 10px;
+  width: fit-content;
+  height:100%;
+  font-size: 20px;
+`;
+
 
 
 function Bookings() {
@@ -246,12 +256,12 @@ function Bookings() {
       headerColumn: "",
       columnsData: "delete",
       columnRenderer: (row) => (
-        <div style={{ display: "flex", gap: "10px", scale: "1.3" }}>
+        <DivIcon >
           <Link to={`/bookings/edit/${row._id}`} style={{ color: "black" }}>
             <RiEdit2Line to="/bookings/edit" />
           </Link>
           <RiDeleteBin5Line onClick={() => deleteItem(row._id)} />
-        </div>
+        </DivIcon>
       ),
     },
   ];

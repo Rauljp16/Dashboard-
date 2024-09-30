@@ -19,7 +19,8 @@ const SidebarStyled = styled.div<SidebarProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: ${(props) => (props.open ? "300px" : "85px")};
+  width: ${(props) => (props.open ? "280px" : "80px")};
+  min-width: ${(props) => (props.open ? "280px" : "80px")};
   transition: all 1s ease;
   overflow: hidden;
   z-index: 1;

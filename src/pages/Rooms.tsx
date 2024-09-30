@@ -37,7 +37,6 @@ const RoomItem = styled.div`
   img {
     width: 90px;
     border-radius: 4px;
-    /* Customize image styles */
   }
 `;
 

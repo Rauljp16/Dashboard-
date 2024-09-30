@@ -16,7 +16,7 @@ interface Props {
 const HeaderContainer = styled.div<Props>`
   position: relative;
   width: 100%;
-  height: 85px;
+  height: 80px;
   background-color: #ffffff;
   display: flex;
   justify-content: space-between;

@@ -25,19 +25,19 @@ import fondo from "./images/fondo.webp";
 
 const AppStyled = styled.section`
 display: flex;
-background-color: #F8F8F8;
+background-color: #f8f8f8;
+height: 100vh;
+overflow: hidden;
 `;
 
 const ContainerStyled = styled.section`
-position: relative;
+/* position: relative; */
 width: 100vw;
-height: 100vh;
-overflow: scroll;
 `;
 
 const PagesStyled = styled.section`
-min-height: 70vh;
 padding: 40px;
+height: 89vh;
 overflow: auto;
 `;
 
