@@ -30,9 +30,12 @@ const List = styled.ul`
   align-items: center;
 `;
 
-const ListItem = styled.li <liStyledProps>`
+const ListItem = styled.li<liStyledProps>`
   padding: 10px;
-  border-bottom: ${(props) => (props.isActive ? "3px solid #007455" : "3px solid #00000036")};  /* border-bottom: 2px solid #00000036; */
+  border-bottom: ${(props) =>
+    props.isActive
+      ? "3px solid #007455"
+      : "3px solid #00000036"}; /* border-bottom: 2px solid #00000036; */
   cursor: pointer;
 `;
 
@@ -71,9 +74,9 @@ const StyledLink = styled(Link)`
   transform: scaleY(1.4);
 `;
 const DivGuest = styled.div`
-display: flex;
-flex-direction: column;
-gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;
 const LinkGuest = styled(Link)`
   text-decoration: none;
@@ -85,46 +88,44 @@ const IdGuest = styled.p`
   font-size: 12px;
 `;
 const ButtonViewNote = styled.button`
-background-color: transparent;
-cursor: pointer;
-color: #007455;
-border: 1px solid #007455;
-border-radius: 4px;
-padding: 6px 8px;
+  background-color: transparent;
+  cursor: pointer;
+  color: #007455;
+  border: 1px solid #007455;
+  border-radius: 4px;
+  padding: 6px 8px;
 `;
 const ButtonStatusOut = styled.button`
-    color: #E23428;
-    background-color: #e2342821;
-    border: none;
-    border-radius: 4px;
-    padding: 6px 8px;
-    text-align: center;
+  color: #e23428;
+  background-color: #e2342821;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 8px;
+  text-align: center;
 `;
 const ButtonStatusIn = styled.button`
-    color: #007455;
-    background-color: #00745521;
-    border: none;
-    border-radius: 4px;
-    padding: 6px 8px;
-    text-align: center;
+  color: #007455;
+  background-color: #00745521;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 8px;
+  text-align: center;
 `;
 const ButtonStatusProgress = styled.button`
-    color: rgb(255, 196, 35);
-    background-color: rgb(251 159 68 / 20%);
-    border: none;
-    border-radius: 4px;
-    padding: 6px 8px;
-    text-align: center;
+  color: rgb(255, 196, 35);
+  background-color: rgb(251 159 68 / 20%);
+  border: none;
+  border-radius: 4px;
+  padding: 6px 8px;
+  text-align: center;
 `;
 const DivIcon = styled.div`
   display: flex;
   gap: 10px;
   width: fit-content;
-  height:100%;
+  height: 100%;
   font-size: 20px;
 `;
-
-
 
 function Bookings() {
   const dataBooking = useSelector(
@@ -232,7 +233,9 @@ function Bookings() {
       headerColumn: "Special Request",
       columnsData: "SpecialRequest",
       columnRenderer: (row) => (
-        <ButtonViewNote onClick={() => viewNote(row.SpecialRequest)}>View Notes</ButtonViewNote>
+        <ButtonViewNote onClick={() => viewNote(row.SpecialRequest)}>
+          View Notes
+        </ButtonViewNote>
       ),
     },
     {
@@ -245,22 +248,25 @@ function Bookings() {
       columnsData: "Status",
       columnRenderer: (row) =>
         row.Status === "Checking In" ? (
-          <ButtonStatusIn >{row.Status}</ButtonStatusIn>
+          <ButtonStatusIn>{row.Status}</ButtonStatusIn>
         ) : row.Status === "Check Out" ? (
-          <ButtonStatusOut >{row.Status}</ButtonStatusOut>
+          <ButtonStatusOut>{row.Status}</ButtonStatusOut>
         ) : (
-          <ButtonStatusProgress >{row.Status}</ButtonStatusProgress>
+          <ButtonStatusProgress>{row.Status}</ButtonStatusProgress>
         ),
     },
     {
       headerColumn: "",
       columnsData: "delete",
       columnRenderer: (row) => (
-        <DivIcon >
-          <Link to={`/bookings/edit/${row._id}`} style={{ color: "black" }}>
+        <DivIcon>
+          <Link to={`/bookings/edit/${row._id}`} style={{ color: "#009e74" }}>
             <RiEdit2Line to="/bookings/edit" />
           </Link>
-          <RiDeleteBin5Line onClick={() => deleteItem(row._id)} />
+          <RiDeleteBin5Line
+            onClick={() => deleteItem(row._id)}
+            style={{ color: "#9c0e0e", cursor: "pointer" }}
+          />
         </DivIcon>
       ),
     },
@@ -300,7 +306,6 @@ function Bookings() {
     );
 
     if (filteredData.length === 0) {
-
     } else {
       setDataFinal(filteredData);
     }
@@ -311,7 +316,11 @@ function Bookings() {
       <Container>
         <List>
           {order.map((ord, orderIndex) => (
-            <ListItem key={orderIndex} onClick={handleFiltered} isActive={activeItem === ord}>
+            <ListItem
+              key={orderIndex}
+              onClick={handleFiltered}
+              isActive={activeItem === ord}
+            >
               {ord}
             </ListItem>
           ))}

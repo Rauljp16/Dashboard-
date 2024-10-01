@@ -1,20 +1,26 @@
 [
   {
     "comment": "El hotel es increíble, con una vista espectacular y servicio excelente.",
-    "photo": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
-    "name": "Juan Pérez",
+    "photo": "https://image.lexica.art/full_webp/df747dcf-8c03-4af0-96a9-16a7afa2d8d0",
+    "name": "Ana Pérez",
     "timeAgo": "4m ago"
   },
   {
-    "comment": "Las habitaciones son muy cómodas y el desayuno es delicioso.",
-    "photo": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
-    "name": "María López",
-    "timeAgo": "6m ago"
-  },
-  {
     "comment": "Excelente ubicación, cerca de todos los puntos turísticos.",
-    "photo": "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg?w=740",
+    "photo": "https://image.lexica.art/full_webp/c631ebb0-e545-4161-9178-0c8fdfb8c773",
     "name": "Carlos García",
     "timeAgo": "1y ago"
+  },
+  {
+    "comment": "Buena ubicación, con una vista espectacular y cerca de todos los puntos turísticos. Volveremos!!!",
+    "photo": "https://image.lexica.art/full_webp/667a5f18-d9b0-4ead-8e38-76ae0d0e7770",
+    "name": "Mario Mendez",
+    "timeAgo": "11m ago"
+  },
+  {
+    "comment": "Las habitaciones son muy cómodas y el desayuno es delicioso.",
+    "photo": "https://image.lexica.art/full_webp/acef7d48-ad77-4223-9322-acd2fc5bb105",
+    "name": "María López",
+    "timeAgo": "6m ago"
   }
 ]
