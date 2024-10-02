@@ -18,7 +18,7 @@ function Dashboard() {
   // };
   const SectionComments = styled.article`
   width: 100%;
-  padding: 40px;
+  padding: 30px;
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(204, 204, 204, 0.5);

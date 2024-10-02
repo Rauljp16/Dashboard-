@@ -8,6 +8,7 @@ const CommentsContainer = styled.div`
   justify-content: center;
   border-radius: 8px;
   gap: 30px;
+  width: fit-content;
 `;
 
 const CommentCard = styled.div`

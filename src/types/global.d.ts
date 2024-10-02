@@ -16,6 +16,7 @@ export interface DataComments {
   timeAgo: string;
 }
 export interface DataContacts {
+  action: string;
   date: string;
   _id: string;
   name: string;

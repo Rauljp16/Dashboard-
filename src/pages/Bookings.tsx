@@ -35,7 +35,7 @@ const ListItem = styled.li<liStyledProps>`
   border-bottom: ${(props) =>
     props.isActive
       ? "3px solid #007455"
-      : "3px solid #00000036"}; /* border-bottom: 2px solid #00000036; */
+      : "3px solid #00000036"};
   cursor: pointer;
 `;
 
