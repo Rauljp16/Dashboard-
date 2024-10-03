@@ -126,6 +126,9 @@ const DivIcon = styled.div`
   height: 100%;
   font-size: 20px;
 `;
+const DivSearch = styled.div`
+position: relative;
+`;
 
 function Bookings() {
   const dataBooking = useSelector(
@@ -326,8 +329,10 @@ function Bookings() {
           ))}
         </List>
         <FilterContainer>
-          <SearchIcon />
-          <TextInput type="text" onChange={handleFilter} />
+          <DivSearch>
+            <SearchIcon />
+            <TextInput type="text" onChange={handleFilter} placeholder="Search..." />
+          </DivSearch>
           <SelectInput onChange={onChange} defaultValue="">
             <option value="" disabled>
               Order by

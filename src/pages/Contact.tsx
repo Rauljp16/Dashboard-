@@ -9,7 +9,6 @@ import Table from "../components/Table";
 import Loading from "../components/Loading";
 import styled from "styled-components";
 
-// Styled Components
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -31,7 +30,7 @@ const ListItem = styled.li<{ isActive: boolean }>`
 `;
 
 const DeleteIcon = styled(RiDeleteBin5Line)`
-font-size: 20px;
+  font-size: 20px;
   color: #9c0e0e;
   cursor: pointer;
 `;
@@ -48,8 +47,7 @@ const Paragraph = styled.p`
 `;
 
 const NameParagraph = styled.p`
-font-weight: 600;
-color: #007455;
+  color: #007455;
 `;
 
 const BoldParagraph = styled.p`
@@ -57,8 +55,8 @@ const BoldParagraph = styled.p`
   font-weight: 600;
 `;
 const IdParagraph = styled.p`
-font-size: 13px;
-color: #007455;
+  font-size: 12px;
+  color: #007455;
 `;
 const Archived = styled.p`
   color: #e23428;
@@ -108,7 +106,6 @@ function Contact() {
     dispatch(deleteThunk(_id));
   };
 
-  // Opciones de filtro: All Contacts, Archived, Publish
   const order = ["All Contacts", "Archived", "Publish"];
   const columns: Column[] = [
     {
@@ -150,8 +147,7 @@ function Contact() {
           <Archived>{row.action}</Archived>
         ) : (
           <Publish>{row.action}</Publish>
-        )
-      ,
+        ),
     },
     {
       headerColumn: "",

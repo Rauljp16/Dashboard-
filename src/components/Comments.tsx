@@ -18,7 +18,7 @@ const CommentCard = styled.div`
   box-shadow: 0px 0px 16px rgba(204, 204, 204, 1);
   border-radius: 8px;
   padding: 30px;
-  background-color: #ffff;
+  background-color: #fafafa;
   max-width: 400px;
   min-height: 250px;
 `;
@@ -28,9 +28,11 @@ const DivUserInfo = styled.div`
   gap: 20px;
 `;
 const CommentImage = styled.img`
-  width: 56px;
-  height: 56px;
-  border-radius: 8px;
+      width: 55px;
+    height: 65px;
+    border-radius: 8px;
+    object-fit: cover;
+    object-position: top;
 `;
 
 const CommentInfo = styled.div`
