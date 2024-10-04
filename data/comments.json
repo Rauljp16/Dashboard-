@@ -7,19 +7,19 @@
   },
   {
     "comment": "Excelente ubicación, cerca de todos los puntos turísticos.",
-    "photo": "public/images/comments/carlos.webp",
+    "photo": "images/comments/carlos.webp",
     "name": "Carlos García",
     "timeAgo": "1y ago"
   },
   {
     "comment": "Buena ubicación, con una vista espectacular y cerca de todos los puntos turísticos.",
-    "photo": "public/images/comments/mario.webp",
+    "photo": "images/comments/mario.webp",
     "name": "Mario Mendez",
     "timeAgo": "11m ago"
   },
   {
     "comment": "Las habitaciones son muy cómodas y el desayuno es delicioso.",
-    "photo": "public/images/comments/maria.webp",
+    "photo": "images/comments/maria.webp",
     "name": "María López",
     "timeAgo": "6m ago"
   }
