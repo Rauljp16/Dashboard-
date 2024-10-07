@@ -31,11 +31,10 @@ const Title = styled.h3`
 `;
 
 const IconContainer = styled.div`
-  background-color: #f89494;
-  width: 50%;
   position: relative;
   display: flex;
-  gap: 30px;
+  gap: 50px;
+  font-size: 26px;
 `;
 const ContainerTitle = styled.div`
 width: 25%;
@@ -96,11 +95,11 @@ function Header({ setOpen, open }: Props) {
         <Title>{getRouteName(title)}</Title>
       </ContainerTitle>
       <IconContainer>
-        <CiMail style={{ width: "20px", height: "20px" }} />
-        <IoMdNotificationsOutline style={{ width: "20px", height: "20px" }} />
-        <IconStyle>
-          <TbLogout onClick={logOut} />
-        </IconStyle>
+        <CiMail />
+        <IoMdNotificationsOutline />
+        {/* <IconStyle> */}
+        <TbLogout onClick={logOut} />
+        {/* </IconStyle> */}
       </IconContainer>
     </HeaderContainer>
   );

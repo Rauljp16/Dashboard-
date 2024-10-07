@@ -4,6 +4,28 @@ import { fetchSingleThunk } from "../slices/bookings/bookingsThunk";
 import { useParams } from "react-router-dom";
 import { RootState, AppDispatch } from "../store";
 import Loading from "../components/Loading";
+import styled from "styled-components";
+
+const BookingDetailsWrapper = styled.div`
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+`;
+
+const Title = styled.h2`
+  font-size: 24px;
+  margin-bottom: 10px;
+`;
+
+const Detail = styled.p`
+  margin: 8px 0;
+  font-size: 16px;
+
+  strong {
+    font-weight: 600;
+  }
+`;
 
 function BookingDetails() {
   const dispatch: AppDispatch = useDispatch();
@@ -19,40 +41,40 @@ function BookingDetails() {
   }, [dispatch, _id]);
 
   if (!singleBooking) {
-    return <Loading />
+    return <Loading />;
   }
 
   return (
-    <div>
-      <h2>Order Details</h2>
-      <p>
+    <BookingDetailsWrapper>
+      <Title>Order Details</Title>
+      <Detail>
         <strong>Name:</strong> {singleBooking.Name}
-      </p>
-      <p>
+      </Detail>
+      <Detail>
         <strong>ID:</strong> {singleBooking._id}
-      </p>
-      <p>
+      </Detail>
+      <Detail>
         <strong>Order Date:</strong> {singleBooking.OrderDate}
-      </p>
-      <p>
+      </Detail>
+      <Detail>
         <strong>Check-In:</strong> {singleBooking.CheckIn}
-      </p>
-      <p>
+      </Detail>
+      <Detail>
         <strong>Check-Out:</strong> {singleBooking.CheckOut}
-      </p>
-      <p>
+      </Detail>
+      <Detail>
         <strong>Special Request:</strong> {singleBooking.SpecialRequest}
-      </p>
-      <p>
+      </Detail>
+      <Detail>
         <strong>Room Type:</strong> {singleBooking.RoomType}
-      </p>
-      <p>
+      </Detail>
+      <Detail>
         <strong>Room Number:</strong> {singleBooking.RoomNumber}
-      </p>
-      <p>
+      </Detail>
+      <Detail>
         <strong>Status:</strong> {singleBooking.Status}
-      </p>
-    </div>
+      </Detail>
+    </BookingDetailsWrapper>
   );
 }
 

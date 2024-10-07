@@ -35,16 +35,17 @@ const PopupContainer = styled.div`
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0px 0px 10px #1a573dcc;
-  left: 25%;
-  top: 15%;
-  width: 60%;
-  height: 40%;
+  left: 40%;
+  top: 20%;
+  width: 30%;
+  height: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 15px;
   padding: 15px;
+  text-align: center
 `;
 
 const CloseButton = styled.p`

@@ -22,7 +22,6 @@ function Dashboard() {
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(204, 204, 204, 0.5);
-
   `;
   const TitleComments = styled.h1`
   font-size: 22px;

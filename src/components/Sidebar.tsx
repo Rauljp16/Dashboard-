@@ -47,14 +47,13 @@ const LinkStyled = styled(Link) <LinkStyledProps>`
   position: relative;
   display: flex;
   align-items: center;
-  /* margin: 12px; */
   padding:${(props) => (props.open ? "10px 0px 10px 50px" : "10px 0px 10px 9px")};
   width: 100%;
   text-align: center;
   text-decoration: none;
   border-left:${(props) => (props.isActive ? "4px solid red" : "4px solid transparent")};
   color:${(props) => (props.isActive ? "red" : "#135846")};
-  transition: all 1s ease-in-out;
+  transition: padding 1s ease-in-out;
 `;
 
 const PStyled = styled.div<SidebarProps>`
@@ -80,7 +79,7 @@ function Sidebar({ open }: SidebarProps) {
           <PStyled open={open}>Dashboard</PStyled>
         </LinkStyled>
 
-        <LinkStyled open={open} to="/bookings" isActive={location.pathname === "/bookings"}>
+        <LinkStyled open={open} to="/bookings" isActive={location.pathname === "/bookings" || location.pathname === "/bookings/create"}>
           <FaRegCalendarAlt style={{ width: "32px", height: "32px" }} />
           <PStyled open={open}>Bookings</PStyled>
         </LinkStyled>
