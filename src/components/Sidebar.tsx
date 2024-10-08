@@ -84,7 +84,7 @@ function Sidebar({ open }: SidebarProps) {
           <PStyled open={open}>Bookings</PStyled>
         </LinkStyled>
 
-        <LinkStyled open={open} to="/rooms" isActive={location.pathname === "/rooms"}>
+        <LinkStyled open={open} to="/rooms" isActive={location.pathname === "/rooms" || location.pathname === "/rooms/create"}>
           <IoKeyOutline style={{ width: "32px", height: "32px" }} />
           <PStyled open={open}>Rooms</PStyled>
         </LinkStyled>
@@ -94,7 +94,7 @@ function Sidebar({ open }: SidebarProps) {
           <PStyled open={open}>Contact</PStyled>
         </LinkStyled>
 
-        <LinkStyled open={open} to="/users" isActive={location.pathname === "/users"}>
+        <LinkStyled open={open} to="/users" isActive={location.pathname === "/users" || location.pathname === "/users/create"}>
           <HiOutlineUser style={{ width: "32px", height: "32px" }} />
           <PStyled open={open}>Users</PStyled>
         </LinkStyled>

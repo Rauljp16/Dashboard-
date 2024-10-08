@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useContext } from "react";
-import { HiArrowLeft } from "react-icons/hi";
-import { HiArrowRight } from "react-icons/hi";
+import { IoChevronBackOutline } from "react-icons/io5";
+import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { TbLogout } from "react-icons/tb";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { CiMail } from "react-icons/ci";
@@ -41,7 +41,7 @@ width: 25%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 26px;
+  font-size: 25px;
 `;
 
 const IconStyle = styled.div`
@@ -88,9 +88,9 @@ function Header({ setOpen, open }: Props) {
     <HeaderContainer open={open} setOpen={setOpen}>
       <ContainerTitle>
         {open ? (
-          <HiArrowLeft onClick={handleClick} />
+          <IoChevronBackOutline onClick={handleClick} />
         ) : (
-          <HiArrowRight onClick={handleClick} />
+          <HiOutlineMenuAlt1 onClick={handleClick} />
         )}
         <Title>{getRouteName(title)}</Title>
       </ContainerTitle>

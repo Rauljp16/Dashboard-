@@ -7,7 +7,7 @@ import Button from "../components/Button";
 import Popup from "../components/Popup";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { TbArrowBackUp } from "react-icons/tb";
+import { HiArrowLeft } from "react-icons/hi";
 import createImage from "../images/create.webp";
 
 const Container = styled.div`
@@ -23,15 +23,14 @@ const FormWrapper = styled.form`
     display: flex;
     gap: 5px;
     padding: 40px;
-    background-color: #e9e9e9c3;
-    border-radius: 4px;
+    background-color: #e9e9e9d8;
+    border-radius: 8px 0px 0px 8px;
     box-shadow: 0px 0px 18px #0033256a;
-    margin: 30px;
     overflow: auto;
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
 `;
 
 const Label = styled.label`
@@ -45,14 +44,13 @@ const Input = styled.input`
   margin-bottom: 20px;
   width: 100%;
   border: none;
-  /* border-bottom: 2px solid #007455; */
-  background: #00745589;
-  border-radius: 4px;
+  border-bottom: 2px solid #007455;
+  background: transparent;
   &:focus {
     outline: none;
   }
   &::placeholder {
-    color: #00000029; 
+    color: #00000081; 
   }
 
 `;
@@ -61,14 +59,13 @@ const InputDate = styled.input`
   margin-bottom: 20px;
   width: 100%;
   border: none;
-  border-radius: 4px;
-  /* border-bottom: 2px solid #007455; */
-  background: #00745589;
+  border-bottom: 2px solid #007455;
+  background: transparent;
   &:focus {
     outline: none;
   }
   &::-webkit-datetime-edit {
-    color: #00000029; 
+    color: #00000081; 
   }
 `;
 
@@ -77,10 +74,9 @@ const Select = styled.select`
   width: 100%;
   margin-bottom: 20px;
   border: none;
-  border-radius: 4px;
-  /* border-bottom: 2px solid #007455; */
-  background: #00745589;
-  color: #00000029;
+  border-bottom: 2px solid #007455;
+  background: transparent;
+  color: #00000081;
 `;
 const DivButton = styled.div`
  width: 70%;
@@ -96,6 +92,13 @@ color: #ffffff;
 letter-spacing: 1px;
 font-size: 22px;
 cursor: pointer;
+margin-top: 50px;
+transition: all 0.1s ease-in-out;
+&:hover {
+    scale: 1.02;
+    box-shadow: 0px 0px 18px #0033256a;
+  }
+
 `;
 
 const DivForm = styled.div`
@@ -113,24 +116,23 @@ const ImgStyled = styled.img`
 position: absolute;
 width:100%;
 height: 100%;
-border-radius: 4px;
+border-radius: 16px;
 object-fit: cover;
+object-position: 0% 0%;
 `;
 const LinkTo = styled(Link)`
-position: absolute;
-display: flex;
-align-items: center;
-gap: 6px;
-right: 30px;
-top: 30px;
-color: red;
-font-size: 22px;
-font-weight: 600;
-z-index: 1;
-text-decoration:none;
-background-color: #e9e9e9c3;
-padding: 0px 6px;
-border-radius: 4px;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  color: #000000;
+  font-size: 23px;
+  z-index: 1;
+  text-decoration: none;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    scale: 1.2;
+  }
 `;
 
 const initialDataBooking = {
@@ -302,18 +304,18 @@ function CreateBooking() {
         <DivButton>
           <ButtonStyled type="submit" name="Crear">Create</ButtonStyled>
         </DivButton>
-        {openPopup && (
-          <Popup
-            infoPopup={infoPopup}
-            setOpenPopup={setOpenPopup}
-            openPopup={openPopup}
-          />
-        )}
+        <LinkTo to="/bookings">
+          <HiArrowLeft />
+
+        </LinkTo>
       </FormWrapper>
-      <LinkTo to="/bookings">
-        <TbArrowBackUp />
-        Back
-      </LinkTo>
+      {openPopup && (
+        <Popup
+          infoPopup={infoPopup}
+          setOpenPopup={setOpenPopup}
+          openPopup={openPopup}
+        />
+      )}
     </Container>
   );
 }

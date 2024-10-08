@@ -33,12 +33,12 @@ const PopupOverlay = styled.div`
 const PopupContainer = styled.div`
   position: absolute;
   background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px #1a573dcc;
-  left: 40%;
-  top: 20%;
-  width: 30%;
-  height: 30%;
+  border-radius: 6px;
+  box-shadow: 0px 0px 4px #1a573dcc;
+  left: 33%;
+  top: 30%;
+  min-width: 35%;
+  min-height: 35%;
   display: flex;
   justify-content: center;
   align-items: center;

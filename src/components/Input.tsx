@@ -6,8 +6,9 @@ export const InputStyled = styled.input`
   border: 1px solid #4f6a63;
   border: none;
   border-bottom: 2.5px solid #6b6b6b7d;
+  border-radius: 4px;
   width: 80%;
-  background-color: transparent;
+  background-color: #ffffff1c;
 
   &:focus {
     outline: none;
@@ -23,9 +24,10 @@ export const InputStyled = styled.input`
 `;
 export const InputStyledError = styled.input`
   padding: 10px;
-  background-color: transparent;
+  background-color: #ffffff1c;
   border: none;
   border-bottom: 2.5px solid #ce070784;
+  border-radius: 4px;
   width: 80%;
 
   &:focus {
