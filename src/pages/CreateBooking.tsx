@@ -8,6 +8,7 @@ import Popup from "../components/Popup";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { TbArrowBackUp } from "react-icons/tb";
+import createImage from "../images/create.webp";
 
 const Container = styled.div`
 max-width: 1200px;
@@ -197,7 +198,7 @@ function CreateBooking() {
 
   return (
     <Container>
-      <ImgStyled src="../src/images/create.webp" alt="habitacion de hotel" />
+      <ImgStyled src={createImage} alt="habitacion de hotel" />
       <FormWrapper onSubmit={handleSubmit}>
         <DivForm>
           <DivInput>
