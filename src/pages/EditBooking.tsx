@@ -2,14 +2,146 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store";
 import { useParams } from "react-router-dom";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { InfoPopup } from "./CreateBooking";
 import { DataBookings } from "../types/global";
-import {
-  fetchSingleThunk,
-  updateThunk,
-} from "../slices/bookings/bookingsThunk";
-import Button from "../components/Button";
+import { fetchSingleThunk, updateThunk } from "../slices/bookings/bookingsThunk";
 import Popup from "../components/Popup";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { HiArrowLeft } from "react-icons/hi";
+import editImage from "../../public/images/edit.webp";
+
+const Container = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  height: 100%;
+`;
+
+const FormWrapper = styled.form`
+  width: 50%;
+  display: flex;
+  gap: 5px;
+  padding: 40px;
+  background-color: #e9e9e9d8;
+  border-radius: 8px 0px 0px 8px;
+  box-shadow: 0px 0px 18px #0033256a;
+  overflow: auto;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const Label = styled.label`
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+`;
+
+const Input = styled.input`
+  padding: 7px 8px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #007455;
+  background: transparent;
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    color: #00000081; 
+  }
+`;
+
+const InputDate = styled.input`
+  padding: 6px 8px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #007455;
+  background: transparent;
+  &:focus {
+    outline: none;
+  }
+  &::-webkit-datetime-edit {
+    color: #00000081; 
+  }
+`;
+
+const Select = styled.select`
+  padding: 6px;
+  width: 100%;
+  margin-bottom: 20px;
+  border: none;
+  border-bottom: 2px solid #007455;
+  background: transparent;
+  color: #00000081;
+`;
+
+const DivButton = styled.div`
+  width: 70%;
+  margin: 0 auto;
+`;
+
+const ButtonStyled = styled.button`
+  width: 100%;
+  background-color: #007455;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  color: #ffffff;
+  letter-spacing: 1px;
+  font-size: 22px;
+  cursor: pointer;
+  margin-top: 50px;
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    scale: 1.02;
+    box-shadow: 0px 0px 18px #0033256a;
+  }
+`;
+
+const DivForm = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 12%;
+`;
+
+const DivInput = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ImgStyled = styled.img`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+  object-position: 0% 0%;
+`;
+
+const LinkTo = styled(Link)`
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  color: #000000;
+  font-size: 23px;
+  z-index: 1;
+  text-decoration: none;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    scale: 1.2;
+  }
+`;
+
+export interface InfoPopup {
+  title: string;
+  info: string;
+}
 
 function EditBooking() {
   const dispatch: AppDispatch = useDispatch();
@@ -50,19 +182,10 @@ function EditBooking() {
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    if (name !== "contact") {
-      setDataBooking((prevDataBooking) => ({
-        ...prevDataBooking,
-        [name]: value,
-      }));
-    } else {
-      const cleaned = value.replace(/\D/g, "");
-      const formatted = cleaned.replace(/(.{3})(?=.)/g, "$1-");
-      setDataBooking((prevDataBooking) => ({
-        ...prevDataBooking,
-        [name]: formatted,
-      }));
-    }
+    setDataBooking((prevDataBooking) => ({
+      ...prevDataBooking,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -84,6 +207,12 @@ function EditBooking() {
       });
     } else {
       dispatch(updateThunk(dataBooking));
+      setOpenPopup(true);
+      setInfoPopup({
+        title: "Edit",
+        info: "Booking editada correctamente",
+      });
+
     }
   };
 
@@ -92,118 +221,129 @@ function EditBooking() {
   }
 
   return (
-    <>
-      <form
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "10px",
-        }}
-        onSubmit={handleSubmit}
-      >
-        <label>Full Name</label>
+    <Container>
+      <ImgStyled src={editImage} alt="Editar reserva" />
+      <FormWrapper onSubmit={handleSubmit}>
+        <DivForm>
+          <DivInput>
+            <Label>Full Name</Label>
+            <Input
+              type="text"
+              name="Name"
+              value={dataBooking.Name}
+              autoComplete="off"
+              placeholder="Name"
+              onChange={handleChange}
+            />
+          </DivInput>
+          <DivInput>
+            <Label>Order Date</Label>
+            <InputDate
+              type="date"
+              name="OrderDate"
+              value={dataBooking.OrderDate}
+              autoComplete="off"
+              onChange={handleChange}
+            />
+          </DivInput>
+        </DivForm>
+        <DivForm>
+          <DivInput>
+            <Label>Check In</Label>
+            <InputDate
+              type="date"
+              name="CheckIn"
+              value={dataBooking.CheckIn}
+              autoComplete="off"
+              onChange={handleChange}
+            />
+          </DivInput>
+          <DivInput>
+            <Label>Check Out</Label>
+            <InputDate
+              type="date"
+              name="CheckOut"
+              value={dataBooking.CheckOut}
+              autoComplete="off"
+              onChange={handleChange}
+            />
+          </DivInput>
+        </DivForm>
+        <DivForm>
+          <DivInput>
+            <Label>Special Request</Label>
+            <Input
+              type="text"
+              name="SpecialRequest"
+              value={dataBooking.SpecialRequest}
+              autoComplete="off"
+              placeholder="Special Request"
+              onChange={handleChange}
+            />
+          </DivInput>
+          <DivInput>
+            <Label>Room Number</Label>
+            <Input
+              type="text"
+              name="RoomNumber"
+              value={dataBooking.RoomNumber}
+              autoComplete="off"
+              placeholder="Room Number"
+              onChange={handleChange}
+            />
+          </DivInput>
+        </DivForm>
+        <DivForm>
+          <DivInput>
+            <Label>Room Type</Label>
+            <Select
+              name="RoomType"
+              onChange={handleChange}
+              value={dataBooking.RoomType}
+            >
+              <option value="">Select Room Type</option>
+              <option value="SingleRoom">Single Room</option>
+              <option value="DoubleRoom">Double Room</option>
+              <option value="TripleRoom">Triple Room</option>
+              <option value="FamilyRoom">Family Room</option>
+              <option value="JuniorSuite">Junior Suite</option>
+              <option value="SuperiorRoom">Superior Room</option>
+            </Select>
+          </DivInput>
+          <DivInput>
+            <Label>Status</Label>
+            <Select
+              name="Status"
+              onChange={handleChange}
+              value={dataBooking.Status}
+            >
+              <option value="">Select Status</option>
+              <option value="Checking In">Check In</option>
+              <option value="Check Out">Check Out</option>
+              <option value="In Progress">In Progress</option>
+            </Select>
+          </DivInput>
+        </DivForm>
 
-        <input
-          type="text"
-          name="Name"
-          value={dataBooking.Name}
-          autoComplete="disabled"
-          placeholder="Name"
-          onChange={handleChange}
+        <DivButton>
+          <ButtonStyled type="submit" aria-label="Editar reserva">
+            Edit Booking
+          </ButtonStyled>
+        </DivButton>
+      </FormWrapper>
+
+      <LinkTo to={`/bookings`}>
+        <HiArrowLeft />
+      </LinkTo>
+
+      {openPopup && (
+        <Popup
+          infoPopup={infoPopup}
+          setOpenPopup={setOpenPopup}
+          openPopup={openPopup}
         />
-
-        <label>Order Date</label>
-
-        <input
-          type="date"
-          name="OrderDate"
-          value={dataBooking.OrderDate}
-          autoComplete="disabled"
-          onChange={handleChange}
-        />
-
-        <label>Check In</label>
-
-        <input
-          type="date"
-          name="CheckIn"
-          value={dataBooking.CheckIn}
-          autoComplete="disabled"
-          onChange={handleChange}
-        />
-
-        <label>Check Out</label>
-
-        <input
-          type="date"
-          name="CheckOut"
-          value={dataBooking.CheckOut}
-          autoComplete="disabled"
-          onChange={handleChange}
-        />
-
-        <label>Special Request</label>
-
-        <input
-          type="text"
-          name="SpecialRequest"
-          value={dataBooking.SpecialRequest}
-          autoComplete="disabled"
-          placeholder="Special Request"
-          onChange={handleChange}
-        />
-
-        <label>Room Type</label>
-
-        <select
-          name="RoomType"
-          onChange={handleChange}
-          value={dataBooking.RoomType}
-        >
-          <option value="">Select Room Type</option>
-          <option value="SingleRoom">Single Room</option>
-          <option value="DoubleRoom">Double Room</option>
-          <option value="TripleRoom">Triple Room</option>
-          <option value="FamilyRoom">Family Room</option>
-          <option value="JuniorSuite">Junior Suite</option>
-          <option value="SuperiorRoom">Superior Room</option>
-        </select>
-
-        <label>Status</label>
-
-        <select
-          name="Status"
-          onChange={handleChange}
-          value={dataBooking.Status}
-        >
-          <option value="">Select Status</option>
-          <option value="checkin">Check In</option>
-          <option value="checkout">Check Out</option>
-          <option value="inprogress">In Progress</option>
-        </select>
-
-        <label>Room Number</label>
-
-        <input
-          type="text"
-          name="RoomNumber"
-          value={dataBooking.RoomNumber}
-          autoComplete="disabled"
-          placeholder="Room Number"
-          onChange={handleChange}
-        />
-
-        <Button color="green" type="submit" name="Update" />
-        {openPopup && (
-          <Popup
-            infoPopup={infoPopup}
-            setOpenPopup={setOpenPopup}
-            openPopup={openPopup}
-          />
-        )}
-      </form>
-    </>
+      )}
+    </Container>
   );
 }
 

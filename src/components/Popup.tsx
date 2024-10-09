@@ -36,7 +36,7 @@ const PopupContainer = styled.div`
   border-radius: 6px;
   box-shadow: 0px 0px 4px #1a573dcc;
   left: 33%;
-  top: 30%;
+  top: 20%;
   min-width: 35%;
   min-height: 35%;
   display: flex;

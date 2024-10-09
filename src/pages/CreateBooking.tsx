@@ -23,7 +23,7 @@ const FormWrapper = styled.form`
     display: flex;
     gap: 5px;
     padding: 40px;
-    background-color: #e9e9e9d8;
+    background-color: #e9e9e9e6;
     border-radius: 8px 0px 0px 8px;
     box-shadow: 0px 0px 18px #0033256a;
     overflow: auto;
@@ -195,6 +195,12 @@ function CreateBooking() {
     } else {
       setDataBooking(initialDataBooking);
       dispatch(createThunk(dataBooking));
+      setOpenPopup(true);
+      setInfoPopup({
+        title: "Booking",
+        info: "Booking creada correctamente",
+      });
+
     }
   };
 

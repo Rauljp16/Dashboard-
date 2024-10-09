@@ -172,7 +172,7 @@ function Rooms() {
       headerColumn: "Status",
       columnsData: "Status",
       columnRenderer: (row) =>
-        row.Status === "Booked" ? (
+        row.Status === "Available" ? (
           <StatusAvailable>{row.Status}</StatusAvailable>
         ) : (
           <StatusBooked>{row.Status}</StatusBooked>

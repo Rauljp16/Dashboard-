@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, matchPath, useLocation } from "react-router-dom";
 import { RiDashboardLine } from "react-icons/ri";
 import { IoKeyOutline } from "react-icons/io5";
 import { FaRegCalendarAlt } from "react-icons/fa";
@@ -79,12 +79,12 @@ function Sidebar({ open }: SidebarProps) {
           <PStyled open={open}>Dashboard</PStyled>
         </LinkStyled>
 
-        <LinkStyled open={open} to="/bookings" isActive={location.pathname === "/bookings" || location.pathname === "/bookings/create"}>
+        <LinkStyled open={open} to="/bookings" isActive={location.pathname === "/bookings" || location.pathname === "/bookings/create" || !!matchPath("/bookings/edit/:id", location.pathname)}>
           <FaRegCalendarAlt style={{ width: "32px", height: "32px" }} />
           <PStyled open={open}>Bookings</PStyled>
         </LinkStyled>
 
-        <LinkStyled open={open} to="/rooms" isActive={location.pathname === "/rooms" || location.pathname === "/rooms/create"}>
+        <LinkStyled open={open} to="/rooms" isActive={location.pathname === "/rooms" || location.pathname === "/rooms/create" || !!matchPath("/rooms/edit/:id", location.pathname)}>
           <IoKeyOutline style={{ width: "32px", height: "32px" }} />
           <PStyled open={open}>Rooms</PStyled>
         </LinkStyled>
@@ -94,7 +94,7 @@ function Sidebar({ open }: SidebarProps) {
           <PStyled open={open}>Contact</PStyled>
         </LinkStyled>
 
-        <LinkStyled open={open} to="/users" isActive={location.pathname === "/users" || location.pathname === "/users/create"}>
+        <LinkStyled open={open} to="/users" isActive={location.pathname === "/users" || location.pathname === "/users/create" || !!matchPath("/users/edit/:id", location.pathname)}>
           <HiOutlineUser style={{ width: "32px", height: "32px" }} />
           <PStyled open={open}>Users</PStyled>
         </LinkStyled>

@@ -23,7 +23,7 @@ const FormWrapper = styled.form`
   display: flex;
   gap: 5px;
   padding: 40px;
-  background-color: #e9e9e9d8;
+  background-color: #e9e9e9e8;
   border-radius: 8px 0px 0px 8px;
   box-shadow: 0px 0px 18px #0033256a;
   overflow: auto;
@@ -193,6 +193,12 @@ function CreateRoom() {
     } else {
       setDataRoom(initialDataRoom);
       dispatch(createThunk(dataRoom));
+      setOpenPopup(true);
+      setInfoPopup({
+        title: "Room",
+        info: "Room creada correctamente",
+      });
+
     }
   };
 

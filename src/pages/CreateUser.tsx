@@ -7,7 +7,7 @@ import Popup from "../components/Popup";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { HiArrowLeft } from "react-icons/hi";
-import createUser from "../../public/images/createUser.webp";
+import createUser from "../../public/images/hotelNewUser.webp";
 import userImage from "../images/users.webp";
 
 const Container = styled.div`
@@ -23,7 +23,7 @@ const FormWrapper = styled.form`
   display: flex;
   gap: 5px;
   padding: 40px;
-  background-color: #e9e9e9d8;
+  background-color: #e9e9e9e8;
   border-radius: 8px 0px 0px 8px;
   box-shadow: 0px 0px 18px #0033256a;
   overflow: auto;
@@ -178,6 +178,12 @@ function CreateUser() {
         } else {
             setDataUser(initialDataUser);
             dispatch(createThunk(dataUser));
+            setOpenPopup(true);
+            setInfoPopup({
+                title: "Usuario",
+                info: "Usuario creado correctamente",
+            });
+
         }
     };
 
