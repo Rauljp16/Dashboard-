@@ -6,6 +6,10 @@ import { MdOutlineContactPhone } from "react-icons/md";
 import { HiOutlineUser } from "react-icons/hi";
 import styled from "styled-components";
 import logo from "../images/logo.png";
+import { useEffect, useState } from "react";
+import { DataUsers } from "../types/global";
+import Login from "../pages/Login";
+import UserLog from "./UserLog";
 
 interface SidebarProps {
   open: boolean;
@@ -19,8 +23,8 @@ const SidebarStyled = styled.div<SidebarProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: ${(props) => (props.open ? "270px" : "60px")};
-  min-width: ${(props) => (props.open ? "270px" : "60px")};
+  width: ${(props) => (props.open ? "250px" : "60px")};
+  min-width: ${(props) => (props.open ? "250px" : "60px")};
   transition: all 1s ease;
   overflow: hidden;
   z-index: 1;
@@ -47,7 +51,7 @@ const LinkStyled = styled(Link) <LinkStyledProps>`
   position: relative;
   display: flex;
   align-items: center;
-  padding:${(props) => (props.open ? "10px 0px 10px 50px" : "10px 0px 10px 9px")};
+  padding:${(props) => (props.open ? "10px 0px 10px 40px" : "10px 0px 10px 9px")};
   width: 100%;
   text-align: center;
   text-decoration: none;
@@ -58,7 +62,7 @@ const LinkStyled = styled(Link) <LinkStyledProps>`
 
 const PStyled = styled.div<SidebarProps>`
 position: absolute;
-left: 130px;
+left: 120px;
 font-size: 20px;
 font-weight: 600;
 transform: ${(props) => (props.open ? "translate(0) rotate(0deg)" : "translate(-250px) rotate(-90deg)")};
@@ -69,37 +73,40 @@ function Sidebar({ open }: SidebarProps) {
   const location = useLocation()
 
   return (
-    <SidebarStyled open={open}>
-      <LogoWrapper open={open}>
-        <ImgStyled src={logo} alt="logo hotel" />
-      </LogoWrapper>
-      <DivLinks>
-        <LinkStyled open={open} to="/dashboard" isActive={location.pathname === "/dashboard" || location.pathname === "/"}>
-          <RiDashboardLine style={{ width: "32px", height: "32px" }} />
-          <PStyled open={open}>Dashboard</PStyled>
-        </LinkStyled>
+    <>
+      <SidebarStyled open={open}>
+        <LogoWrapper open={open}>
+          <ImgStyled src={logo} alt="logo hotel" />
+        </LogoWrapper>
+        <DivLinks>
+          <LinkStyled open={open} to="/dashboard" isActive={location.pathname === "/dashboard" || location.pathname === "/"}>
+            <RiDashboardLine style={{ width: "32px", height: "32px" }} />
+            <PStyled open={open}>Dashboard</PStyled>
+          </LinkStyled>
 
-        <LinkStyled open={open} to="/bookings" isActive={location.pathname === "/bookings" || location.pathname === "/bookings/create" || !!matchPath("/bookings/edit/:id", location.pathname)}>
-          <FaRegCalendarAlt style={{ width: "32px", height: "32px" }} />
-          <PStyled open={open}>Bookings</PStyled>
-        </LinkStyled>
+          <LinkStyled open={open} to="/bookings" isActive={location.pathname === "/bookings" || location.pathname === "/bookings/create" || !!matchPath("/bookings/edit/:id", location.pathname)}>
+            <FaRegCalendarAlt style={{ width: "32px", height: "32px" }} />
+            <PStyled open={open}>Bookings</PStyled>
+          </LinkStyled>
 
-        <LinkStyled open={open} to="/rooms" isActive={location.pathname === "/rooms" || location.pathname === "/rooms/create" || !!matchPath("/rooms/edit/:id", location.pathname)}>
-          <IoKeyOutline style={{ width: "32px", height: "32px" }} />
-          <PStyled open={open}>Rooms</PStyled>
-        </LinkStyled>
+          <LinkStyled open={open} to="/rooms" isActive={location.pathname === "/rooms" || location.pathname === "/rooms/create" || !!matchPath("/rooms/edit/:id", location.pathname)}>
+            <IoKeyOutline style={{ width: "32px", height: "32px" }} />
+            <PStyled open={open}>Rooms</PStyled>
+          </LinkStyled>
 
-        <LinkStyled open={open} to="/contact" isActive={location.pathname === "/contact"}>
-          <MdOutlineContactPhone style={{ width: "32px", height: "32px" }} />
-          <PStyled open={open}>Contact</PStyled>
-        </LinkStyled>
+          <LinkStyled open={open} to="/contact" isActive={location.pathname === "/contact"}>
+            <MdOutlineContactPhone style={{ width: "32px", height: "32px" }} />
+            <PStyled open={open}>Contact</PStyled>
+          </LinkStyled>
 
-        <LinkStyled open={open} to="/users" isActive={location.pathname === "/users" || location.pathname === "/users/create" || !!matchPath("/users/edit/:id", location.pathname)}>
-          <HiOutlineUser style={{ width: "32px", height: "32px" }} />
-          <PStyled open={open}>Users</PStyled>
-        </LinkStyled>
-      </DivLinks>
-    </SidebarStyled>
+          <LinkStyled open={open} to="/users" isActive={location.pathname === "/users" || location.pathname === "/users/create" || !!matchPath("/users/edit/:id", location.pathname)}>
+            <HiOutlineUser style={{ width: "32px", height: "32px" }} />
+            <PStyled open={open}>Users</PStyled>
+          </LinkStyled>
+        </DivLinks>
+        <UserLog />
+      </SidebarStyled>
+    </>
   );
 }
 

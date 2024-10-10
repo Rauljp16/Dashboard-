@@ -43,7 +43,7 @@ overflow: auto;
 
 
 function App() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const authContext = useContext(AuthContext);
   const location = useLocation()
 

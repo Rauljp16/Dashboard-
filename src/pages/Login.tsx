@@ -136,6 +136,7 @@ function Login() {
 
       const result = await response.json();
       setToken(result.token);
+      console.log(result);
       return result.token;
     } catch (error) {
       console.error("Error:", error);
