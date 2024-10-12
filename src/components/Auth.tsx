@@ -8,15 +8,13 @@ import React, {
 
 interface AuthState {
   isAuthenticated: boolean;
-  user: string | null;
-  email: string | null;
+  userData: null;
   token: string | null;
 }
 
 const initialState: AuthState = {
   isAuthenticated: false,
-  user: null,
-  email: null,
+  userData: null,
   token: null,
 };
 
@@ -26,7 +24,7 @@ interface AuthAction {
 
 interface LoginAction extends AuthAction {
   type: "LOGIN";
-  email: string;
+  userData: any;
   token: string;
 }
 
@@ -36,7 +34,7 @@ interface LogoutAction extends AuthAction {
 
 interface UpdateUserAction extends AuthAction {
   type: "UPDATEUSER";
-  user: string;
+  // name: null,
 }
 
 type AuthActions = LoginAction | LogoutAction | UpdateUserAction;
@@ -54,20 +52,20 @@ const authReducer = (state: AuthState, action: AuthActions): AuthState => {
       return {
         ...state,
         isAuthenticated: true,
-        email: action.email,
+        userData: action.userData,
         token: action.token,
       };
     case "LOGOUT":
       return {
         ...state,
         isAuthenticated: false,
-        user: null,
-        email: null,
+        userData: null,
+        token: null,
       };
     case "UPDATEUSER":
       return {
         ...state,
-        user: action.user,
+        // name: null,
       };
     default:
       return state;

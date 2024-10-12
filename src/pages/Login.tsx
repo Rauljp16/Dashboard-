@@ -62,8 +62,6 @@ const Text = styled.p`
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
-  const userName = "Raúl";
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
   const [isActiveEmail, setIsActiveEmail] = useState(true)
@@ -96,16 +94,16 @@ function Login() {
 
     if (!valid) return;
 
-    const token = await loginUser();
-    if (token) {
+    const result = await loginUser();
+    if (result) {
       dispatch({
         type: "LOGIN",
-        email: email,
-        token: token,
+        token: result.token.token,
+        userData: result.token.user,
+
       });
       dispatch({
         type: "UPDATEUSER",
-        user: userName,
       });
       navigate("/dashboard");
     } else {
@@ -135,9 +133,7 @@ function Login() {
       }
 
       const result = await response.json();
-      setToken(result.token);
-      console.log(result);
-      return result.token;
+      return result;
     } catch (error) {
       console.error("Error:", error);
     }

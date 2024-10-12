@@ -1,4 +1,4 @@
-import { DataBookings, DataComments, DataContacts, DataRooms, DataUsers } from './types/global';
+// import { DataBookings, DataComments, DataContacts, DataRooms, DataUsers } from './types/global';
 
 
 export async function backendApiCall(path: string, method = "GET", data: any = null) {
