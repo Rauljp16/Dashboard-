@@ -32,7 +32,13 @@ const SidebarStyled = styled.div<SidebarProps>`
   z-index: 1;
   background-color: #ffffff;
   box-shadow: 0px 0px 5px #0000002b;
-  padding-bottom: 120px;
+  padding-bottom: 80px;
+  gap: 20px;
+
+  @media (max-width: 1000px) {
+    width: 60px;
+  min-width: 60px;
+  }
 `;
 
 const LogoWrapper = styled.div<SidebarProps>`
@@ -42,6 +48,11 @@ const LogoWrapper = styled.div<SidebarProps>`
   transition: all 1s ease;
   padding: 6px 0;
   margin: 0 auto 20px;
+
+  @media (max-width: 1000px) {
+    width: 50px;
+  }
+
 `;
 
 const ImgStyled = styled.img`
@@ -64,18 +75,29 @@ const LinkStyled = styled(Link) <LinkStyledProps>`
     props.isActive ? "4px solid red" : "4px solid transparent"};
   color: ${(props) => (props.isActive ? "red" : "#135846")};
   transition: padding 1s ease-in-out;
+
+  @media (max-width: 1000px) {
+    padding: 10px 0px 10px 9px;
+
+  }
+
 `;
 
 const PStyled = styled.div<SidebarProps>`
   position: absolute;
   left: 120px;
   font-size: 18px;
-  /* font-weight: 600; */
   transform: ${(props) =>
     props.open
       ? "translate(0) rotate(0deg)"
       : "translate(-250px) rotate(-90deg)"};
   transition: transform 1s ease-in-out;
+
+  @media (max-width: 1000px) {
+    transform: translate(-250px) rotate(-90deg);
+
+  }
+
 `;
 
 const UserProfile = styled.div<SidebarProps>`
@@ -90,15 +112,41 @@ const UserProfile = styled.div<SidebarProps>`
   border-radius: 18px;
   box-shadow: 0px 20px 30px #00000014;
   gap: 20px;
-`;
+  transform: ${(props) =>
+    props.open
+      ? "translate(0) rotate(0deg)"
+      : "translate(-250px) rotate(-90deg)"};
+  transition: transform 1s ease-in-out;
 
+  @media (max-width: 1000px) {
+    transform: translate(-250px) rotate(-90deg);
+
+  }
+
+`;
+const DivImg = styled.div`
+position: relative;
+`;
 const UserImg = styled.img<SidebarProps>`
   position: absolute;
-  top: -20px;
-  width: 50px;
-  height: 50px;
+    top: 22px;
+    left: 100px;
+    z-index: 2;
+  width: ${(props) => (props.open ? "55px" : "50px")};
+  height: ${(props) => (props.open ? "55px" : "50px")};
   border-radius: 8px;
-  transition: width 0.3s ease, height 0.3s ease, margin-right 0.3s ease;
+  transform: ${(props) =>
+    props.open
+      ? "translate(0) rotate(0deg)"
+      : "translate(-96px) rotate(0deg)"};
+  transition: all 0.8s ease-in-out;
+
+  @media (max-width: 1000px) {
+    width: 50px;
+  height: 50px;
+  left: 5px;
+  }
+
 `;
 
 const UserInfo = styled.div<SidebarProps>`
@@ -145,6 +193,10 @@ const DivRights = styled.div<SidebarProps>`
       ? "translate(0) rotate(0deg)"
       : "translate(-250px) rotate(-90deg)"};
   transition: transform 1s ease-in-out;
+  @media (max-width: 1000px) {
+    transform: translate(-250px) rotate(-90deg);
+  }
+
 `;
 const PRights = styled.p`
   color: #799283;
@@ -240,45 +292,49 @@ function Sidebar({ open }: SidebarProps) {
           </LinkStyled>
         </DivLinks>
         {userData && (
-          <UserProfile open={open}>
-            <UserImg
-              src={userData.userData.foto}
-              alt={userData.userData.name}
-              open={open}
-            />
-            <UserInfo open={open}>
-              <UserName>{userData.userData.name}</UserName>
-              <UserEmail>{userData.userData.email}</UserEmail>
-            </UserInfo>
-            <DivButton>
-              <a
-                href="https://www.linkedin.com/in/ra%C3%BAl-jerez-pag%C3%A1n-35570927a/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  cursor: "pointer",
-                  textDecoration: "none",
-                  color: "inherit",
-                  width: "30px",
-                  height: "30px",
-                }}
-              >
-                <FaLinkedin style={{ width: "30px", height: "30px" }} />
-              </a>
-              <a
-                href="https://github.com/Rauljp16"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  cursor: "pointer",
-                  textDecoration: "none",
-                  color: "inherit",
-                }}
-              >
-                <FaSquareGithub style={{ width: "30px", height: "30px" }} />
-              </a>
-            </DivButton>
-          </UserProfile>
+          <>
+            <DivImg>
+              <UserImg
+                src={userData.userData.foto}
+                alt={userData.userData.name}
+                open={open}
+              />
+            </DivImg>
+            <UserProfile open={open}>
+              <UserInfo open={open}>
+                <UserName>{userData.userData.name}</UserName>
+                <UserEmail>{userData.userData.email}</UserEmail>
+              </UserInfo>
+              <DivButton>
+                <a
+                  href="https://www.linkedin.com/in/ra%C3%BAl-jerez-pag%C3%A1n-35570927a/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    cursor: "pointer",
+                    textDecoration: "none",
+                    color: "inherit",
+                    width: "30px",
+                    height: "30px",
+                  }}
+                >
+                  <FaLinkedin style={{ width: "30px", height: "30px" }} />
+                </a>
+                <a
+                  href="https://github.com/Rauljp16"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    cursor: "pointer",
+                    textDecoration: "none",
+                    color: "inherit",
+                  }}
+                >
+                  <FaSquareGithub style={{ width: "30px", height: "30px" }} />
+                </a>
+              </DivButton>
+            </UserProfile>
+          </>
         )}
         <InfoHeader>
           <DivRights open={open}>

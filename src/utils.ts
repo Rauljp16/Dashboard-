@@ -10,7 +10,6 @@ export async function backendApiCall(path: string, method = "GET", data: any = n
   }
 
   const token = JSON.parse(authState);
-
   const response = await fetch(url, {
     method,
     headers: {
