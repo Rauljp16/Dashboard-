@@ -8,7 +8,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { HiArrowLeft } from "react-icons/hi";
 import createUser from "../../public/images/hotelNewUser.webp";
-import userImage from "../images/users.webp";
+import userImage from "../../public/images/users.webp";
 
 const Container = styled.div`
   max-width: 1200px;
