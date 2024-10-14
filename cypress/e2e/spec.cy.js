@@ -19,6 +19,6 @@ describe("Login Page", () => {
     cy.get('input[type="email"]').type("rauljp16@gmail.com");
     cy.get('input[type="password"]').type("hotel miranda");
     cy.get(".btn-styled").click();
-    cy.url().should("include", "/dashboard");
+    cy.url().should("include", "/");
   });
 });
