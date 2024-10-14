@@ -105,7 +105,7 @@ function Login() {
       dispatch({
         type: "UPDATEUSER",
       });
-      navigate("/dashboard");
+      navigate("/");
     } else {
       alert("Invalid credentials");
     }
