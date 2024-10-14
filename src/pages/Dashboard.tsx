@@ -6,7 +6,7 @@ function Dashboard() {
   const DashboardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 29px;
   `;
   const SectionComments = styled.article`
   width: 100%;
