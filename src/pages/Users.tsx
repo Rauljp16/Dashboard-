@@ -43,7 +43,7 @@ const FilterList = styled.ul`
 const SearchIcon = styled(AiOutlineSearch)`
   position: absolute;
   top: 8px;
-  left: 155px;
+  left: 156px;
   font-size: 22px;
 `;
 const DivName = styled.div`
