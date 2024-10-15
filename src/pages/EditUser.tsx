@@ -90,7 +90,7 @@ function EditUser() {
             >
                 <div>
                     <img
-                        style={{ width: "59px", height: "60px" }}
+                        style={{ width: "60px", height: "60px" }}
                         src={`/${dataUser.foto}`}
                         alt="imagen de usuario predeterminada"
                     />
