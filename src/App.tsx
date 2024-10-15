@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Booking from "./pages/Bookings";
 import Rooms from "./pages/Rooms";
 import Users from "./pages/Users";
@@ -47,9 +47,11 @@ function App() {
   const authContext = useContext(AuthContext);
   const location = useLocation()
 
+
   if (location.pathname === "/login") {
     return <Login />;
   }
+
 
   if (!authContext) {
     console.error("AuthContext is undefined");
@@ -65,7 +67,7 @@ function App() {
         <Header setOpen={setOpen} open={open} />
         <PagesStyled>
           <Routes>
-            {/* <Route path="/login" element={<Login />} /> */}
+            <Route path="/login" element={<Login />} />
             <Route
               path="/"
               element={

@@ -97,7 +97,7 @@ function Header({ setOpen, open }: Props) {
         <CiMail />
         <IoMdNotificationsOutline />
         {/* <IconStyle> */}
-        <TbLogout onClick={logOut} />
+        <TbLogout onClick={logOut} style={{ cursor: "pointer" }} />
         {/* </IconStyle> */}
       </IconContainer>
     </HeaderContainer>
