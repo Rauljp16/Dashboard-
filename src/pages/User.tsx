@@ -24,7 +24,7 @@ function user() {
     <div>
       <h2>User Details</h2>
       <img
-        style={{ width: "79px", borderRadius: "100%" }}
+        style={{ width: "80px", borderRadius: "100%" }}
         src={singleUser.foto}
         alt="foto de usuario"
       />
