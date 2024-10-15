@@ -292,7 +292,7 @@ function Sidebar({ open }: SidebarProps) {
             <PStyled open={open}>Users</PStyled>
           </LinkStyled>
         </DivLinks>
-        {userData && (
+        {userData && userData.userData ? (
           <>
             <DivImg>
               <UserImg
@@ -336,6 +336,8 @@ function Sidebar({ open }: SidebarProps) {
               </DivButton>
             </UserProfile>
           </>
+        ) : (
+          <div>Loading user data...</div>
         )}
         <InfoHeader>
           <DivRights open={open}>
