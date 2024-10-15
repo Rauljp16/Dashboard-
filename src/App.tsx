@@ -54,9 +54,8 @@ function App() {
   }
 
   const { state } = authContext;
-  console.log(state);
 
-  if (location.pathname === "/login") {
+  if (state.isAuthenticated === false) {
     return <Login />;
   }
   return (
