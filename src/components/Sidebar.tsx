@@ -219,13 +219,11 @@ function Sidebar({ open }: SidebarProps) {
   const [userData, setUserData] = useState<UserLog | null>(null);
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      const storedData = localStorage.getItem("authState");
-      if (storedData) {
-        setUserData(JSON.parse(storedData));
-      }
+
+    const storedData = localStorage.getItem("authState");
+    if (storedData) {
+      setUserData(JSON.parse(storedData));
     }
-    fetchUserData();
   }, []);
 
   return (
@@ -303,7 +301,7 @@ function Sidebar({ open }: SidebarProps) {
                 open={open}
               />
             </DivImg> */}
-            <UserProfile open={open}>
+            {/* <UserProfile open={open}>
               <UserInfo open={open}>
                 <UserName>{userData.userData.name}</UserName>
                 <UserEmail>{userData.userData.email}</UserEmail>
@@ -336,7 +334,7 @@ function Sidebar({ open }: SidebarProps) {
                   <FaSquareGithub style={{ width: "30px", height: "30px" }} />
                 </a>
               </DivButton>
-            </UserProfile>
+            </UserProfile> */}
           </>
         )}
         <InfoHeader>
