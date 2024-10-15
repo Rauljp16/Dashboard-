@@ -294,14 +294,14 @@ function Sidebar({ open }: SidebarProps) {
         </DivLinks>
         {userData && (
           <>
-            {/* <DivImg>
+            <DivImg>
               <UserImg
                 src={userData.userData.foto}
                 alt={userData.userData.name}
                 open={open}
               />
-            </DivImg> */}
-            {/* <UserProfile open={open}>
+            </DivImg>
+            <UserProfile open={open}>
               <UserInfo open={open}>
                 <UserName>{userData.userData.name}</UserName>
                 <UserEmail>{userData.userData.email}</UserEmail>
@@ -334,7 +334,7 @@ function Sidebar({ open }: SidebarProps) {
                   <FaSquareGithub style={{ width: "30px", height: "30px" }} />
                 </a>
               </DivButton>
-            </UserProfile> */}
+            </UserProfile>
           </>
         )}
         <InfoHeader>
