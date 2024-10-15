@@ -219,10 +219,13 @@ function Sidebar({ open }: SidebarProps) {
   const [userData, setUserData] = useState<UserLog | null>(null);
 
   useEffect(() => {
-    const storedData = localStorage.getItem("authState");
-    if (storedData) {
-      setUserData(JSON.parse(storedData));
+    const fetchUserData = async () => {
+      const storedData = localStorage.getItem("authState");
+      if (storedData) {
+        setUserData(JSON.parse(storedData));
+      }
     }
+    fetchUserData();
   }, []);
 
   return (
