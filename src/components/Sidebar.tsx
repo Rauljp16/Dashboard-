@@ -9,6 +9,7 @@ import logo from "../../public/logo.png";
 import { useEffect, useState } from "react";
 import { FaLinkedin } from "react-icons/fa";
 import { FaSquareGithub } from "react-icons/fa6";
+import Login from "../pages/Login";
 interface SidebarProps {
   open: boolean;
 }
@@ -223,7 +224,7 @@ function Sidebar({ open }: SidebarProps) {
     if (storedData) {
       setUserData(JSON.parse(storedData));
     }
-  }, []);
+  }, [Login]);
 
   return (
     <>
