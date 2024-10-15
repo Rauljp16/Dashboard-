@@ -6,10 +6,10 @@ import { AppDispatch, RootState } from "../store";
 import { useDispatch, useSelector } from "react-redux";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { fetchSingleThunk, updateThunk } from "../slices/rooms/roomsThunk";
-import editImage from "../../public/images/edit.webp";
+import editImage from "../../public/edit.webp";
 import { Link } from "react-router-dom";
 import { HiArrowLeft } from "react-icons/hi";
-import photo from "../images/hab.webp";
+// import photo from "../../public/hab.webp";
 
 const Container = styled.div`
   max-width: 1200px;
@@ -241,7 +241,7 @@ function EditRoom() {
       <FormWrapper onSubmit={handleSubmit}>
         <DivImg>
           <Label>Photo</Label>
-          <EditImgStyled src={photo} alt="imagen de habitación" />
+          <EditImgStyled src={`/${dataRoom.Foto}`} alt="imagen de habitación" />
         </DivImg>
         <DivForm>
           <DivInput>

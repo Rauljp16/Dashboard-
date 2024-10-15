@@ -1,25 +1,25 @@
 [
   {
     "comment": "El hotel es increíble, con una vista espectacular y servicio excelente.",
-    "photo": "images/comments/ana.webp",
+    "photo": "comments/ana.webp",
     "name": "Ana Pérez",
     "timeAgo": "4m ago"
   },
   {
     "comment": "Excelente ubicación, cerca de todos los puntos turísticos.",
-    "photo": "images/comments/carlos.webp",
+    "photo": "comments/carlos.webp",
     "name": "Carlos García",
     "timeAgo": "1y ago"
   },
   {
     "comment": "Buena ubicación, con una vista espectacular y cerca de todos los puntos turísticos.",
-    "photo": "images/comments/mario.webp",
+    "photo": "comments/mario.webp",
     "name": "Mario Mendez",
     "timeAgo": "11m ago"
   },
   {
     "comment": "Las habitaciones son muy cómodas y el desayuno es delicioso.",
-    "photo": "images/comments/maria.webp",
+    "photo": "comments/maria.webp",
     "name": "María López",
     "timeAgo": "6m ago"
   }

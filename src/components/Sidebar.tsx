@@ -5,7 +5,7 @@ import { IoKeyOutline } from "react-icons/io5";
 import { RiContactsBook3Line } from "react-icons/ri";
 import { HiOutlineUser } from "react-icons/hi";
 import styled from "styled-components";
-import logo from "../images/logo.png";
+import logo from "../../public/logo.png";
 import { useEffect, useState } from "react";
 import { FaLinkedin } from "react-icons/fa";
 import { FaSquareGithub } from "react-icons/fa6";

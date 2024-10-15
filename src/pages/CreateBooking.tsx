@@ -8,7 +8,7 @@ import Popup from "../components/Popup";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { HiArrowLeft } from "react-icons/hi";
-import createImage from "../images/create.webp";
+import createImage from "../../public/create.webp";
 
 const Container = styled.div`
 max-width: 1200px;

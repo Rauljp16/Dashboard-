@@ -3,7 +3,7 @@ import { AppDispatch } from "../store";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { DataRooms } from "../types/global";
 import { createThunk } from "../slices/rooms/roomsThunk";
-import photo from "../images/hab.webp";
+import photo from "../../public/hab.webp";
 import Button from "../components/Button";
 import Popup from "../components/Popup";
 import styled from "styled-components";
