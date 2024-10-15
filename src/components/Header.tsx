@@ -37,7 +37,7 @@ const IconContainer = styled.div`
   font-size: 26px;
 `;
 const ContainerTitle = styled.div`
-width: 25%;
+  width: 25%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -61,18 +61,17 @@ function Header({ setOpen, open }: Props) {
   const { dispatch }: any = useContext(AuthContext);
 
   function getRouteName(title: string): string {
-    switch (title) {
-      case "/":
+    switch (true) {
+      case title === "/":
+      case title === "/dashboard":
         return "Dashboard";
-      case "/dashboard":
-        return "Dashboard";
-      case "/bookings":
+      case title.includes("/bookings"):
         return "Booking";
-      case "/rooms":
+      case title.includes("/rooms"):
         return "Rooms";
-      case "/contact":
+      case title === "/contact":
         return "Contact";
-      case "/users":
+      case title.includes("/users"):
         return "Users";
       default:
         return "Unknown";

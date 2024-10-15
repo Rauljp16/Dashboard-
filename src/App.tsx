@@ -65,7 +65,7 @@ function App() {
         <Header setOpen={setOpen} open={open} />
         <PagesStyled>
           <Routes>
-            <Route path="/login" element={<Login />} />
+            {/* <Route path="/login" element={<Login />} /> */}
             <Route
               path="/"
               element={
