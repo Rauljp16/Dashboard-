@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import Booking from "./pages/Bookings";
 import Rooms from "./pages/Rooms";
 import Users from "./pages/Users";
@@ -48,18 +48,17 @@ function App() {
   const location = useLocation()
 
 
-  if (location.pathname === "/login") {
-    return <Login />;
-  }
-
-
   if (!authContext) {
     console.error("AuthContext is undefined");
     return null;
   }
 
   const { state } = authContext;
+  console.log(state);
 
+  if (location.pathname === "/login") {
+    return <Login />;
+  }
   return (
     <AppStyled>
       <Sidebar open={open} />
