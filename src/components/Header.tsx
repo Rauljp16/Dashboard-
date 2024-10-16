@@ -80,7 +80,7 @@ function Header({ setOpen, open }: Props) {
 
   const logOut = () => {
     dispatch({ type: "LOGOUT" });
-    navigate("/login");
+    navigate("/");
   };
 
   return (

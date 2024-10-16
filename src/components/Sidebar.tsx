@@ -215,6 +215,7 @@ const Made = styled.p`
 
 function Sidebar({ open }: SidebarProps) {
   const location = useLocation();
+  const [loading, setLoading] = useState(true);
 
   const [userData, setUserData] = useState<UserLog | null>(null);
 
@@ -224,7 +225,12 @@ function Sidebar({ open }: SidebarProps) {
     if (storedData) {
       setUserData(JSON.parse(storedData));
     }
+    setLoading(false);
   }, []);
+
+  if (loading) {
+    return <div>Cargando...</div>;
+  }
 
   return (
     <>
