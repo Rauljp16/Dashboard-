@@ -6,7 +6,7 @@ import { RiContactsBook3Line } from "react-icons/ri";
 import { HiOutlineUser } from "react-icons/hi";
 import styled from "styled-components";
 import logo from "../../public/logo.png";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { FaLinkedin } from "react-icons/fa";
 import { FaSquareGithub } from "react-icons/fa6";
 interface SidebarProps {
@@ -219,14 +219,14 @@ function Sidebar({ open }: SidebarProps) {
 
   const [userData, setUserData] = useState<UserLog | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const storedData = localStorage.getItem("authState");
     if (storedData) {
       setUserData(JSON.parse(storedData));
     }
     setLoading(false);
 
-  }, [location]);
+  }, []);
 
   if (loading) {
     return <SidebarStyled open={open}>Cargando...</SidebarStyled>;
