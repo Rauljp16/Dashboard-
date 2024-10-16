@@ -219,14 +219,14 @@ function Sidebar({ open }: SidebarProps) {
 
   const [userData, setUserData] = useState<UserLog | null>(null);
 
-  // useEffect(() => {
+  useEffect(() => {
+    const storedData = localStorage.getItem("authState");
+    if (storedData) {
+      setUserData(JSON.parse(storedData));
+    }
+    setLoading(false);
 
-  //   const storedData = localStorage.getItem("authState");
-  //   if (storedData) {
-  //     setUserData(JSON.parse(storedData));
-  //   }
-  //   setLoading(false);
-  // }, []);
+  }, [location]);
 
   if (loading) {
     return <SidebarStyled open={open}>Cargando...</SidebarStyled>;
