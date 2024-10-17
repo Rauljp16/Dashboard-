@@ -4,11 +4,12 @@ import React, {
   useEffect,
   ReactNode,
   Dispatch,
+  useState,
 } from "react";
 
 interface AuthState {
   isAuthenticated: boolean;
-  userData: null;
+  userData: any;
   token: string | null;
 }
 

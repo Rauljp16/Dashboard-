@@ -6,19 +6,16 @@ import { RiContactsBook3Line } from "react-icons/ri";
 import { HiOutlineUser } from "react-icons/hi";
 import styled from "styled-components";
 import logo from "../../public/logo.png";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaLinkedin } from "react-icons/fa";
 import { FaSquareGithub } from "react-icons/fa6";
+import { AuthContext } from "./Auth";
 interface SidebarProps {
   open: boolean;
 }
 interface LinkStyledProps {
   isActive: boolean;
   open: boolean;
-}
-
-interface UserLog {
-  userData: any;
 }
 
 const SidebarStyled = styled.div<SidebarProps>`
@@ -214,22 +211,19 @@ const Made = styled.p`
 `;
 
 function Sidebar({ open }: SidebarProps) {
+  const authContext = useContext(AuthContext);
+
   const location = useLocation();
-  const [loading, setLoading] = useState(true);
 
-  const [userData, setUserData] = useState<UserLog | null>(null);
+  if (!authContext) {
+    console.error("AuthContext is undefined");
+    return null;
+  }
+  const { state } = authContext;
+  const userData = state.userData
 
-  useLayoutEffect(() => {
-    const storedData = localStorage.getItem("authState");
-    if (storedData) {
-      setUserData(JSON.parse(storedData));
-    }
-    setLoading(false);
-
-  }, []);
-
-  if (loading) {
-    return <SidebarStyled open={open}>Cargando...</SidebarStyled>;
+  if (!userData) {
+    return <div>Loading...</div>; // Muestra un mensaje de carga si los datos aún no están disponibles
   }
 
   return (
@@ -298,53 +292,49 @@ function Sidebar({ open }: SidebarProps) {
             <PStyled open={open}>Users</PStyled>
           </LinkStyled>
         </DivLinks>
-        {userData && userData.userData ? (
-          <>
-            <DivImg>
-              <UserImg
-                src={userData.userData.foto}
-                alt={userData.userData.name}
-                open={open}
-              />
-            </DivImg>
-            <UserProfile open={open}>
-              <UserInfo open={open}>
-                <UserName>{userData.userData.name}</UserName>
-                <UserEmail>{userData.userData.email}</UserEmail>
-              </UserInfo>
-              <DivButton>
-                <a
-                  href="https://www.linkedin.com/in/ra%C3%BAl-jerez-pag%C3%A1n-35570927a/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    cursor: "pointer",
-                    textDecoration: "none",
-                    color: "inherit",
-                    width: "30px",
-                    height: "30px",
-                  }}
-                >
-                  <FaLinkedin style={{ width: "30px", height: "30px" }} />
-                </a>
-                <a
-                  href="https://github.com/Rauljp16"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    cursor: "pointer",
-                    textDecoration: "none",
-                    color: "inherit",
-                  }}
-                >
-                  <FaSquareGithub style={{ width: "30px", height: "30px" }} />
-                </a>
-              </DivButton>
-            </UserProfile>
-          </>
-        ) : (
-          <div>Loading user data...</div>
-        )}
+        <>
+          <DivImg>
+            <UserImg
+              src={userData.foto}
+              alt={userData.name}
+              open={open}
+            />
+          </DivImg>
+          <UserProfile open={open}>
+            <UserInfo open={open}>
+              <UserName>{userData.name}</UserName>
+              <UserEmail>{userData.email}</UserEmail>
+            </UserInfo>
+            <DivButton>
+              <a
+                href="https://www.linkedin.com/in/ra%C3%BAl-jerez-pag%C3%A1n-35570927a/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  cursor: "pointer",
+                  textDecoration: "none",
+                  color: "inherit",
+                  width: "30px",
+                  height: "30px",
+                }}
+              >
+                <FaLinkedin style={{ width: "30px", height: "30px" }} />
+              </a>
+              <a
+                href="https://github.com/Rauljp16"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  cursor: "pointer",
+                  textDecoration: "none",
+                  color: "inherit",
+                }}
+              >
+                <FaSquareGithub style={{ width: "30px", height: "30px" }} />
+              </a>
+            </DivButton>
+          </UserProfile>
+        </>
         <InfoHeader>
           <DivRights open={open}>
             <div>

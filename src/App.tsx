@@ -1,5 +1,5 @@
-import { Routes, Route, useLocation } from "react-router-dom";
-import { useState, useContext } from "react";
+import { Routes, Route } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
 import Booking from "./pages/Bookings";
 import Rooms from "./pages/Rooms";
 import Users from "./pages/Users";
@@ -21,7 +21,7 @@ import EditBooking from "./pages/EditBooking";
 import CreateRoom from "./pages/CreateRoom";
 import EditRoom from "./pages/EditRoom";
 import styled from "styled-components";
-import fondo from "./images/fondo.webp";
+
 
 const AppStyled = styled.section`
 display: flex;
@@ -45,7 +45,7 @@ overflow: auto;
 function App() {
   const [open, setOpen] = useState(true);
   const authContext = useContext(AuthContext);
-  const location = useLocation()
+
 
 
   if (!authContext) {
@@ -55,9 +55,11 @@ function App() {
 
   const { state } = authContext;
 
+
   if (state.isAuthenticated === false) {
     return <Login />;
   }
+
   return (
     <AppStyled>
       <Sidebar open={open} />
