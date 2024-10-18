@@ -19,6 +19,7 @@ const Container = styled.div`
   display: flex;
   box-shadow: 0px 0px 18px #0033256a;
   border-radius: 9px;
+  overflow: hidden;
 `;
 
 const DetailsWrapper = styled.div`
@@ -27,7 +28,7 @@ const DetailsWrapper = styled.div`
   flex-direction: column;
   width: 50%;
   padding: 50px 28px;
-  background-color: #e9e9e9e6;
+  background-color: #ffffffe1;
   border-radius: 8px 0px 0px 8px;
   overflow: auto;
 `;
@@ -54,7 +55,7 @@ width: 100%;
   gap: 2px;
 `;
 const Name = styled.p`
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 600;
 `;
 const Id = styled.p`
@@ -101,6 +102,7 @@ position: relative;
   border-radius: 0px 8px 8px 0px;
 `;
 const ImgRoom = styled.img`
+position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -112,13 +114,12 @@ const TitleContainer = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #007455;
+  color: #007455;
   text-align: center;
-  color: white;
   padding: 8px;
-`;
+  `;
 const Title = styled.h2`
-  font-size: 24px;
+  font-size: 28px;
   letter-spacing: 1px;
 `;
 
@@ -137,12 +138,18 @@ const DivButton = styled.div`
   padding: 6px 0 0 12px;
   &:hover {
     scale: 1.1;
-    filter: drop-shadow(0px 0px 4px #ffffff);
+    filter: drop-shadow(0px 0px 4px #007455);
   }
 
 `;
+const LinkTo = styled(Link)`
+  color: #007455;
+  font-size: 33px;
+  text-decoration: none;
+  transition: all 0.1s ease-in-out;
+`;
 const Status = styled.div<{ status: string }>`
-width: 50%;
+width: 300px;
 position: absolute;
 top: 36px;
 right: -89px;
@@ -154,13 +161,6 @@ transform: rotate(45deg);
   padding: 10px;
   font-size: 18px;
   letter-spacing: 1px;
-`;
-
-const LinkTo = styled(Link)`
-  color: #ffffff;
-  font-size: 33px;
-  text-decoration: none;
-  transition: all 0.1s ease-in-out;
 `;
 
 function BookingDetails() {
@@ -182,6 +182,8 @@ function BookingDetails() {
 
   return (
     <Container>
+      <ImgRoom src={imageRoom} alt="image room" />
+
       <DetailsWrapper>
         <TitleContainer>
           <Title>Order Details</Title>
@@ -231,7 +233,6 @@ function BookingDetails() {
         </DivButton>
       </DetailsWrapper>
       <DivImgRoom>
-        <ImgRoom src={imageRoom} alt="image room" />
         <Status status={singleBooking.Status}>{singleBooking.Status}</Status>
       </DivImgRoom>
     </Container>

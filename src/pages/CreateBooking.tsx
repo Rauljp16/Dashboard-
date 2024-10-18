@@ -12,6 +12,7 @@ import createImage from "../../public/create.webp";
 
 const Container = styled.div`
 max-width: 1200px;
+max-height: 650px;
 margin: 0 auto;
 position: relative;
 display: flex;
@@ -19,11 +20,12 @@ height: 100%;
 `;
 
 const FormWrapper = styled.form`
+position: relative;
     width: 50%;
     display: flex;
     gap: 5px;
     padding: 40px;
-    background-color: #e9e9e9e6;
+    background-color: #ffffffc0;
     border-radius: 8px 0px 0px 8px;
     box-shadow: 0px 0px 18px #0033256a;
     overflow: auto;
@@ -31,6 +33,19 @@ const FormWrapper = styled.form`
     -webkit-backdrop-filter: blur(3px);
     flex-direction: column;
     justify-content: center;
+`;
+const TitleContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #007455;
+  text-align: center;
+  padding: 10px;
+  `;
+const Title = styled.h2`
+font-size: 28px;
+letter-spacing: 1px;
 `;
 
 const Label = styled.label`
@@ -122,16 +137,18 @@ object-position: 0% 0%;
 `;
 const LinkTo = styled(Link)`
   position: absolute;
-  left: 20px;
-  top: 20px;
-  color: #000000;
-  font-size: 23px;
+  left: 0px;
+  top: 0px;
+  color: #007455;
+  font-size: 33px;
   z-index: 1;
   text-decoration: none;
   transition: all 0.1s ease-in-out;
+  padding: 12px;
 
   &:hover {
-    scale: 1.2;
+    scale: 1.1;
+    filter: drop-shadow(0px 0px 4px #007455);
   }
 `;
 
@@ -208,6 +225,9 @@ function CreateBooking() {
     <Container>
       <ImgStyled src={createImage} alt="habitacion de hotel" />
       <FormWrapper onSubmit={handleSubmit}>
+        <TitleContainer>
+          <Title>Create Bookings</Title>
+        </TitleContainer>
         <DivForm>
           <DivInput>
             <Label>Full Name</Label>

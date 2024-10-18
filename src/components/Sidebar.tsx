@@ -157,6 +157,7 @@ const UserInfo = styled.div<SidebarProps>`
 const UserName = styled.p`
   color: #393939;
   font-weight: 600;
+  text-align: center;
 `;
 
 const UserEmail = styled.p`

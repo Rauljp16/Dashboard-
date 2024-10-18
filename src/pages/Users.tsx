@@ -48,7 +48,8 @@ const SearchIcon = styled(AiOutlineSearch)`
 `;
 const DivName = styled.div`
 display: flex;
-justify-content: space-between;
+align-items: center;
+gap: 30px;
 `;
 const DivNameInfo = styled.div`
 display: flex;
@@ -69,7 +70,11 @@ const Paragraph = styled.p`
 margin: 0;
 font-size: 14px;
 `;
-
+const Img = styled.img`
+width: 70px;
+height: 70px;
+border-radius: 8px;
+`;
 const ListItem = styled.li<{ isActive: boolean }>`
   padding: 10px;
   cursor: pointer;
@@ -145,10 +150,9 @@ function Users() {
       columnRenderer: (row) => (
         <Link to={row._id} style={{ textDecoration: "none" }}>
           <DivName>
-            <img
+            <Img
               src={row.foto}
               alt="User"
-              style={{ width: "70px", borderRadius: "100%" }}
             />
             <DivNameInfo>
               <NameParagraph>{row.name}</NameParagraph>

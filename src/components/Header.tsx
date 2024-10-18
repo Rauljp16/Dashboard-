@@ -66,7 +66,7 @@ function Header({ setOpen, open }: Props) {
       case title === "/dashboard":
         return "Dashboard";
       case title.includes("/bookings"):
-        return "Booking";
+        return "Bookings";
       case title.includes("/rooms"):
         return "Rooms";
       case title === "/contact":

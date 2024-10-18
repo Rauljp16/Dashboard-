@@ -4,9 +4,160 @@ import { useParams } from "react-router-dom";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { fetchSingleThunk, updateThunk } from "../slices/users/usersThunk";
 import { DataUsers } from "../types/global";
-import Button from "../components/Button";
-import { InfoPopup } from "./CreateUser";
 import Popup from "../components/Popup";
+import styled from "styled-components";
+import editImage from "../../public/edit.webp";
+import { Link } from "react-router-dom";
+import { HiArrowLeft } from "react-icons/hi";
+
+const Container = styled.div`
+max-width: 1200px;
+max-height: 650px;
+margin: 0 auto;
+position: relative;
+display: flex;
+height: 100%;
+`;
+
+const FormWrapper = styled.form`
+  width: 50%;
+  display: flex;
+  padding: 70px 40px 40px;
+  background-color: #ffffffab;
+  border-radius: 8px 0px 0px 8px;
+  box-shadow: 0px 0px 18px #0033256a;
+  overflow: auto;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const TitleContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #007455;
+  text-align: center;
+  padding: 10px;
+`;
+
+const Title = styled.h2`
+  font-size: 28px;
+  letter-spacing: 1px;
+`;
+
+const DivImg = styled.div`
+  width: 90px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto ;
+`;
+
+const EditImgStyled = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+`;
+
+const Label = styled.label`
+  font-size: 18px;
+  font-weight: 600;
+`;
+
+const Input = styled.input`
+  padding: 7px 8px;
+  margin-bottom: 10px;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #007455;
+  background: transparent;
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    color: #00000081;
+  }
+`;
+
+const Select = styled.select`
+  padding: 6px;
+  width: 100%;
+  margin-bottom: 10px;
+  border: none;
+  border-bottom: 2px solid #007455;
+  background: transparent;
+  color: #00000081;
+`;
+
+const DivButton = styled.div`
+  width: 70%;
+  margin: 0 auto;
+`;
+
+const ButtonStyled = styled.button`
+  width: 100%;
+  background-color: #007455;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  color: #ffffff;
+  letter-spacing: 1px;
+  font-size: 22px;
+  cursor: pointer;
+  margin-top: 25px;
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    scale: 1.02;
+    box-shadow: 0px 0px 18px #0033256a;
+  }
+`;
+
+const DivForm = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 12%;
+`;
+
+const DivInput = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ImgStyled = styled.img`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+  object-position: 0% 70%;
+`;
+
+const LinkTo = styled(Link)`
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  color: #007455;
+  font-size: 33px;
+  z-index: 1;
+  text-decoration: none;
+  transition: all 0.1s ease-in-out;
+  padding: 12px;
+
+  &:hover {
+    scale: 1.1;
+    filter: drop-shadow(0px 0px 4px #007455);
+  }
+`;
+
+export interface InfoPopup {
+    title: string;
+    info: string;
+}
 
 function EditUser() {
     const dispatch: AppDispatch = useDispatch();
@@ -70,6 +221,11 @@ function EditUser() {
             });
         } else {
             dispatch(updateThunk(dataUser));
+            setOpenPopup(true);
+            setInfoPopup({
+                title: "Edit",
+                info: "User editado correctamente",
+            });
         }
     };
 
@@ -78,86 +234,116 @@ function EditUser() {
     }
 
     return (
-        <>
-            <form
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    gap: "10px",
-                }}
-                onSubmit={handleSubmit}
-            >
-                <div>
-                    <img
-                        style={{ width: "59px", height: "60px" }}
-                        src={`/${dataUser.foto}`}
-                        alt="imagen de usuario predeterminada"
-                    />
-                </div>
-                <input
-                    type="text"
-                    name="name"
-                    value={dataUser.name}
-                    autoComplete="off"
-                    placeholder="Name"
-                    onChange={handleChange}
+        <Container>
+            <ImgStyled src={editImage} alt="Editar usuario" />
+            <FormWrapper onSubmit={handleSubmit}>
+                <TitleContainer>
+                    <Title>Edit User</Title>
+                </TitleContainer>
+                <DivImg>
+                    <EditImgStyled src={`/${dataUser.foto}`} alt="Imagen de usuario" />
+                </DivImg>
+                <DivForm>
+                    <DivInput>
+                        <Label>Name</Label>
+                        <Input
+                            type="text"
+                            name="name"
+                            value={dataUser.name}
+                            onChange={handleChange}
+                            placeholder="Name"
+                        />
+                    </DivInput>
+                    <DivInput>
+                        <Label>Email</Label>
+                        <Input
+                            type="email"
+                            name="email"
+                            value={dataUser.email}
+                            onChange={handleChange}
+                            placeholder="Email"
+                        />
+                    </DivInput>
+                </DivForm>
+                <DivForm>
+                    <DivInput>
+                        <Label>Phone</Label>
+                        <Input
+                            type="text"
+                            name="contact"
+                            value={dataUser.contact}
+                            onChange={handleChange}
+                            placeholder="Phone"
+                        />
+                    </DivInput>
+                    <DivInput>
+                        <Label>Job</Label>
+                        <Select name="job" onChange={handleChange} value={dataUser.job}>
+                            <option value="">Select Job</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Reception">Reception</option>
+                            <option value="Room service">Room service</option>
+                        </Select>
+                    </DivInput>
+                </DivForm>
+                <DivForm>
+                    <DivInput>
+                        <Label>Status</Label>
+                        <Select name="status" onChange={handleChange} value={dataUser.status}>
+                            <option value="">Select Status</option>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </Select>
+                    </DivInput>
+                    <DivInput>
+                        <Label>Start Date</Label>
+                        <Input
+                            type="date"
+                            name="startDate"
+                            value={dataUser.startDate}
+                            onChange={handleChange}
+                            placeholder="Start Date"
+                        />
+                    </DivInput>
+                </DivForm>
+                <DivForm>
+                    <DivInput>
+                        <Label>Password</Label>
+                        <Input
+                            type="password"
+                            name="password"
+                            value={dataUser.password}
+                            onChange={handleChange}
+                            placeholder="Password"
+                        />
+                    </DivInput>
+                    <DivInput>
+                        <Label>Description</Label>
+                        <Input
+                            type="text"
+                            name="description"
+                            value={dataUser.description}
+                            onChange={handleChange}
+                            placeholder="Description"
+                        />
+                    </DivInput>
+                </DivForm>
+                <DivButton>
+                    <ButtonStyled type="submit">Edit User</ButtonStyled>
+                </DivButton>
+            </FormWrapper>
+            <LinkTo to="/users">
+                <HiArrowLeft />
+            </LinkTo>
+
+            {openPopup && (
+                <Popup
+                    infoPopup={infoPopup}
+                    setOpenPopup={setOpenPopup}
+                    openPopup={openPopup}
                 />
-                <input
-                    type="text"
-                    name="contact"
-                    value={dataUser.contact}
-                    autoComplete="off"
-                    placeholder="Phone"
-                    onChange={handleChange}
-                />
-                <input
-                    type="email"
-                    name="email"
-                    value={dataUser.email}
-                    autoComplete="off"
-                    placeholder="Email"
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    name="description"
-                    value={dataUser.description}
-                    autoComplete="off"
-                    placeholder="Description"
-                    onChange={handleChange}
-                />
-                <input
-                    type="date"
-                    name="startDate"
-                    value={dataUser.startDate}
-                    autoComplete="off"
-                    placeholder="Start Date"
-                    onChange={handleChange}
-                />
-                <input
-                    type="password"
-                    name="password"
-                    value={dataUser.password}
-                    autoComplete="off"
-                    placeholder="Password"
-                    onChange={handleChange}
-                />
-                <select name="status" onChange={handleChange} value={dataUser.status}>
-                    <option value="">Select status</option>
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
-                </select>
-                <select name="job" onChange={handleChange} value={dataUser.job}>
-                    <option value="">Select job</option>
-                    <option value="Manager">Manager</option>
-                    <option value="Reception">Reception</option>
-                    <option value="Room service">Room service</option>
-                </select>
-                <Button color="green" type="submit" name="Update" />
-                {openPopup && <Popup infoPopup={infoPopup} setOpenPopup={setOpenPopup} openPopup={openPopup} />}
-            </form>
-        </>
+            )}
+        </Container>
     );
 }
 

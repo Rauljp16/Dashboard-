@@ -4,18 +4,18 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { DataRooms } from "../types/global";
 import { createThunk } from "../slices/rooms/roomsThunk";
 import photo from "../../public/hab.webp";
-import Button from "../components/Button";
 import Popup from "../components/Popup";
 import styled from "styled-components";
 import { HiArrowLeft } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  display: flex;
-  height: 100%;
+max-width: 1200px;
+max-height: 650px;
+margin: 0 auto;
+position: relative;
+display: flex;
+height: 100%;
 `;
 
 const FormWrapper = styled.form`
@@ -23,7 +23,7 @@ const FormWrapper = styled.form`
   display: flex;
   gap: 5px;
   padding: 40px;
-  background-color: #e9e9e9e8;
+  background-color: #ffffffc0;
   border-radius: 8px 0px 0px 8px;
   box-shadow: 0px 0px 18px #0033256a;
   overflow: auto;
@@ -31,6 +31,19 @@ const FormWrapper = styled.form`
   -webkit-backdrop-filter: blur(3px);
   flex-direction: column;
   justify-content: center;
+`;
+const TitleContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #007455;
+  text-align: center;
+  padding: 10px;
+  `;
+const Title = styled.h2`
+font-size: 28px;
+letter-spacing: 1px;
 `;
 
 const Label = styled.label`
@@ -62,6 +75,18 @@ const Select = styled.select`
   border-bottom: 2px solid #007455;
   background: transparent;
   color: #00000081;
+  outline: none;
+`;
+const SelectFacilities = styled.select`
+  width: 100%;
+  height: 90px;
+  margin-bottom: 20px;
+  border: none;
+  border-bottom: 2px solid #007455;
+  background: transparent;
+  color: #00000081;
+  outline: none;
+  overflow:hidden;
 `;
 
 const DivButton = styled.div`
@@ -110,15 +135,18 @@ const ImgStyled = styled.img`
 
 const LinkTo = styled(Link)`
   position: absolute;
-  left: 20px;
-  top: 20px;
-  color: #000000;
-  font-size: 23px;
+  left: 0px;
+  top: 0px;
+  color: #007455;
+  font-size: 33px;
   z-index: 1;
   text-decoration: none;
   transition: all 0.1s ease-in-out;
+  padding: 12px;
+
   &:hover {
-    scale: 1.2;
+    scale: 1.1;
+    filter: drop-shadow(0px 0px 4px #007455);
   }
 `;
 
@@ -206,6 +234,10 @@ function CreateRoom() {
     <Container>
       <ImgStyled src={photo} alt="imagen de habitacion predeterminada" />
       <FormWrapper onSubmit={handleSubmit}>
+        <TitleContainer>
+          <Title>Create Room</Title>
+        </TitleContainer>
+
         <DivForm>
           <DivInput>
             <Label>Room Number</Label>
@@ -232,19 +264,18 @@ function CreateRoom() {
         <DivForm>
           <DivInput>
             <Label>Facilities</Label>
-            <Select
+            <SelectFacilities
               multiple
               name="Facilities"
               value={dataRoom.Facilities}
               onChange={handleSelectChange}
-              style={{ height: "auto", padding: "10px" }}
             >
               <option value="Wifi">Wifi</option>
               <option value="TV">TV</option>
               <option value="Minibar">Minibar</option>
               <option value="AireAcondicionado">Aire Acondicionado</option>
               <option value="Jacuzzi">Jacuzzi</option>
-            </Select>
+            </SelectFacilities>
           </DivInput>
         </DivForm>
         <DivForm>
@@ -296,7 +327,7 @@ function CreateRoom() {
           </DivInput>
         </DivForm>
         <DivButton>
-          <ButtonStyled type="submit">Create Room</ButtonStyled>
+          <ButtonStyled type="submit">Create</ButtonStyled>
         </DivButton>
         <LinkTo to="/rooms">
           <HiArrowLeft />
