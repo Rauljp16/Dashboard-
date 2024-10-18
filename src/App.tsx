@@ -27,11 +27,10 @@ const AppStyled = styled.section`
 display: flex;
 background-color: #f8f8f8;
 height: 100vh;
-overflow: hidden;
+/* overflow: hidden; */
 `;
 
 const ContainerStyled = styled.section`
-/* position: relative; */
 width: 100vw;
 `;
 

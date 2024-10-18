@@ -11,28 +11,28 @@ import createUser from "../../public/hotelNewUser.webp";
 import userImage from "../../public/users.webp";
 
 const Container = styled.div`
-max-width: 1200px;
-max-height: 650px;
-margin: 0 auto;
-position: relative;
-display: flex;
-height: 100%;
+  max-width: 1200px;
+  max-height: 650px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  height: 100%;
 `;
 
 const FormWrapper = styled.form`
-position: relative;
-    width: 50%;
-    display: flex;
-    gap: 5px;
-    padding: 40px;
-    background-color: #ffffffc0;
-    border-radius: 8px 0px 0px 8px;
-    box-shadow: 0px 0px 18px #0033256a;
-    overflow: auto;
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
-    flex-direction: column;
-    justify-content: center;
+  position: relative;
+  width: 50%;
+  display: flex;
+  gap: 5px;
+  padding: 40px;
+  background-color: #ffffffc0;
+  border-radius: 8px 0px 0px 8px;
+  box-shadow: 0px 0px 18px #0033256a;
+  overflow: auto;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  flex-direction: column;
+  justify-content: center;
 `;
 const TitleContainer = styled.div`
   position: absolute;
@@ -42,12 +42,11 @@ const TitleContainer = styled.div`
   color: #007455;
   text-align: center;
   padding: 10px;
-  `;
-const Title = styled.h2`
-font-size: 28px;
-letter-spacing: 1px;
 `;
-
+const Title = styled.h2`
+  font-size: 28px;
+  letter-spacing: 1px;
+`;
 
 const Label = styled.label`
   font-size: 18px;
@@ -142,7 +141,7 @@ const LinkTo = styled(Link)`
 `;
 
 const initialDataUser = {
-    foto: userImage,
+    foto: "users.webp",
     name: "",
     job: "",
     email: "",
@@ -161,11 +160,16 @@ export interface InfoPopup {
 function CreateUser() {
     const dispatch: AppDispatch = useDispatch();
     const [openPopup, setOpenPopup] = useState(false);
-    const [infoPopup, setInfoPopup] = useState<InfoPopup>({ title: "", info: "" });
+    const [infoPopup, setInfoPopup] = useState<InfoPopup>({
+        title: "",
+        info: "",
+    });
 
     const [dataUser, setDataUser] = useState<DataUsers>(initialDataUser);
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleChange = (
+        e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    ) => {
         const { name, value } = e.target;
 
         if (name !== "contact") {
@@ -202,7 +206,6 @@ function CreateUser() {
                 title: "Usuario",
                 info: "Usuario creado correctamente",
             });
-
         }
     };
 

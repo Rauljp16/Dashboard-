@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import Loading from "../components/Loading";
 
-// Styled Components
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -112,7 +111,9 @@ position: relative;
 margin-left: auto;
 `;
 const DivIcon = styled.div`
-font-size: 20px;
+display: flex;
+align-items: baseline;
+font-size: 22px;
 `;
 
 
@@ -232,7 +233,6 @@ function Users() {
       setDataFinal(filteredData);
     }
   };
-
   return (
     <Container>
       {/* Filter Section */}
