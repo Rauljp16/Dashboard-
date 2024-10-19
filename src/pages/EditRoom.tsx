@@ -206,6 +206,35 @@ function EditRoom() {
     }
   };
 
+  const handleChangeBed = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+
+    if (name === "BedType") {
+      let imageUrl = "";
+
+      switch (value) {
+        case "SingleBed":
+          imageUrl = "single.webp";
+          break;
+        case "DoubleBed":
+          imageUrl = "double.webp";
+          break;
+        case "DoubleSuperior":
+          imageUrl = "doubleSup.webp";
+          break;
+        case "Suite":
+          imageUrl = "suite.webp";
+          break;
+        default:
+          imageUrl = "hab.webp";
+      }
+
+      setDataRoom({ ...dataRoom, Foto: imageUrl, BedType: value });
+    }
+  };
+
   const handleSelectChange = (event: any) => {
     const selectedValues = Array.from(
       event.target.selectedOptions,
@@ -257,7 +286,7 @@ function EditRoom() {
           <Title>Edit Room</Title>
         </TitleContainer>
         <DivImg>
-          <EditImgStyled src={dataRoom.Foto} alt="imagen de habitación" />
+          <EditImgStyled src={`/${dataRoom.Foto}`} alt="imagen de habitación" />
         </DivImg>
         <DivForm>
           <DivInput>
@@ -274,7 +303,7 @@ function EditRoom() {
             <Label>Bed Type</Label>
             <Select
               name="BedType"
-              onChange={handleChange}
+              onChange={handleChangeBed}
               value={dataRoom.BedType}
             >
               <option value="">Select Room Type</option>
