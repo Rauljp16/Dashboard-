@@ -8,10 +8,6 @@ import styled from "styled-components";
 import { HiArrowLeft } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import photo from "../../public/hab.webp";
-import photoSingle from "../../public/single.webp";
-import photoDouble from "../../public/double.webp";
-import photoDoubleSup from "../../public/doubleSup.webp";
-import photoSuite from "../../public/suite.webp";
 
 const Container = styled.div`
   max-width: 1200px;
@@ -214,16 +210,16 @@ function CreateRoom() {
 
       switch (value) {
         case "SingleBed":
-          imageUrl = photoSingle;
+          imageUrl = "single.webp";
           break;
         case "DoubleBed":
-          imageUrl = photoDouble;
+          imageUrl = "double.webp";
           break;
         case "DoubleSuperior":
-          imageUrl = photoDoubleSup;
+          imageUrl = "doubleSup.webp";
           break;
         case "Suite":
-          imageUrl = photoSuite;
+          imageUrl = "suite.webp";
           break;
         default:
           imageUrl = photo;
