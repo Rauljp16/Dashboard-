@@ -184,7 +184,7 @@ function Room() {
 
   return (
     <Container>
-      <ImgRoom src={singleRoom.Foto} alt="Room image" />
+      <ImgRoom src={`/${singleRoom.Foto}`} alt="Room image" />
 
       <DetailsWrapper>
         <TitleContainer>

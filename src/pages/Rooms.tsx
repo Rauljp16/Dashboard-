@@ -136,7 +136,7 @@ function Rooms() {
       columnRenderer: (row) => (
         <Link to={row._id} style={{ textDecoration: "none" }}>
           <RoomItem>
-            <img src={row.Foto} alt="Room" />
+            <img src={`/${row.Foto}`} alt="Room" />
             <RoomItemInfo>
               <PStyledLink>#{row._id}</PStyledLink>
               <PStyledLink>Nº {row.number}</PStyledLink>
