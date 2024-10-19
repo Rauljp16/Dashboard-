@@ -3,19 +3,23 @@ import { AppDispatch } from "../store";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { DataRooms } from "../types/global";
 import { createThunk } from "../slices/rooms/roomsThunk";
-import photo from "../../public/hab.webp";
 import Popup from "../components/Popup";
 import styled from "styled-components";
 import { HiArrowLeft } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import photo from "../../public/hab.webp";
+import photoSingle from "../../public/single.webp";
+import photoDouble from "../../public/double.webp";
+import photoDoubleSup from "../../public/doubleSup.webp";
+import photoSuite from "../../public/suite.webp";
 
 const Container = styled.div`
-max-width: 1200px;
-max-height: 650px;
-margin: 0 auto;
-position: relative;
-display: flex;
-height: 100%;
+  max-width: 1200px;
+  max-height: 650px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  height: 100%;
 `;
 
 const FormWrapper = styled.form`
@@ -40,10 +44,10 @@ const TitleContainer = styled.div`
   color: #007455;
   text-align: center;
   padding: 10px;
-  `;
+`;
 const Title = styled.h2`
-font-size: 28px;
-letter-spacing: 1px;
+  font-size: 28px;
+  letter-spacing: 1px;
 `;
 
 const Label = styled.label`
@@ -86,7 +90,7 @@ const SelectFacilities = styled.select`
   background: transparent;
   color: #00000081;
   outline: none;
-  overflow:hidden;
+  overflow: hidden;
 `;
 
 const DivButton = styled.div`
@@ -151,7 +155,7 @@ const LinkTo = styled(Link)`
 `;
 
 const initialDataRoom = {
-  Foto: photo,
+  Foto: "",
   number: "",
   BedType: "",
   Facilities: ["TV"],
@@ -200,7 +204,34 @@ function CreateRoom() {
       Facilities: selectedValues,
     });
   };
+  const handleChangeBed = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
 
+    if (name === "BedType") {
+      let imageUrl = "";
+
+      switch (value) {
+        case "SingleBed":
+          imageUrl = photoSingle;
+          break;
+        case "DoubleBed":
+          imageUrl = photoDouble;
+          break;
+        case "DoubleSuperior":
+          imageUrl = photoDoubleSup;
+          break;
+        case "Suite":
+          imageUrl = photoSuite;
+          break;
+        default:
+          imageUrl = photo;
+      }
+
+      setDataRoom({ ...dataRoom, Foto: imageUrl, BedType: value });
+    }
+  };
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (
@@ -226,7 +257,6 @@ function CreateRoom() {
         title: "Room",
         info: "Room creada correctamente",
       });
-
     }
   };
 
@@ -252,7 +282,11 @@ function CreateRoom() {
           </DivInput>
           <DivInput>
             <Label>Bed Type</Label>
-            <Select name="BedType" onChange={handleChange} value={dataRoom.BedType}>
+            <Select
+              name="BedType"
+              onChange={handleChangeBed}
+              value={dataRoom.BedType}
+            >
               <option value="">Select Bed Type</option>
               <option value="SingleBed">Single Bed</option>
               <option value="DoubleBed">Double Bed</option>
@@ -305,7 +339,11 @@ function CreateRoom() {
         <DivForm>
           <DivInput>
             <Label>Status</Label>
-            <Select name="Status" onChange={handleChange} value={dataRoom.Status}>
+            <Select
+              name="Status"
+              onChange={handleChange}
+              value={dataRoom.Status}
+            >
               <option value="">Select Status</option>
               <option value="Available">Available</option>
               <option value="Booked">Booked</option>
