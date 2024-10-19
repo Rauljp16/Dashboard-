@@ -320,9 +320,9 @@ function CreateBooking() {
               value={dataBooking.Status}
             >
               <option value="">Select Status</option>
-              <option value="checkin">Check In</option>
-              <option value="checkout">Check Out</option>
-              <option value="inprogress">In Progress</option>
+              <option value="Checking In">Check In</option>
+              <option value="Check Out">Check Out</option>
+              <option value="In Progress">In Progress</option>
             </Select>{" "}
           </DivInput>
         </DivForm>
