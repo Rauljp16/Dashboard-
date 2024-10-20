@@ -296,7 +296,7 @@ function Sidebar({ open }: SidebarProps) {
         <>
           <DivImg>
             <UserImg
-              src={userData.foto}
+              src={`/${userData.foto}`}
               alt={userData.name}
               open={open}
             />

@@ -11,6 +11,7 @@ import Table from "../components/Table";
 import Button from "../components/Button";
 import Loading from "../components/Loading";
 import styled from "styled-components";
+import DeleteModal from "../components/DeleteModal";
 
 interface liStyledProps {
   isActive: boolean;
@@ -33,9 +34,7 @@ const List = styled.ul`
 const ListItem = styled.li<liStyledProps>`
   padding: 10px;
   border-bottom: ${(props) =>
-    props.isActive
-      ? "3px solid #007455"
-      : "3px solid #00000036"};
+    props.isActive ? "3px solid #007455" : "3px solid #00000036"};
   cursor: pointer;
 `;
 
@@ -127,13 +126,11 @@ const DivIcon = styled.div`
   font-size: 20px;
 `;
 const DivSearch = styled.div`
-position: relative;
+  position: relative;
 `;
 
 function Bookings() {
-  const dataBooking = useSelector(
-    (state: RootState) => state.bookingSlice.dataBooking
-  );
+  const dataBooking = useSelector((state: RootState) => state.bookingSlice.dataBooking);
   const dispatch: AppDispatch = useDispatch();
   const [fetched, setFetched] = useState(false);
   const [dataFinal, setDataFinal] = useState<DataBookings[]>([]);
@@ -143,6 +140,8 @@ function Bookings() {
   });
   const [openPopup, setOpenPopup] = useState(false);
   const [activeItem, setActiveItem] = useState("All Bookings");
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null);
 
   useEffect(() => {
     const initialFetch = async () => {
@@ -159,6 +158,23 @@ function Bookings() {
   }, [dataBooking]);
 
   if (!fetched) return <Loading />;
+
+  const deleteItem = (_id: string) => {
+    setSelectedBookingId(_id);
+    setShowDeleteModal(true);
+  };
+
+  const confirmDelete = () => {
+    if (selectedBookingId) {
+      dispatch(deleteThunk(selectedBookingId));
+      dispatch(fetchAllThunk());
+      setShowDeleteModal(false);
+    }
+  };
+
+  const cancelDelete = () => {
+    setShowDeleteModal(false);
+  };
 
   const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
@@ -203,10 +219,6 @@ function Bookings() {
       title: "Special Request",
       info: e,
     });
-  }
-
-  function deleteItem(_id: string) {
-    dispatch(deleteThunk(_id));
   }
 
   const columns: Column[] = [
@@ -331,7 +343,11 @@ function Bookings() {
         <FilterContainer>
           <DivSearch>
             <SearchIcon />
-            <TextInput type="text" onChange={handleFilter} placeholder="Search..." />
+            <TextInput
+              type="text"
+              onChange={handleFilter}
+              placeholder="Search..."
+            />
           </DivSearch>
           <SelectInput onChange={onChange} defaultValue="">
             <option value="" disabled>
@@ -357,6 +373,9 @@ function Bookings() {
           setOpenPopup={setOpenPopup}
           openPopup={openPopup}
         />
+      )}
+      {showDeleteModal && (
+        <DeleteModal onConfirm={confirmDelete} onCancel={cancelDelete} />
       )}
     </div>
   );

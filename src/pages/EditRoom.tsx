@@ -9,6 +9,7 @@ import { fetchSingleThunk, updateThunk } from "../slices/rooms/roomsThunk";
 import editImage from "../../public/edit.webp";
 import { Link } from "react-router-dom";
 import { HiArrowLeft } from "react-icons/hi";
+import Loading from "../components/Loading";
 
 const Container = styled.div`
   max-width: 1200px;
@@ -275,7 +276,7 @@ function EditRoom() {
   };
 
   if (!singleRoom) {
-    return <div>Loading...</div>;
+    return <Loading />
   }
 
   return (

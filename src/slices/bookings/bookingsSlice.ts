@@ -21,7 +21,7 @@ const initialState: StateBooking = {
   dataBooking: [],
   singleBooking: null,
   error: null,
-  singleRoom: undefined
+  singleRoom: undefined,
 };
 
 export const bookingsSlice = createSlice({
@@ -52,17 +52,6 @@ export const bookingsSlice = createSlice({
           );
         }
       );
-    // .addCase(createThunk.fulfilled, (state, action) => {
-    //   state.dataBooking.push(action.payload);
-    // })
-    // .addCase(updateThunk.fulfilled, (state, action) => {
-    //   const index = state.dataBooking.findIndex(
-    //     (booking) => booking._id === action.payload._id
-    //   );
-    //   if (index !== -1) {
-    //     state.dataBooking[index] = action.payload;
-    //   }
-    // });
   },
 });
 

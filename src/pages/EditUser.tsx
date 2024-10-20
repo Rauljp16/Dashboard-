@@ -9,6 +9,7 @@ import styled from "styled-components";
 import editImage from "../../public/edit.webp";
 import { Link } from "react-router-dom";
 import { HiArrowLeft } from "react-icons/hi";
+import Loading from "../components/Loading";
 
 const Container = styled.div`
 max-width: 1200px;
@@ -230,7 +231,7 @@ function EditUser() {
     };
 
     if (!singleUser) {
-        return <div>Loading...</div>;
+        return <Loading />;
     }
 
     return (

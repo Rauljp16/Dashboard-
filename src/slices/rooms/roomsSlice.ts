@@ -31,10 +31,8 @@ export const roomsSlice = createSlice({
       .addCase(
         fetchAllThunk.fulfilled,
         (state, action: PayloadAction<DataRooms[]>) => {
-          if (!state.dataRoom.length) {
-            state.status = "fulfilled";
-            state.dataRoom = action.payload;
-          }
+          state.status = "fulfilled";
+          state.dataRoom = action.payload;
         }
       )
       .addCase(
@@ -49,14 +47,5 @@ export const roomsSlice = createSlice({
         state.status = "fulfilled";
         state.singleRoom = action.payload ?? null;
       });
-    //   .addCase(createThunk.fulfilled, (state, action) => {
-    //     state.dataRoom.push(action.payload);
-    //   })
-    //   .addCase(updateThunk.fulfilled, (state, action) => {
-    //     const index = state.data.findIndex(
-    //       (post) => post.id === action.payload.id
-    //     );
-    //     state.dataRoom[index] = action.payload;
-    //   })
   },
 });

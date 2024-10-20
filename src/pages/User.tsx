@@ -149,8 +149,6 @@ const Status = styled.div<{ status: string }>`
   letter-spacing: 1px;
 `;
 
-
-
 function user() {
   const dispatch: AppDispatch = useDispatch();
   const { _id } = useParams<{ _id: string }>();

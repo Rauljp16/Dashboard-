@@ -9,6 +9,7 @@ import styled from "styled-components";
 import Button from "../components/Button";
 import Table from "../components/Table";
 import Loading from "../components/Loading";
+import DeleteModal from "../components/DeleteModal";
 
 const Container = styled.div`
   display: flex;
@@ -46,6 +47,7 @@ const RoomItemInfo = styled.div`
   flex-direction: column;
   gap: 10px;
 `;
+
 const StyledLink = styled(Link)`
   transform: scaleY(1.4);
 `;
@@ -62,6 +64,7 @@ const StatusAvailable = styled.button`
   border: none;
   border-radius: 4px;
 `;
+
 const StatusBooked = styled.button`
   background-color: #e23428;
   color: white;
@@ -88,6 +91,8 @@ function Rooms() {
   const dispatch: AppDispatch = useDispatch();
   const [fetched, setFectched] = useState(false);
   const [dataFinal, setDataFinal] = useState<DataRooms[]>([]);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedRoomId, setSelectedRoomId] = useState<string | null>(null);
 
   useEffect(() => {
     const initialFetch = async () => {
@@ -97,8 +102,22 @@ function Rooms() {
     initialFetch();
   }, [dispatch]);
 
-  function deleteItem(_id: string) {
-    dispatch(deleteThunk(_id));
+  function openDeleteModal(roomId: string) {
+    setSelectedRoomId(roomId);
+    setShowDeleteModal(true);
+  }
+
+  function closeDeleteModal() {
+    setSelectedRoomId(null);
+    setShowDeleteModal(false);
+  }
+
+  function deleteItem() {
+    if (selectedRoomId) {
+      dispatch(deleteThunk(selectedRoomId));
+      dispatch(fetchAllThunk());
+      closeDeleteModal();
+    }
   }
 
   const dataRoomState = useMemo(() => {
@@ -119,8 +138,8 @@ function Rooms() {
         break;
       case "OfferPrice":
         setDataFinal(
-          [...dataRoomState].sort((a, b) => Number(a.OfferPrice) - Number(b.OfferPrice)));
-        console.log(dataFinal);
+          [...dataRoomState].sort((a, b) => Number(a.OfferPrice) - Number(b.OfferPrice))
+        );
         break;
       default:
         setDataFinal(
@@ -187,7 +206,7 @@ function Rooms() {
             <RiEdit2Line style={{ textDecoration: "none", color: "#009e74" }} />
           </Link>
           <RiDeleteBin5Line
-            onClick={() => deleteItem(row._id)}
+            onClick={() => openDeleteModal(row._id)}
             style={{ color: "#9c0e0e", cursor: "pointer" }}
           />
         </IconContainer>
@@ -199,9 +218,7 @@ function Rooms() {
     <>
       <Container>
         <SelectInput onChange={onChange} defaultValue="">
-          <option value="" >
-            Order by
-          </option>
+          <option value="">Order by</option>
           <option value="Status">Status</option>
           <option value="OfferPrice">Price</option>
         </SelectInput>
@@ -209,10 +226,14 @@ function Rooms() {
           <StyledButton color="green" name="New Room" />
         </StyledLink>
       </Container>
-      <Table
-        data={dataFinal.length ? dataFinal : dataRoomState}
-        columns={columns}
-      />
+      <Table data={dataFinal.length ? dataFinal : dataRoomState} columns={columns} />
+
+      {showDeleteModal && (
+        <DeleteModal
+          onConfirm={deleteItem}
+          onCancel={closeDeleteModal}
+        />
+      )}
     </>
   );
 }
