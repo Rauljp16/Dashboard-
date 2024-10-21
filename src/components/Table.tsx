@@ -8,9 +8,10 @@ import {
   DataUsers,
 } from "../types/global";
 
-// Estilos
+
 const TableContainer = styled.div`
   width: 100%;
+  overflow: auto;
   `;
 
 const StyledTable = styled.table`
@@ -18,6 +19,7 @@ const StyledTable = styled.table`
     border-collapse: collapse;
     border-radius: 10px;
     background-color: #ffffff;
+    overflow: auto;
 `;
 
 const TableHead = styled.thead`

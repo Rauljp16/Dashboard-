@@ -27,16 +27,18 @@ const AppStyled = styled.section`
 display: flex;
 background-color: #f8f8f8;
 height: 100vh;
+overflow: auto;
 `;
 
 const ContainerStyled = styled.section`
-width: calc(100vw - 250px);
+width: 100%;
+overflow: auto;
 `;
 
 const PagesStyled = styled.section`
 padding: 40px;
-height: 89vh;
 overflow: auto;
+/* height: 89vh; */
 `;
 
 
@@ -189,7 +191,7 @@ function App() {
           </Routes>
         </PagesStyled>
       </ContainerStyled>
-    </AppStyled>
+    </AppStyled >
   );
 }
 

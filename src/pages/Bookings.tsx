@@ -17,18 +17,25 @@ interface liStyledProps {
   isActive: boolean;
 }
 
+const BookingsPage = styled.div`
+  width: 100%;
+  overflow: auto;
+`;
+
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
   margin: 0 0 20px 0;
+  overflow: auto;
 `;
 
 const List = styled.ul`
   list-style-type: none;
   display: flex;
   align-items: center;
+  font-size: 14px;
 `;
 
 const ListItem = styled.li<liStyledProps>`
@@ -36,6 +43,7 @@ const ListItem = styled.li<liStyledProps>`
   border-bottom: ${(props) =>
     props.isActive ? "3px solid #007455" : "3px solid #00000036"};
   cursor: pointer;
+  text-align: center;
 `;
 
 const FilterContainer = styled.div`
@@ -43,10 +51,11 @@ const FilterContainer = styled.div`
   display: flex;
   gap: 15px;
   align-items: center;
-  flex-wrap: wrap;
+  padding-right: 3px;
 `;
 
 const TextInput = styled.input`
+  width: 100px;
   padding: 10px;
   border: none;
   border-radius: 4px;
@@ -56,16 +65,16 @@ const TextInput = styled.input`
 
 const SearchIcon = styled(AiOutlineSearch)`
   position: absolute;
-  top: 8px;
-  left: 155px;
-  font-size: 22px;
+  top: 7px;
+  left: 72px;
+  font-size: 20px;
 `;
 
 const SelectInput = styled.select`
-  padding: 8px;
+width: 100px;
+  padding: 9px;
   border: 1px solid #007455;
   border-radius: 4px;
-  font-size: 1rem;
   color: #007455;
 `;
 
@@ -130,7 +139,9 @@ const DivSearch = styled.div`
 `;
 
 function Bookings() {
-  const dataBooking = useSelector((state: RootState) => state.bookingSlice.dataBooking);
+  const dataBooking = useSelector(
+    (state: RootState) => state.bookingSlice.dataBooking
+  );
   const dispatch: AppDispatch = useDispatch();
   const [fetched, setFetched] = useState(false);
   const [dataFinal, setDataFinal] = useState<DataBookings[]>([]);
@@ -141,7 +152,9 @@ function Bookings() {
   const [openPopup, setOpenPopup] = useState(false);
   const [activeItem, setActiveItem] = useState("All Bookings");
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null);
+  const [selectedBookingId, setSelectedBookingId] = useState<string | null>(
+    null
+  );
 
   useEffect(() => {
     const initialFetch = async () => {
@@ -327,7 +340,7 @@ function Bookings() {
   };
 
   return (
-    <div>
+    <BookingsPage>
       <Container>
         <List>
           {order.map((ord, orderIndex) => (
@@ -377,7 +390,7 @@ function Bookings() {
       {showDeleteModal && (
         <DeleteModal onConfirm={confirmDelete} onCancel={cancelDelete} />
       )}
-    </div>
+    </BookingsPage>
   );
 }
 

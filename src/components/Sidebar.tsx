@@ -25,7 +25,7 @@ const SidebarStyled = styled.div<SidebarProps>`
   width: ${(props) => (props.open ? "250px" : "60px")};
   min-width: ${(props) => (props.open ? "250px" : "60px")};
   transition: all 1s ease;
-  overflow: hidden;
+  overflow: auto;
   z-index: 1;
   background-color: #ffffff;
   box-shadow: 0px 0px 5px #0000002b;
@@ -41,10 +41,10 @@ const SidebarStyled = styled.div<SidebarProps>`
 const LogoWrapper = styled.div<SidebarProps>`
   display: flex;
   align-items: center;
-  width: ${(props) => (props.open ? "100px" : "50px")};
+  width: ${(props) => (props.open ? "70px" : "55px")};
   transition: all 1s ease;
   padding: 6px 0;
-  margin: 0 auto 20px;
+  margin: 0 auto 10px;
 
   @media (max-width: 1000px) {
     width: 50px;
@@ -83,7 +83,6 @@ const LinkStyled = styled(Link) <LinkStyledProps>`
 const PStyled = styled.div<SidebarProps>`
   position: absolute;
   left: 120px;
-  font-size: 18px;
   transform: ${(props) =>
     props.open
       ? "translate(0) rotate(0deg)"
@@ -189,7 +188,7 @@ const DivRights = styled.div<SidebarProps>`
   transform: ${(props) =>
     props.open
       ? "translate(0) rotate(0deg)"
-      : "translate(-250px) rotate(-90deg)"};
+      : "translate(-350px) rotate(-90deg)"};
   transition: transform 1s ease-in-out;
   @media (max-width: 1000px) {
     transform: translate(-250px) rotate(-90deg);

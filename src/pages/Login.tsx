@@ -58,6 +58,9 @@ const Text = styled.p`
   font-family: sans-serif;
 
 `;
+const DivButton = styled.div`
+scale: 1.1;
+`;
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -170,8 +173,9 @@ function Login() {
             value={password}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
           />)}
-
-        <Button color="green" name="LOGIN" ></Button>
+        <DivButton>
+          <Button color="green" name="LOGIN" ></Button>
+        </DivButton>
         <Text>To access...</Text>
         <Text>EMAIL: rauljp16@gmail.com</Text>
         <Text>PASSWORD: hotel miranda</Text>
