@@ -24,7 +24,7 @@ position: relative;
     width: 50%;
     display: flex;
     gap: 5px;
-    padding: 40px;
+    padding: 80px 40px 40px;
     background-color: #ffffffc0;
     border-radius: 8px 0px 0px 8px;
     box-shadow: 0px 0px 18px #0033256a;
@@ -107,7 +107,7 @@ color: #ffffff;
 letter-spacing: 1px;
 font-size: 22px;
 cursor: pointer;
-margin-top: 50px;
+margin-top: 20px;
 transition: all 0.1s ease-in-out;
 &:hover {
     scale: 1.02;

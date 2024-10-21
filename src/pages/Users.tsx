@@ -12,6 +12,11 @@ import Button from "../components/Button";
 import Loading from "../components/Loading";
 import PasswordModal from "../components/PasswordModal";
 
+const UsersPage = styled.div`
+  width: 100%;
+  overflow: auto;
+`;
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -26,12 +31,14 @@ const FilterContainer = styled.div`
 `;
 
 const TextInput = styled.input`
+width: 100px;
   padding: 10px;
   border: none;
   border-radius: 4px;
   box-shadow: 0px 0px 2px 0px #007455;
   outline: none;
   margin-right: 15px;
+
 `;
 
 const FilterList = styled.ul`
@@ -42,9 +49,13 @@ const FilterList = styled.ul`
 
 const SearchIcon = styled(AiOutlineSearch)`
   position: absolute;
-  top: 8px;
-  left: 156px;
+  top: 7px;
+  left: 72px;
   font-size: 22px;
+`;
+
+const StyledLink = styled(Link)`
+  transform: scaleY(1.4);
 `;
 
 const DivName = styled.div`
@@ -264,30 +275,33 @@ function Users() {
   };
 
   return (
-    <Container>
-      <FilterContainer>
-        <FilterList>
-          {order.map((ord, orderIndex) => (
-            <ListItem key={orderIndex} onClick={handleFiltered} isActive={activeItem === ord}>
-              {ord}
-            </ListItem>
-          ))}
-        </FilterList>
-        <DivSearch>
-          <SearchIcon />
-          <TextInput type="text" onChange={handleFilter} />
-        </DivSearch>
-        <Link to="/users/create">
-          <Button color="green" name="New User" />
-        </Link>
-      </FilterContainer>
+    <UsersPage>
+      <Container>
+        <FilterContainer>
+          <FilterList>
+            {order.map((ord, orderIndex) => (
+              <ListItem key={orderIndex} onClick={handleFiltered} isActive={activeItem === ord}>
+                {ord}
+              </ListItem>
+            ))}
+          </FilterList>
+          <DivSearch>
+            <SearchIcon />
+            <TextInput type="text" onChange={handleFilter} placeholder="Search..."
+            />
+          </DivSearch>
+          <StyledLink to="/users/create">
+            <Button color="green" name="New User" />
+          </StyledLink>
+        </FilterContainer>
 
-      <Table data={dataFinal.length ? dataFinal : dataUsersState} columns={columns} />
+        <Table data={dataFinal.length ? dataFinal : dataUsersState} columns={columns} />
 
-      {showPasswordModal && (
-        <PasswordModal onSubmit={handlePasswordSubmit} onCancel={() => setShowPasswordModal(false)} />
-      )}
-    </Container>
+        {showPasswordModal && (
+          <PasswordModal onSubmit={handlePasswordSubmit} onCancel={() => setShowPasswordModal(false)} />
+        )}
+      </Container>
+    </UsersPage>
   );
 }
 

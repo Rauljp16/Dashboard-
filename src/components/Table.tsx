@@ -12,6 +12,7 @@ import {
 const TableContainer = styled.div`
   width: 100%;
   overflow: auto;
+  border-radius: 10px;
   `;
 
 const StyledTable = styled.table`

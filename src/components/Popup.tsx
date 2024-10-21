@@ -25,7 +25,7 @@ const PopupOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(226, 226, 226, 0.233);
+  background: rgba(78, 78, 78, 0.473);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
 `;

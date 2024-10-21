@@ -107,7 +107,7 @@ const ButtonStyled = styled.button`
   letter-spacing: 1px;
   font-size: 22px;
   cursor: pointer;
-  margin-top: 50px;
+  margin-top: 20px;
   transition: all 0.1s ease-in-out;
   &:hover {
     scale: 1.02;

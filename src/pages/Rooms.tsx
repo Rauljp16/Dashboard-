@@ -17,7 +17,14 @@ const Container = styled.div`
   justify-content: end;
   gap: 20px;
   margin-bottom: 20px;
+  overflow: auto;
 `;
+
+const RoomsPage = styled.div`
+  width: 100%;
+  overflow: auto;
+`;
+
 
 const SelectInput = styled.select`
   padding: 8px;
@@ -215,7 +222,7 @@ function Rooms() {
   ];
 
   return (
-    <>
+    <RoomsPage>
       <Container>
         <SelectInput onChange={onChange} defaultValue="">
           <option value="">Order by</option>
@@ -234,7 +241,7 @@ function Rooms() {
           onCancel={closeDeleteModal}
         />
       )}
-    </>
+    </RoomsPage>
   );
 }
 

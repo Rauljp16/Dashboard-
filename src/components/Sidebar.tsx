@@ -102,12 +102,12 @@ const UserProfile = styled.div<SidebarProps>`
   flex-direction: column;
   align-items: center;
   width: 180px;
-  margin: 20px auto;
+  margin: 10px auto;
   padding: 30px;
   background-color: #ffffff;
   border-radius: 18px;
   box-shadow: 0px 20px 30px #00000014;
-  gap: 20px;
+  gap: 14px;
   transform: ${(props) =>
     props.open
       ? "translate(0) rotate(0deg)"
@@ -125,7 +125,7 @@ position: relative;
 `;
 const UserImg = styled.img<SidebarProps>`
   position: absolute;
-    top: 22px;
+    top: 12px;
     left: 100px;
     z-index: 2;
   width: ${(props) => (props.open ? "55px" : "50px")};
@@ -250,7 +250,8 @@ function Sidebar({ open }: SidebarProps) {
             isActive={
               location.pathname === "/bookings" ||
               location.pathname === "/bookings/create" ||
-              !!matchPath("/bookings/edit/:id", location.pathname)
+              !!matchPath("/bookings/edit/:id", location.pathname) ||
+              !!matchPath("/bookings/:id", location.pathname)
             }
           >
             <LuCalendarDays style={{ width: "32px", height: "32px" }} />
@@ -263,7 +264,8 @@ function Sidebar({ open }: SidebarProps) {
             isActive={
               location.pathname === "/rooms" ||
               location.pathname === "/rooms/create" ||
-              !!matchPath("/rooms/edit/:id", location.pathname)
+              !!matchPath("/rooms/edit/:id", location.pathname) ||
+              !!matchPath("/rooms/:id", location.pathname)
             }
           >
             <IoKeyOutline style={{ width: "32px", height: "32px" }} />
@@ -285,7 +287,8 @@ function Sidebar({ open }: SidebarProps) {
             isActive={
               location.pathname === "/users" ||
               location.pathname === "/users/create" ||
-              !!matchPath("/users/edit/:id", location.pathname)
+              !!matchPath("/users/edit/:id", location.pathname) ||
+              !!matchPath("/users/:id", location.pathname)
             }
           >
             <HiOutlineUser style={{ width: "32px", height: "32px" }} />

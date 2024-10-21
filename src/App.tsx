@@ -36,7 +36,7 @@ overflow: auto;
 `;
 
 const PagesStyled = styled.section`
-padding: 40px;
+padding: 20px 30px;
 overflow: auto;
 /* height: 89vh; */
 `;

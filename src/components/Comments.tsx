@@ -1,12 +1,16 @@
 import styled from "styled-components";
 import commentsJson from "../../data/comments.json";
 
-// Estilos con Styled Components
+
 const CommentsContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  border-radius: 8px;
-  gap: 30px;
+    width: 100%;
+    overflow: auto;
+    padding: 20px;
+`;
+const CommentsDiv = styled.div`
+      display: flex;
+    border-radius: 8px;
+    gap: 30px;
   width: fit-content;
 `;
 
@@ -16,15 +20,16 @@ const CommentCard = styled.div`
   justify-content: space-around;
   box-shadow: 0px 0px 16px rgba(204, 204, 204, 1);
   border-radius: 8px;
-  padding: 30px;
+  padding: 10px 14px;
   background-color: #fafafa;
-  max-width: 400px;
-  min-height: 250px;
+  width: 260px;
+  font-size: 14px;
 `;
 const DivUserInfo = styled.div`
   display: flex;
   align-items: flex-end;
   gap: 20px;
+  overflow: auto;
 `;
 const CommentImage = styled.img`
       width: 55px;
@@ -40,7 +45,7 @@ const CommentInfo = styled.div`
 `;
 
 const CommentText = styled.p`
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 const CommentName = styled.p`
@@ -50,25 +55,27 @@ const CommentName = styled.p`
 
 const CommentTimeAgo = styled.p`
   color: #007455;
-  font-size: 14px;
+  font-size: 12px;
   letter-spacing: 0.4px;
 `;
 
 function Comments() {
   return (
     <CommentsContainer>
-      {commentsJson.map((comment) => (
-        <CommentCard key={comment.name}>
-          <CommentText>{comment.comment}</CommentText>
-          <DivUserInfo>
-            <CommentImage src={comment.photo} alt="usuario" />
-            <CommentInfo>
-              <CommentName>{comment.name}</CommentName>
-              <CommentTimeAgo>{comment.timeAgo}</CommentTimeAgo>
-            </CommentInfo>
-          </DivUserInfo>
-        </CommentCard>
-      ))}
+      <CommentsDiv>
+        {commentsJson.map((comment) => (
+          <CommentCard key={comment.name}>
+            <CommentText>{comment.comment}</CommentText>
+            <DivUserInfo>
+              <CommentImage src={comment.photo} alt="usuario" />
+              <CommentInfo>
+                <CommentName>{comment.name}</CommentName>
+                <CommentTimeAgo>{comment.timeAgo}</CommentTimeAgo>
+              </CommentInfo>
+            </DivUserInfo>
+          </CommentCard>
+        ))}
+      </CommentsDiv>
     </CommentsContainer>
   );
 }

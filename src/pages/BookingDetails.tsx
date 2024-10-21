@@ -95,7 +95,6 @@ const RoomInfo = styled.div`
 `;
 
 const DivImgRoom = styled.div`
-position: relative;
   width: 50%;
   height: 100%;
   overflow: hidden;
@@ -179,7 +178,7 @@ function BookingDetails() {
   if (!singleBooking) {
     return <Loading />;
   }
-
+  console.log(singleBooking.Status);
   return (
     <Container>
       <ImgRoom src={imageRoom} alt="image room" />

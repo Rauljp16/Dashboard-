@@ -4,7 +4,7 @@ import { TbLogout, TbLogin } from "react-icons/tb";
 import styled from "styled-components";
 
 const SectionKPIs = styled.section`
-width: 100%;
+  width: 100%;
   display: flex;
   gap: 30px;
 `;
@@ -12,11 +12,12 @@ width: 100%;
 const Article = styled.article`
   display: flex;
   align-items: center;
-  width: 100%;
+  width: auto;
+  min-width: 180px;
   background-color: #ffffff;
   box-shadow: 0px 0px 10px rgba(204, 204, 204, 0.5);
   border-radius: 8px;
-  padding: 20px;
+  padding: 10px 20px;
   gap: 20px;
 `;
 
@@ -44,7 +45,7 @@ const TextWrapper = styled.div`
     gap: 4px;
 
   p:first-child {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
   }
 
@@ -55,49 +56,49 @@ const TextWrapper = styled.div`
 `;
 
 function KPIs() {
-    return (
-        <SectionKPIs>
-            <Article>
-                <IconWrapper >
-                    <IoBedOutline size="24px" />
-                </IconWrapper>
-                <TextWrapper>
-                    <p>8,461</p>
-                    <p>New Booking</p>
-                </TextWrapper>
-            </Article>
+  return (
+    <SectionKPIs>
+      <Article>
+        <IconWrapper >
+          <IoBedOutline size="24px" />
+        </IconWrapper>
+        <TextWrapper>
+          <p>8,461</p>
+          <p>New Booking</p>
+        </TextWrapper>
+      </Article>
 
-            <Article>
-                <IconWrapper >
-                    <FaRegCalendarAlt size="24px" />
-                </IconWrapper>
-                <TextWrapper>
-                    <p>963</p>
-                    <p>Scheduled Room</p>
-                </TextWrapper>
-            </Article>
+      <Article>
+        <IconWrapper >
+          <FaRegCalendarAlt size="24px" />
+        </IconWrapper>
+        <TextWrapper>
+          <p>963</p>
+          <p>Scheduled Room</p>
+        </TextWrapper>
+      </Article>
 
-            <Article>
-                <IconWrapper >
-                    <TbLogin size="24px" />
-                </IconWrapper>
-                <TextWrapper>
-                    <p>753</p>
-                    <p>Check In</p>
-                </TextWrapper>
-            </Article>
+      <Article>
+        <IconWrapper >
+          <TbLogin size="24px" />
+        </IconWrapper>
+        <TextWrapper>
+          <p>753</p>
+          <p>Check In</p>
+        </TextWrapper>
+      </Article>
 
-            <Article>
-                <IconWrapper >
-                    <TbLogout size="24px" />
-                </IconWrapper>
-                <TextWrapper>
-                    <p>516</p>
-                    <p>Check Out</p>
-                </TextWrapper>
-            </Article>
-        </SectionKPIs>
-    );
+      <Article>
+        <IconWrapper >
+          <TbLogout size="24px" />
+        </IconWrapper>
+        <TextWrapper>
+          <p>516</p>
+          <p>Check Out</p>
+        </TextWrapper>
+      </Article>
+    </SectionKPIs>
+  );
 }
 
 export default KPIs;

@@ -90,7 +90,6 @@ const FacilityTag = styled.div`
 `;
 
 const DivImgRoom = styled.div`
-  position: relative;
   width: 50%;
   height: 100%;
   overflow: hidden;

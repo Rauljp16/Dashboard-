@@ -128,7 +128,6 @@ const LinkTo = styled(Link)`
   transition: all 0.1s ease-in-out;
 `;
 const DivImgUser = styled.div`
-  position: relative;
   width: 50%;
   height: 100%;
   overflow: hidden;

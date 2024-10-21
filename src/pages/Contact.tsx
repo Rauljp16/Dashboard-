@@ -40,6 +40,9 @@ const ColumnContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width:max-content;
+  max-width: 350px;
+  min-width: 180px;
 `;
 
 const Paragraph = styled.p`
