@@ -8,6 +8,7 @@ import Comment from "../components/Comments";
 import Table from "../components/Table";
 import Loading from "../components/Loading";
 import styled from "styled-components";
+import PasswordModal from "../components/PasswordModal";
 
 const Container = styled.div`
   display: flex;
@@ -82,6 +83,29 @@ function Contact() {
   const dispatch: AppDispatch = useDispatch();
   const [fetched, setFetched] = useState(false);
   const [activeItem, setActiveItem] = useState("All Contacts");
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [action, setAction] = useState<'edit' | 'delete' | null>(null);
+  const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
+
+  const correctPassword = "rauljp";
+
+  const handlePasswordSubmit = (enteredPassword: string) => {
+    if (enteredPassword === correctPassword) {
+      if (action === 'delete' && selectedUserId) {
+        deleteItem(selectedUserId);
+      }
+    } else {
+      alert("Incorrect password!");
+    }
+    setShowPasswordModal(false);
+  };
+
+  const handleDeleteClick = (userId: string) => {
+    setAction('delete');
+    setSelectedUserId(userId);
+    setShowPasswordModal(true);
+  };
+
 
   useEffect(() => {
     const initialFetch = async () => {
@@ -104,6 +128,7 @@ function Contact() {
 
   const deleteItem = (_id: string) => {
     dispatch(deleteThunk(_id));
+    dispatch(fetchAllThunk());
   };
 
   const order = ["All Contacts", "Archived", "Publish"];
@@ -153,7 +178,7 @@ function Contact() {
       headerColumn: "",
       columnsData: "delete",
       columnRenderer: (row) => (
-        <DeleteIcon onClick={() => deleteItem(row._id)} />
+        <DeleteIcon onClick={() => handleDeleteClick(row._id)} />
       ),
     },
   ];
@@ -177,6 +202,9 @@ function Contact() {
         ))}
       </List>
       <Table data={filteredData} columns={columns} />
+      {showPasswordModal && (
+        <PasswordModal onSubmit={handlePasswordSubmit} onCancel={() => setShowPasswordModal(false)} />
+      )}
     </Container>
   );
 }

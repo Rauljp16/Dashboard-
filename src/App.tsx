@@ -27,11 +27,10 @@ const AppStyled = styled.section`
 display: flex;
 background-color: #f8f8f8;
 height: 100vh;
-/* overflow: hidden; */
 `;
 
 const ContainerStyled = styled.section`
-width: 100vw;
+width: calc(100vw - 250px);
 `;
 
 const PagesStyled = styled.section`

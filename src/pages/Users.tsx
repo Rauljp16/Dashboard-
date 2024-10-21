@@ -139,7 +139,7 @@ function Users() {
 
 
 
-  const correctPassword = "";
+  const correctPassword = "rauljp";
 
   const handlePasswordSubmit = (enteredPassword: string) => {
     if (enteredPassword === correctPassword) {
