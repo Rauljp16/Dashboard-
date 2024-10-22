@@ -87,9 +87,9 @@ function Header({ setOpen, open }: Props) {
     <HeaderContainer open={open} setOpen={setOpen}>
       <ContainerTitle>
         {open ? (
-          <IoChevronBackOutline onClick={handleClick} />
+          <IoChevronBackOutline onClick={handleClick} style={{ cursor: "pointer" }} />
         ) : (
-          <HiOutlineMenuAlt1 onClick={handleClick} />
+          <HiOutlineMenuAlt1 onClick={handleClick} style={{ cursor: "pointer" }} />
         )}
         <Title>{getRouteName(title)}</Title>
       </ContainerTitle>
