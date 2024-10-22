@@ -25,7 +25,7 @@ const SidebarStyled = styled.div<SidebarProps>`
   width: ${(props) => (props.open ? "250px" : "60px")};
   min-width: ${(props) => (props.open ? "250px" : "60px")};
   transition: all 1s ease;
-  overflow: auto;
+  overflow: hidden;
   z-index: 1;
   background-color: #ffffff;
   box-shadow: 0px 0px 5px #0000002b;
